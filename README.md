@@ -1,4 +1,4 @@
-# BookStore_FlutterWebApp
+# BookStore Flutter WebApp
 A little flutter web project for book.
 
 
