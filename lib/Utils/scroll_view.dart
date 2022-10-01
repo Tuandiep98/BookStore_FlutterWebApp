@@ -3,22 +3,21 @@ import 'package:flutter_improved_scrolling/flutter_improved_scrolling.dart';
 
 import 'scroll_behavior.dart';
 
-Widget buildScrollingView(
-    Axis axis, ScrollController controller, List<Widget> children,
-    {bool useSystemCursor = false}) {
+Widget buildScrollingView(ScrollController controller, List<Widget> children,
+    {bool useSystemCursor = false, Axis axis = Axis.vertical}) {
   return ImprovedScrolling(
     scrollController: controller,
-    onScroll: (scrollOffset) => debugPrint(
-      'Scroll offset: $scrollOffset',
-    ),
-    onMMBScrollStateChanged: (scrolling) => debugPrint(
-      'Is scrolling: $scrolling',
-    ),
-    onMMBScrollCursorPositionUpdate: (localCursorOffset, scrollActivity) =>
-        debugPrint(
-      'Cursor position: $localCursorOffset\n'
-      'Scroll activity: $scrollActivity',
-    ),
+    // onScroll: (scrollOffset) => debugPrint(
+    //   'Scroll offset: $scrollOffset',
+    // ),
+    // onMMBScrollStateChanged: (scrolling) => debugPrint(
+    //   'Is scrolling: $scrolling',
+    // ),
+    // onMMBScrollCursorPositionUpdate: (localCursorOffset, scrollActivity) =>
+    //     debugPrint(
+    //   'Cursor position: $localCursorOffset\n'
+    //   'Scroll activity: $scrollActivity',
+    // ),
     enableMMBScrolling: true,
     enableKeyboardScrolling: true,
     enableCustomMouseWheelScrolling: true,

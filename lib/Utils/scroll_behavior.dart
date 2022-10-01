@@ -15,17 +15,13 @@ class CustomScrollBehaviour extends MaterialScrollBehavior {
       case TargetPlatform.macOS:
         return Scrollbar(
           controller: details.controller,
-          isAlwaysShown: true,
           child: child,
         );
       case TargetPlatform.windows:
         return Scrollbar(
           controller: details.controller,
-          isAlwaysShown: false,
           radius: const Radius.circular(20),
           thickness: 8.0,
-          hoverThickness: 10.0,
-          showTrackOnHover: true,
           child: child,
         );
       case TargetPlatform.android:
