@@ -1,13 +1,10 @@
+import 'package:book_store/elements/tabbar_element.dart';
+import 'package:book_store/elements/trending_book_element.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 import 'Utils/scroll_behavior.dart';
-import 'Utils/scroll_view.dart';
-import 'elements/author_activity_element.dart';
-import 'elements/book_activity_element.dart';
 import 'elements/book_element.dart';
-import 'elements/book_element_reverse.dart';
+import 'elements/tabbar_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -88,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     BookElement(),
                   ],
                   options: CarouselOptions(
-                    enlargeCenterPage: false,
+                    viewportFraction: 0.5,
                     height: MediaQuery.of(context).size.height / 3.25,
                     enableInfiniteScroll: true,
                     autoPlay: true,
@@ -126,74 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     SizedBox(width: 20),
                     Text('Popular by Genre'),
                     Spacer(),
-                    TabBar(
-                      isScrollable: true,
-                      indicatorPadding: EdgeInsets.only(bottom: -8),
-                      indicatorSize: TabBarIndicatorSize.label,
-                      mouseCursor: MouseCursor.defer,
-                      tabs: [
-                        Tab(
-                          icon: Text(
-                            'All genres',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 13,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                        Tab(
-                          icon: Text(
-                            'Business',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 13,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                        Tab(
-                          icon: Text(
-                            'Science',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 13,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                        Tab(
-                          icon: Text(
-                            'Fiction',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 13,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                        Tab(
-                          icon: Text(
-                            'Philosophy',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 13,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                        Tab(
-                          icon: Text(
-                            'Biography',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 13,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    TabBarElement(),
                     SizedBox(width: 20),
                   ],
                 ),
@@ -203,137 +133,8 @@ class _MyHomePageState extends State<MyHomePage> {
             Expanded(
               child: Row(
                 children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 6.2,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: const [
-                        SizedBox(height: 30),
-                        AuthorActivityElement(
-                          authors: [1],
-                          description: 'Angie Cruz',
-                          thickness: 0,
-                          size: 32,
-                          fontSize: 14,
-                        ),
-                        SizedBox(height: 10),
-                        AuthorActivityElement(
-                          authors: [1],
-                          description: 'James Lasdun',
-                          thickness: 0,
-                          size: 32,
-                          fontSize: 14,
-                        ),
-                        SizedBox(height: 10),
-                        AuthorActivityElement(
-                          authors: [1],
-                          description: 'Kimberly Jones',
-                          thickness: 0,
-                          size: 32,
-                          fontSize: 14,
-                        ),
-                        SizedBox(height: 10),
-                        AuthorActivityElement(
-                          authors: [1],
-                          description: 'Lucy Parker',
-                          thickness: 0,
-                          size: 32,
-                          fontSize: 14,
-                        ),
-                        SizedBox(height: 50),
-                        BookActivityElement(
-                          books: [0],
-                          title: 'Disappearing Earth',
-                          fontSize: 14,
-                          size: 50,
-                          author: 'James Colin',
-                          description:
-                              'Readers of all ages and walks of life have drawn inspiration and empowerment from Elizabeth Gilbert’s books for years.',
-                          top: '1',
-                        ),
-                        SizedBox(height: 10),
-                        BookActivityElement(
-                          books: [0],
-                          title: 'Changes Are',
-                          fontSize: 14,
-                          size: 50,
-                          author: 'James Colin',
-                          description:
-                              'Readers of all ages and walks of life have drawn inspiration and empowerment from Elizabeth Gilbert’s books for years.',
-                          top: '2',
-                        ),
-                        SizedBox(height: 10),
-                        BookActivityElement(
-                          books: [0],
-                          title: 'Dominicana',
-                          fontSize: 14,
-                          size: 50,
-                          author: 'James Colin',
-                          description:
-                              'Readers of all ages and walks of life have drawn inspiration and empowerment from Elizabeth Gilbert’s books for years.',
-                          top: '3',
-                        ),
-                        SizedBox(height: 10),
-                        BookActivityElement(
-                          books: [0],
-                          title: 'Afternoon Of A Faun',
-                          fontSize: 14,
-                          size: 50,
-                          author: 'James Colin',
-                          description:
-                              'Readers of all ages and walks of life have drawn inspiration and empowerment from Elizabeth Gilbert’s books for years.',
-                          top: '4',
-                        ),
-                        SizedBox(height: 10),
-                        BookActivityElement(
-                          books: [0],
-                          title: 'The Travellers',
-                          fontSize: 14,
-                          size: 50,
-                          author: 'James Colin',
-                          description:
-                              'Readers of all ages and walks of life have drawn inspiration and empowerment from Elizabeth Gilbert’s books for years.',
-                          top: '5',
-                        ),
-                        SizedBox(height: 10),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: TabBarView(
-                      children: [
-                        buildScrollingView(
-                          Axis.vertical,
-                          _controller,
-                          const <Widget>[
-                            BookElementReverse(
-                                authors: [0, 1, 2],
-                                description:
-                                    'Kimberly Jones and 2 other friends like this'),
-                            BookElementReverse(
-                                authors: [0],
-                                description: 'Kimberly Jones like this'),
-                            BookElementReverse(
-                                authors: [0, 1, 2],
-                                description:
-                                    'Kimberly Jones and 2 other friends like this'),
-                            BookElementReverse(authors: []),
-                            BookElementReverse(
-                                authors: [0, 1],
-                                description:
-                                    'Kimberly Jones, John Doe like this'),
-                            BookElementReverse(authors: []),
-                            BookElementReverse(authors: []),
-                          ],
-                        ),
-                        Center(child: Text('No data to display.')),
-                        Center(child: Text('No data to display.')),
-                        Center(child: Text('No data to display.')),
-                        Center(child: Text('No data to display.')),
-                        Center(child: Text('No data to display.')),
-                      ],
-                    ),
-                  ),
+                  TrendingElement(),
+                  TabBarBody(controller: _controller),
                 ],
               ),
             ),
