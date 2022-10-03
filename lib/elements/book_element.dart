@@ -23,6 +23,73 @@ class _BookElementState extends State<BookElement> {
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
+      Container(
+        height: 240,
+        color: Color(color).withOpacity(1.0),
+        child: Container(
+          padding: const EdgeInsets.only(left: 180, right: 10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              const Text(
+                'After You',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: Colors.white,
+                ),
+              ),
+              const Text(
+                'by Jojo Moyes',
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 13,
+                  color: Colors.white,
+                ),
+              ),
+              Row(
+                children: const [
+                  Icon(Icons.star_rounded, size: 20, color: Colors.white),
+                  Icon(Icons.star_rounded, size: 20, color: Colors.white),
+                  Icon(Icons.star_rounded, size: 20, color: Colors.white),
+                  Icon(Icons.star_rounded, size: 20, color: Colors.white),
+                  Icon(Icons.star_rounded, size: 20, color: Colors.grey),
+                  SizedBox(width: 10),
+                  Text(
+                    '1.987 voters',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 13,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                'Louisa Clark is no longer hust an ordinary girl\nliving an ordinary life. After the transaforMative\nsix months spent.',
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 13,
+                  color: Colors.white,
+                ),
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 20),
+              Container(
+                height: 30,
+                width: 120,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(24),
+                  color: Colors.white,
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.grey,
+                      offset: Offset(0, 1), //(x,y)
+                      blurRadius: 2.0,
       MouseRegion(
         cursor: SystemMouseCursors.click,
         child: InkWell(

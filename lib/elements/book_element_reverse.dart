@@ -128,7 +128,6 @@ class _BookElementReverseState extends State<BookElementReverse> {
                     ],
                   ),
                 ),
-              ),
               Positioned(
                 top: 15,
                 left: 15,

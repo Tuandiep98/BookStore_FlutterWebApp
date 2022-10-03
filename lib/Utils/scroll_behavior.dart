@@ -13,17 +13,8 @@ class CustomScrollBehaviour extends MaterialScrollBehavior {
     switch (getPlatform(context)) {
       case TargetPlatform.linux:
       case TargetPlatform.macOS:
-        return Scrollbar(
-          controller: details.controller,
-          child: child,
-        );
       case TargetPlatform.windows:
-        return Scrollbar(
-          controller: details.controller,
-          radius: const Radius.circular(20),
-          thickness: 8.0,
-          child: child,
-        );
+      case TargetPlatform.windows:
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
       case TargetPlatform.iOS:
