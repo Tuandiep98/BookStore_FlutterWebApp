@@ -18,7 +18,6 @@ class TabBody extends StatelessWidget {
               ? const TrendingElement()
               : const SizedBox.shrink(),
           buildScrollingView(
-            Axis.vertical,
             controller,
             const <Widget>[
               BookElementReverse(

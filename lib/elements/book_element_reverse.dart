@@ -107,7 +107,7 @@ class _BookElementReverseState extends State<BookElementReverse> {
                                     size: 15, color: Colors.grey),
                               ],
                             ),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 15),
                             const Text(
                               'Louisa Clark is no longer hust an ordinary girl\nliving an ordinary life. After the transaformative\nsix months spent.',
                               maxLines: 4,
@@ -128,6 +128,7 @@ class _BookElementReverseState extends State<BookElementReverse> {
                     ],
                   ),
                 ),
+              ),
               Positioned(
                 top: 15,
                 left: 15,
