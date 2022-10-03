@@ -100,7 +100,7 @@ class _BookElementReverseState extends State<BookElementReverse> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 20),
                   const SizedBox(width: 460, height: 1, child: Divider()),
                   AuthorActivityElement(
                       authors: widget.authors, description: widget.description),

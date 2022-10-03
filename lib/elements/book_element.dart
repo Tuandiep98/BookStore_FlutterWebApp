@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -29,7 +27,7 @@ class _BookElementState extends State<BookElement> {
         height: 240,
         color: Color(color).withOpacity(1.0),
         child: Container(
-          padding: const EdgeInsets.only(left: 180),
+          padding: const EdgeInsets.only(left: 180, right: 10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,7 +55,7 @@ class _BookElementState extends State<BookElement> {
                   Icon(Icons.star_rounded, size: 20, color: Colors.white),
                   Icon(Icons.star_rounded, size: 20, color: Colors.white),
                   Icon(Icons.star_rounded, size: 20, color: Colors.white),
-                  Icon(Icons.star_rounded, size: 20, color: Colors.white),
+                  Icon(Icons.star_rounded, size: 20, color: Colors.grey),
                   SizedBox(width: 10),
                   Text(
                     '1.987 voters',
@@ -69,7 +67,7 @@ class _BookElementState extends State<BookElement> {
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               const Text(
                 'Louisa Clark is no longer hust an ordinary girl\nliving an ordinary life. After the transaforMative\nsix months spent.',
                 style: TextStyle(
@@ -77,6 +75,8 @@ class _BookElementState extends State<BookElement> {
                   fontSize: 13,
                   color: Colors.white,
                 ),
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 20),
               Container(
