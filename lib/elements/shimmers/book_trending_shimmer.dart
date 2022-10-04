@@ -1,20 +1,13 @@
-import 'package:book_store/core/dto/author/author_dto.dart';
-import 'package:book_store/core/dto/book/book_dto.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-class BookActivityElement extends StatefulWidget {
-  final AuthorDto author;
-  final BookDto book;
+class BookActivityShimmer extends StatefulWidget {
   final double size;
   final double thickness;
   final double fontSize;
   final String top;
-  const BookActivityElement({
+  const BookActivityShimmer({
     Key? key,
-    required this.book,
-    required this.author,
     this.size = 24,
     this.thickness = 2,
     this.fontSize = 13,
@@ -22,10 +15,10 @@ class BookActivityElement extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<BookActivityElement> createState() => _BookActivityElementState();
+  State<BookActivityShimmer> createState() => _BookActivityShimmerState();
 }
 
-class _BookActivityElementState extends State<BookActivityElement> {
+class _BookActivityShimmerState extends State<BookActivityShimmer> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,23 +52,15 @@ class _BookActivityElementState extends State<BookActivityElement> {
                     width: widget.size,
                     height: widget.size * 1.6,
                     decoration: BoxDecoration(
-                      // color:
-                      //     Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
-                      //         .withOpacity(0.95),
                       border: Border.all(
                         color: Colors.white,
                         width: widget.thickness,
                       ),
                     ),
-                    child: CachedNetworkImage(
-                      imageUrl: widget.book.imgUrl,
-                      errorWidget: (context, url, error) => Image.asset(
-                        'assets/images/thumb.jpg',
-                        fit: BoxFit.cover,
-                      ),
-                      fit: BoxFit.cover,
+                    child: Container(
                       width: widget.size,
                       height: widget.size * 1.6,
+                      color: Colors.white.withOpacity(0.8),
                     ),
                   ),
                 ),
@@ -90,33 +75,48 @@ class _BookActivityElementState extends State<BookActivityElement> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    widget.book.title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: widget.fontSize,
+                  Container(
+                    width: 60,
+                    height: 10,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Text(
-                    'by ${widget.author.name}',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      fontSize: widget.fontSize - 3,
+                  const SizedBox(height: 5),
+                  Container(
+                    width: 120,
+                    height: 10,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Text(
-                    widget.book.description,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      fontSize: widget.fontSize - 5,
+                  const SizedBox(height: 15),
+                  Container(
+                    width: 40,
+                    height: 10,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  const SizedBox(height: 15),
+                  Container(
+                    width: 50,
+                    height: 8,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Container(
+                    width: 80,
+                    height: 8,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                 ],

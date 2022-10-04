@@ -1,9 +1,10 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'book_dto.g.dart';
 
 @JsonSerializable()
-class BookDto {
+class BookDto extends Equatable {
   String id;
   String name;
   String category;
@@ -32,4 +33,19 @@ class BookDto {
   factory BookDto.fromJson(Map<String, dynamic> json) =>
       _$BookDtoFromJson(json);
   Map<String, dynamic> toJson() => _$BookDtoToJson(this);
+
+  @override
+  List<Object?> get props => [
+        this.id,
+        this.name,
+        this.category,
+        this.imgUrl,
+        this.title,
+        this.author,
+        this.description,
+        this.rate,
+        this.point,
+        this.createdAt,
+        this.updatedAt,
+      ];
 }

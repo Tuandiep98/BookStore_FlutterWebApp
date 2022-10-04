@@ -24,13 +24,13 @@ class TabBody extends StatelessWidget {
                   authors: [0, 1, 2],
                   description: 'Kimberly Jones and 2 other friends like this'),
               BookElementReverse(
-                  authors: [0], description: 'Kimberly Jones like this'),
+                  authors: [1], description: 'Kimberly Jones like this'),
               BookElementReverse(
                   authors: [0, 1, 2],
                   description: 'Kimberly Jones and 2 other friends like this'),
               BookElementReverse(authors: []),
               BookElementReverse(
-                  authors: [0, 1],
+                  authors: [1, 2],
                   description: 'Kimberly Jones, John Doe like this'),
               BookElementReverse(authors: []),
               BookElementReverse(authors: []),

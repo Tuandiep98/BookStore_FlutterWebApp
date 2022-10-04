@@ -1,5 +1,6 @@
 import 'package:book_store/Utils/header.dart';
 import 'package:book_store/Utils/web_platform.dart';
+import 'package:book_store/core/bloc/home_page_trending_bloc/home_page_trending_bloc.dart';
 import 'package:book_store/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => BookBloc()),
+        BlocProvider(create: (_) => HomePageTrendingBloc())
       ],
       child: MaterialApp(
         title: 'iLibrary',

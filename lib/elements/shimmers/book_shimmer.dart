@@ -52,32 +52,24 @@ class _BookShimmerState extends State<BookShimmer> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 20),
-                ShimmerElement(
-                  width: 60,
-                  height: 5,
-                  child: Text(
-                    '',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      color: Colors.white,
-                    ),
+                Container(
+                  width: 150,
+                  height: 14,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                ShimmerElement(
-                  width: 30,
-                  height: 5,
-                  child: Text(
-                    '',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 13,
-                      color: Colors.white,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                const SizedBox(height: 10),
+                Container(
+                  width: 80,
+                  height: 8,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
                   ),
                 ),
+                const SizedBox(height: 10),
                 Row(
                   children: [
                     Icon(Icons.star_rounded, size: 20, color: Colors.white),
@@ -86,78 +78,53 @@ class _BookShimmerState extends State<BookShimmer> {
                     Icon(Icons.star_rounded, size: 20, color: Colors.white),
                     Icon(Icons.star_rounded, size: 20, color: Colors.white),
                     SizedBox(width: 10),
-                    ShimmerElement(
-                      width: 15,
-                      height: 5,
-                      child: Text(
-                        '',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 13,
-                          color: Colors.white,
-                        ),
+                    Container(
+                      width: 50,
+                      height: 8,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
-                ShimmerElement(
-                  width: 50,
-                  height: 5,
-                  child: Text(
-                    '',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 13,
-                      color: Colors.white,
-                    ),
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
+                const SizedBox(height: 30),
+                Container(
+                  width: 150,
+                  height: 8,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                ShimmerElement(
-                  width: 30,
-                  height: 5,
-                  child: Text(
-                    '',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 13,
-                      color: Colors.white,
-                    ),
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
+                const SizedBox(height: 8),
+                Container(
+                  width: 60,
+                  height: 8,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                ShimmerElement(
-                  width: 50,
-                  height: 5,
-                  child: Text(
-                    '',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 13,
-                      color: Colors.white,
-                    ),
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
+                const SizedBox(height: 8),
+                Container(
+                  width: 150,
+                  height: 8,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                ShimmerElement(
-                  width: 30,
-                  height: 5,
-                  child: Text(
-                    '',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 13,
-                      color: Colors.white,
-                    ),
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
+                const SizedBox(height: 8),
+                Container(
+                  width: 60,
+                  height: 8,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 30),
                 ShimmerElement(
                   height: 30,
                   width: 120,
@@ -201,8 +168,8 @@ class _BookShimmerState extends State<BookShimmer> {
               type: MaterialType.transparency,
               child: Center(
                 child: ShimmerElement(
-                  decoration: const BoxDecoration(
-                    color: Colors.grey,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey,

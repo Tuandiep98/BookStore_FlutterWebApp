@@ -8,9 +8,6 @@ class BookService implements IBookService {
   @override
   Future<List<BookDto>> getBooks() async {
     var _books = await _restClient.getBooks();
-    // for (var book in _books) {
-    //   book.imgUrl.replaceAll('http', 'https');
-    // }
     return _books;
   }
 
