@@ -11,7 +11,7 @@ class BookActivityElement extends StatefulWidget {
   final double fontSize;
   final String top;
   const BookActivityElement({
-    super.key,
+    Key? key,
     required this.books,
     this.title = 'Title',
     this.author = 'Author',
@@ -20,7 +20,7 @@ class BookActivityElement extends StatefulWidget {
     this.thickness = 2,
     this.fontSize = 13,
     this.top = '1',
-  });
+  }) : super(key: key);
 
   @override
   State<BookActivityElement> createState() => _BookActivityElementState();

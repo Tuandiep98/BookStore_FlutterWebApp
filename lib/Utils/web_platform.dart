@@ -4,10 +4,10 @@ class WebPlatform extends StatefulWidget {
   final Widget header;
   final Widget body;
   const WebPlatform({
-    super.key,
+    Key? key,
     required this.header,
     required this.body,
-  });
+  }) : super(key: key);
 
   @override
   State<WebPlatform> createState() => _WebPlatformState();

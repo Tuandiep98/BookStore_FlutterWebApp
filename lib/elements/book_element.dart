@@ -1,8 +1,11 @@
+import 'package:book_store/core/dto/book/book_dto.dart';
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'dart:math' as math;
 
 class BookElement extends StatefulWidget {
-  const BookElement({Key? key}) : super(key: key);
+  final BookDto book;
+  const BookElement({Key? key, required this.book}) : super(key: key);
 
   @override
   State<BookElement> createState() => _BookElementState();
@@ -51,24 +54,26 @@ class _BookElementState extends State<BookElement> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 20),
-                const Text(
-                  'After You',
+                Text(
+                  widget.book.title,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                     color: Colors.white,
                   ),
                 ),
-                const Text(
-                  'by Jojo Moyes',
+                Text(
+                  widget.book.author,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 13,
                     color: Colors.white,
                   ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 Row(
-                  children: const [
+                  children: [
                     Icon(Icons.star_rounded, size: 20, color: Colors.white),
                     Icon(Icons.star_rounded, size: 20, color: Colors.white),
                     Icon(Icons.star_rounded, size: 20, color: Colors.white),
@@ -76,7 +81,7 @@ class _BookElementState extends State<BookElement> {
                     Icon(Icons.star_rounded, size: 20, color: Colors.white),
                     SizedBox(width: 10),
                     Text(
-                      '1.987 voters',
+                      '${widget.book.rate} voters',
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 13,
@@ -86,13 +91,15 @@ class _BookElementState extends State<BookElement> {
                   ],
                 ),
                 const SizedBox(height: 20),
-                const Text(
-                  'Louisa Clark is no longer hust an ordinary girl\nliving an ordinary life. After the transaforMative\nsix months spent.',
+                Text(
+                  widget.book.description,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 13,
                     color: Colors.white,
                   ),
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 20),
                 Container(
@@ -150,9 +157,15 @@ class _BookElementState extends State<BookElement> {
                   ),
                   height: 240,
                   width: 150,
-                  child: Image.asset(
-                    'assets/images/thumb.jpg',
+                  child: CachedNetworkImage(
+                    imageUrl: widget.book.imgUrl,
+                    errorWidget: (context, url, error) => Image.asset(
+                      'assets/images/thumb.jpg',
+                      fit: BoxFit.cover,
+                    ),
                     fit: BoxFit.cover,
+                    height: 240,
+                    width: 150,
                   ),
                 ),
               ),

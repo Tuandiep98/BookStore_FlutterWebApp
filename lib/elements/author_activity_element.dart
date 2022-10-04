@@ -9,14 +9,14 @@ class AuthorActivityElement extends StatefulWidget {
   final double fontSize;
   final double paddingLeft;
   const AuthorActivityElement({
-    super.key,
+    Key? key,
     required this.authors,
     this.description = 'Description',
     this.size = 24,
     this.thickness = 2,
     this.fontSize = 13,
     this.paddingLeft = 15,
-  });
+  }) : super(key: key);
 
   @override
   State<AuthorActivityElement> createState() => _AuthorActivityElementState();

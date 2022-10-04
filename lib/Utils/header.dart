@@ -2,7 +2,7 @@ import 'package:book_store/Utils/platform_utils.dart';
 import 'package:flutter/material.dart';
 
 class Header extends StatefulWidget {
-  const Header({super.key});
+  const Header({Key? key}) : super(key: key);
 
   @override
   State<Header> createState() => _HeaderState();

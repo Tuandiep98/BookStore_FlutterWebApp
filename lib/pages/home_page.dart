@@ -1,13 +1,16 @@
 import 'package:book_store/Utils/footer.dart';
+import 'package:book_store/elements/shimmers/book_shimmer.dart';
 import 'package:book_store/elements/tab_body_element.dart';
 import 'package:book_store/elements/trending_element.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../Utils/platform_utils.dart';
+import '../core/bloc/book_bloc/book_bloc.dart';
 import '../elements/book_element.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -20,6 +23,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    context.read<BookBloc>().add(BookStarted());
     super.initState();
   }
 
@@ -44,26 +48,50 @@ class _HomePageState extends State<HomePage> {
             children: [
               Stack(
                 children: [
-                  CarouselSlider(
-                    carouselController: _controllerOfCarousel,
-                    items: const [
-                      BookElement(),
-                      BookElement(),
-                      BookElement(),
-                      BookElement(),
-                      BookElement(),
-                      BookElement(),
-                    ],
-                    options: CarouselOptions(
-                      // enlargeCenterPage: false,
-                      viewportFraction: PlatformUtils.isDevice() ? 0.9 : 0.4,
-                      height: MediaQuery.of(context).size.height / 3.25,
-                      enableInfiniteScroll: true,
-                      autoPlay: true,
-                      autoPlayAnimationDuration:
-                          const Duration(milliseconds: 2200),
-                    ),
-                  ),
+                  BlocBuilder<BookBloc, BookState>(builder: (context, state) {
+                    if (state is BookInitial) {
+                      return CarouselSlider(
+                        carouselController: _controllerOfCarousel,
+                        items: [
+                          BookShimmer(),
+                          BookShimmer(),
+                          BookShimmer(),
+                          BookShimmer(),
+                          BookShimmer(),
+                          BookShimmer(),
+                        ],
+                        options: CarouselOptions(
+                          // enlargeCenterPage: false,
+                          viewportFraction:
+                              PlatformUtils.isDevice() ? 0.9 : 0.4,
+                          height: MediaQuery.of(context).size.height / 3.25,
+                          enableInfiniteScroll: true,
+                          autoPlay: true,
+                          autoPlayAnimationDuration:
+                              const Duration(milliseconds: 2200),
+                        ),
+                      );
+                    }
+                    if (state is BookLoaded) {
+                      return CarouselSlider(
+                        carouselController: _controllerOfCarousel,
+                        items: state.books
+                            .map((e) => BookElement(book: e))
+                            .toList(),
+                        options: CarouselOptions(
+                          // enlargeCenterPage: false,
+                          viewportFraction:
+                              PlatformUtils.isDevice() ? 0.9 : 0.4,
+                          height: MediaQuery.of(context).size.height / 3.25,
+                          enableInfiniteScroll: true,
+                          autoPlay: true,
+                          autoPlayAnimationDuration:
+                              const Duration(milliseconds: 2200),
+                        ),
+                      );
+                    }
+                    return const Text('Something went wrong!');
+                  }),
                   Positioned(
                     top: 0,
                     right: 0,
