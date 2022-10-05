@@ -10,10 +10,14 @@ BookDto _$BookDtoFromJson(Map<String, dynamic> json) {
   return BookDto(
     id: json['id'] as String,
     name: json['name'] as String,
-    category: json['category'] as String,
+    categories: (json['categories'] as List)
+        .map((e) => CategoryDto.fromJson(e as Map<String, dynamic>))
+        .toList(),
     imgUrl: json['imgUrl'] as String,
     title: json['title'] as String,
-    author: json['author'] as String,
+    authors: (json['authors'] as List)
+        .map((e) => AuthorDto.fromJson(e as Map<String, dynamic>))
+        .toList(),
     description: json['description'] as String,
     rate: json['rate'] as int,
     point: json['point'] as int,
@@ -29,10 +33,10 @@ BookDto _$BookDtoFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$BookDtoToJson(BookDto instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'category': instance.category,
+      'categories': instance.categories.map((e) => e.toJson()).toList(),
       'imgUrl': instance.imgUrl,
       'title': instance.title,
-      'author': instance.author,
+      'authors': instance.authors.map((e) => e.toJson()).toList(),
       'description': instance.description,
       'rate': instance.rate,
       'point': instance.point,

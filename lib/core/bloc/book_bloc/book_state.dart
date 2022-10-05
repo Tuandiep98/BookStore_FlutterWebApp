@@ -11,9 +11,11 @@ class BookInitial extends BookState {}
 
 class BookLoaded extends BookState {
   final List<BookDto> books;
+  final List<CategoryDto> categories;
 
   const BookLoaded({
     required this.books,
+    required this.categories,
   });
 
   @override

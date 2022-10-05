@@ -63,7 +63,9 @@ class _BookElementState extends State<BookElement> {
                   ),
                 ),
                 Text(
-                  widget.book.author,
+                  widget.book.authors.length > 0
+                      ? widget.book.authors.first.name
+                      : 'Anonymous',
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 13,

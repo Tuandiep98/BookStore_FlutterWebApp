@@ -17,7 +17,7 @@ abstract class RestClient {
   @POST("/api/CreateBook")
   Future<HttpResponse> createBook(@Body() BookDto model);
 
-  @GET("/api/Authors")
+  @GET("/api/TrendingAuthor")
   Future<List<AuthorDto>> getAuthors({
     @Path("serial") deviceSerial,
   });

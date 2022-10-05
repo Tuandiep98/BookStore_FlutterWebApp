@@ -61,7 +61,7 @@ class _RestClient implements RestClient {
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
-    final _result = await _dio.request<List<dynamic>>('/api/Authors',
+    final _result = await _dio.request<List<dynamic>>('/api/TrendingAuthor',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'GET',

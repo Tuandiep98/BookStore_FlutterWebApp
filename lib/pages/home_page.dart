@@ -1,6 +1,5 @@
 import 'package:book_store/Utils/footer.dart';
 import 'package:book_store/elements/shimmers/book_shimmer.dart';
-import 'package:book_store/elements/tab_body_element.dart';
 import 'package:book_store/elements/trending_element.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../Utils/platform_utils.dart';
 import '../core/bloc/book_bloc/book_bloc.dart';
 import '../elements/book_element.dart';
+import '../elements/book_element_reverse.dart';
+import '../utils/scroll_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -116,128 +117,49 @@ class _HomePageState extends State<HomePage> {
                 child: Wrap(
                   children: [
                     const SizedBox(width: 20),
-                    TabBar(
-                      isScrollable: true,
-                      indicatorPadding: const EdgeInsets.only(bottom: -8),
-                      indicatorSize: TabBarIndicatorSize.label,
-                      mouseCursor: MouseCursor.defer,
-                      onTap: (int index) {
-                        switch (index) {
-                          case 0:
-                            activeTab = 'Trending';
-                            break;
-                          case 1:
-                            activeTab = 'All genres';
-                            break;
-                          case 2:
-                            activeTab = 'Business';
-                            break;
-                          case 3:
-                            activeTab = 'Science';
-                            break;
-                          case 4:
-                            activeTab = 'Fiction';
-                            break;
-                          case 5:
-                            activeTab = 'Philosophy';
-                            break;
-                          case 6:
-                            activeTab = 'Biography';
-                            break;
-                          default:
-                            break;
-                        }
-                        setState(() {});
-                      },
-                      tabs: [
-                        PlatformUtils.isDevice()
-                            ? Tab(
-                                icon: Text(
-                                  'Trending',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 13,
-                                    color: activeTab == 'Trending'
-                                        ? Colors.blue
-                                        : Colors.black,
-                                  ),
-                                ),
-                              )
-                            : const SizedBox.shrink(),
-                        Tab(
-                          icon: Text(
-                            'All genres',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 13,
-                              color: activeTab == 'All genres'
-                                  ? Colors.blue
-                                  : Colors.black,
-                            ),
-                          ),
-                        ),
-                        Tab(
-                          icon: Text(
-                            'Business',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 13,
-                              color: activeTab == 'Business'
-                                  ? Colors.blue
-                                  : Colors.black,
-                            ),
-                          ),
-                        ),
-                        Tab(
-                          icon: Text(
-                            'Science',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 13,
-                              color: activeTab == 'Science'
-                                  ? Colors.blue
-                                  : Colors.black,
-                            ),
-                          ),
-                        ),
-                        Tab(
-                          icon: Text(
-                            'Fiction',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 13,
-                              color: activeTab == 'Fiction'
-                                  ? Colors.blue
-                                  : Colors.black,
-                            ),
-                          ),
-                        ),
-                        Tab(
-                          icon: Text(
-                            'Philosophy',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 13,
-                              color: activeTab == 'Philosophy'
-                                  ? Colors.blue
-                                  : Colors.black,
-                            ),
-                          ),
-                        ),
-                        Tab(
-                          icon: Text(
-                            'Biography',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 13,
-                              color: activeTab == 'Biography'
-                                  ? Colors.blue
-                                  : Colors.black,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    BlocBuilder<BookBloc, BookState>(builder: (context, state) {
+                      if (state is BookInitial) {
+                        return const SizedBox(height: 48);
+                      }
+                      if (state is BookLoaded) {
+                        return TabBar(
+                          isScrollable: true,
+                          indicatorPadding: const EdgeInsets.only(bottom: -8),
+                          indicatorSize: TabBarIndicatorSize.label,
+                          mouseCursor: MouseCursor.defer,
+                          tabs: [
+                            PlatformUtils.isDevice()
+                                ? Tab(
+                                    icon: Text(
+                                      'Trending',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 13,
+                                        color: activeTab == 'Trending'
+                                            ? Colors.blue
+                                            : Colors.black,
+                                      ),
+                                    ),
+                                  )
+                                : const SizedBox.shrink(),
+                          ]..addAll(state.categories
+                              .map((e) => Tab(
+                                    icon: Text(
+                                      e.name,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 13,
+                                        color: activeTab == e
+                                            ? Colors.blue
+                                            : Colors.black,
+                                      ),
+                                    ),
+                                  ))
+                              .toList()),
+                        );
+                      }
+                      return const SizedBox(height: 48);
+                    }),
                     const SizedBox(width: 20),
                   ],
                 ),
@@ -251,7 +173,51 @@ class _HomePageState extends State<HomePage> {
                     PlatformUtils.isDevice()
                         ? const SizedBox.shrink()
                         : const TrendingElement(),
-                    TabBody(controller: _controller),
+                    BlocBuilder<BookBloc, BookState>(builder: (context, state) {
+                      if (state is BookInitial) {
+                        return const SizedBox.shrink();
+                      }
+                      if (state is BookLoaded) {
+                        return Expanded(
+                          child: TabBarView(
+                            children: [
+                              PlatformUtils.isDevice()
+                                  ? const TrendingElement()
+                                  : const SizedBox.shrink(),
+                              buildScrollingView(
+                                _controller,
+                                const <Widget>[
+                                  BookElementReverse(
+                                      authors: [0, 1, 2],
+                                      description:
+                                          'Kimberly Jones and 2 other friends like this'),
+                                  BookElementReverse(
+                                      authors: [0],
+                                      description: 'Kimberly Jones like this'),
+                                  BookElementReverse(
+                                      authors: [0, 1, 2],
+                                      description:
+                                          'Kimberly Jones and 2 other friends like this'),
+                                  BookElementReverse(authors: []),
+                                  BookElementReverse(
+                                      authors: [0, 1],
+                                      description:
+                                          'Kimberly Jones, John Doe like this'),
+                                  BookElementReverse(authors: []),
+                                  BookElementReverse(authors: []),
+                                ],
+                              ),
+                              const Center(child: Text('No data to display.')),
+                              const Center(child: Text('No data to display.')),
+                              const Center(child: Text('No data to display.')),
+                              const Center(child: Text('No data to display.')),
+                              const Center(child: Text('No data to display.')),
+                            ],
+                          ),
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    }),
                   ],
                 ),
               ),

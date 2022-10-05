@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../Utils/scroll_behavior.dart';
-import 'author_activity_element.dart';
 import 'author_trending_element.dart';
 import 'book_activity_element.dart';
 import 'shimmers/author_trending_shimmer.dart';
@@ -48,11 +47,11 @@ class _TrendingElementState extends State<TrendingElement> {
                   AuthorTrendingShimmer(),
                   AuthorTrendingShimmer(),
                   const SizedBox(height: 20),
-                  BookActivityShimmer(size: 50,top: '1'),
-                  BookActivityShimmer(size: 50,top: '2'),
-                  BookActivityShimmer(size: 50,top: '3'),
-                  BookActivityShimmer(size: 50,top: '4'),
-                  BookActivityShimmer(size: 50,top: '5'),
+                  BookActivityShimmer(size: 50, top: '1'),
+                  BookActivityShimmer(size: 50, top: '2'),
+                  BookActivityShimmer(size: 50, top: '3'),
+                  BookActivityShimmer(size: 50, top: '4'),
+                  BookActivityShimmer(size: 50, top: '5'),
                 ],
               );
             }
