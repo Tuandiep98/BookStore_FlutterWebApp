@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'Utils/scroll_behavior.dart';
 import 'core/bloc/book_bloc/book_bloc.dart';
+import 'core/bloc/setting_bloc/setting_bloc.dart';
 import 'core/global/locator.dart';
 
 void main() async {
@@ -23,15 +24,24 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => BookBloc()),
-        BlocProvider(create: (_) => HomePageTrendingBloc())
+        BlocProvider(create: (_) => HomePageTrendingBloc()),
+        BlocProvider(create: (_) => SettingBloc()..add(ThemeStarted()))
       ],
-      child: MaterialApp(
-        title: 'iLibrary',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        scrollBehavior: const CustomScrollBehaviour(),
-        home: MyHomePage(title: 'Home Page'),
+      child: BlocBuilder<SettingBloc, SettingState>(
+        builder: (context, state) {
+          var _themeData = ThemeData(
+            primarySwatch: Colors.blue,
+          );
+          if (state is ThemeLoaded) {
+            _themeData = state.themeData;
+          }
+          return MaterialApp(
+            title: 'iLibrary',
+            theme: _themeData,
+            scrollBehavior: const CustomScrollBehaviour(),
+            home: MyHomePage(title: 'Home Page'),
+          );
+        },
       ),
     );
   }
@@ -49,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffF2F5F7),
+      backgroundColor: context.read<SettingBloc>().getTheme().backgroundColor,
       body: WebPlatform(
         header: Header(),
         body: HomePage(),

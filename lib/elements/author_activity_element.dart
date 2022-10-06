@@ -1,3 +1,4 @@
+import 'package:book_store/Utils/color_utils.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -45,9 +46,7 @@ class _AuthorActivityElementState extends State<AuthorActivityElement> {
                           height: widget.size,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Color((math.Random().nextDouble() * 0xFFFFFF)
-                                    .toInt())
-                                .withOpacity(1.0),
+                            color: ColorUtils.getRandomColor(),
                             border: Border.all(
                               color: Colors.white,
                               width: widget.thickness,

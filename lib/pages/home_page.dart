@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../Utils/platform_utils.dart';
 import '../core/bloc/book_bloc/book_bloc.dart';
+import '../core/bloc/setting_bloc/setting_bloc.dart';
 import '../elements/book_element.dart';
 import '../elements/book_element_reverse.dart';
 import '../utils/scroll_view.dart';
@@ -65,7 +66,7 @@ class _HomePageState extends State<HomePage> {
                           // enlargeCenterPage: false,
                           viewportFraction:
                               PlatformUtils.isDevice() ? 0.9 : 0.4,
-                          height: MediaQuery.of(context).size.height / 3.25,
+                          height: 300,
                           enableInfiniteScroll: true,
                           autoPlay: true,
                           autoPlayAnimationDuration:
@@ -84,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                           // enlargeCenterPage: false,
                           viewportFraction:
                               PlatformUtils.isDevice() ? 0.9 : 0.4,
-                          height: MediaQuery.of(context).size.height / 3.25,
+                          height: 300,
                           enableInfiniteScroll: true,
                           autoPlay: true,
                           autoPlayAnimationDuration:
@@ -136,9 +137,10 @@ class _HomePageState extends State<HomePage> {
                                       style: TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 13,
-                                        color: activeTab == 'Trending'
-                                            ? Colors.blue
-                                            : Colors.black,
+                                        color: context
+                                            .read<SettingBloc>()
+                                            .getTheme()
+                                            .accentColor,
                                       ),
                                     ),
                                   )
@@ -150,9 +152,10 @@ class _HomePageState extends State<HomePage> {
                                       style: TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 13,
-                                        color: activeTab == e
-                                            ? Colors.blue
-                                            : Colors.black,
+                                        color: context
+                                            .read<SettingBloc>()
+                                            .getTheme()
+                                            .accentColor,
                                       ),
                                     ),
                                   ))

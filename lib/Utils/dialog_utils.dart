@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../core/bloc/setting_bloc/setting_bloc.dart';
 
 class DialogUtils {
   static Future<void> showDialogWithChild(
@@ -10,8 +13,16 @@ class DialogUtils {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          contentPadding: EdgeInsets.zero,
           content: IntrinsicHeight(
             child: Container(
+              padding: const EdgeInsets.all(24.0),
+              decoration: BoxDecoration(
+                color: context.read<SettingBloc>().isDarkMode()
+                    ? context.read<SettingBloc>().getTheme().primaryColor
+                    : Colors.grey[200],
+                borderRadius: BorderRadius.circular(3),
+              ),
               constraints: BoxConstraints(
                 minWidth: MediaQuery.of(context).size.width / 2,
               ),
@@ -25,7 +36,12 @@ class DialogUtils {
                         height: 30,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.grey[350],
+                          color: context.read<SettingBloc>().isDarkMode()
+                              ? context
+                                  .read<SettingBloc>()
+                                  .getTheme()
+                                  .backgroundColor
+                              : Colors.grey[350],
                         ),
                         child: InkWell(
                           onTap: () {

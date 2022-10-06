@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../core/bloc/setting_bloc/setting_bloc.dart';
 import '../core/ui_models/setting_ui_model.dart';
 import 'setting_row_element.dart';
 
@@ -11,35 +12,79 @@ class SettingElement extends StatefulWidget {
 }
 
 class _SettingElementState extends State<SettingElement> {
-  List<SettingUIModel> settings = [];
   @override
   void initState() {
-    settings = [
-      SettingUIModel(
-          name: 'Accounts', icon: Icons.account_circle_outlined, type: 2),
-      SettingUIModel(name: 'Language', value: 'English', icon: Icons.language),
-      SettingUIModel(name: 'Dark mode', type: 1, icon: Icons.wb_sunny_rounded),
-      SettingUIModel(name: 'Sign out', icon: Icons.logout_rounded, type: 2),
-    ];
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          CircleAvatar(
-            radius: 80,
-            child: Image.asset(
-              'assets/images/girl_emoji_01.png',
-              height: 160,
-              width: 160,
+    return BlocBuilder<SettingBloc, SettingState>(
+      builder: (context, state) {
+        return Column(
+          children: [
+            CircleAvatar(
+              radius: 80,
+              child: Image.asset(
+                'assets/images/girl_emoji_01.png',
+                height: 160,
+                width: 160,
+              ),
             ),
-          ),
-          const SizedBox(height: 50),
-        ]..addAll(settings.map((e) => SettingRowElement(setting: e)).toList()),
-      ),
+            const SizedBox(height: 50),
+            Container(
+              padding: const EdgeInsets.all(12.0),
+              decoration: BoxDecoration(
+                color: context.read<SettingBloc>().isDarkMode()
+                    ? context.read<SettingBloc>().getTheme().backgroundColor
+                    : Colors.white,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Column(
+                children: [
+                  SettingRowElement(
+                    action: () {},
+                    setting: SettingUIModel(
+                      name: 'Accounts',
+                      icon: Icons.account_circle_outlined,
+                      type: 2,
+                    ),
+                  ),
+                  SettingRowElement(
+                    action: () {},
+                    setting: SettingUIModel(
+                      name: 'Language',
+                      value: 'English',
+                      icon: Icons.language,
+                    ),
+                  ),
+                  SettingRowElement(
+                    action: () {
+                      var _settingBloc = context.read<SettingBloc>();
+                      _settingBloc.add(
+                          ThemeChaged(setToDark: !_settingBloc.isDarkMode()));
+                    },
+                    setting: SettingUIModel(
+                      name: 'Dark mode',
+                      type: 1,
+                      icon: Icons.wb_sunny_rounded,
+                      boolValue: context.read<SettingBloc>().isDarkMode(),
+                    ),
+                  ),
+                  SettingRowElement(
+                    action: () {},
+                    setting: SettingUIModel(
+                      name: 'Sign out',
+                      icon: Icons.logout_rounded,
+                      type: 2,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

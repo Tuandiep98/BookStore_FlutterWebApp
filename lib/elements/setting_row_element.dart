@@ -1,11 +1,17 @@
-import 'package:book_store/core/constants.dart';
+import 'package:book_store/Utils/color_utils.dart';
 import 'package:book_store/core/ui_models/setting_ui_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../core/bloc/setting_bloc/setting_bloc.dart';
 
 class SettingRowElement extends StatefulWidget {
   final SettingUIModel setting;
-  const SettingRowElement({Key? key, required this.setting}) : super(key: key);
+  final Function action;
+  const SettingRowElement(
+      {Key? key, required this.setting, required this.action})
+      : super(key: key);
 
   @override
   State<SettingRowElement> createState() => _SettingRowElementState();
@@ -25,21 +31,24 @@ class _SettingRowElementState extends State<SettingRowElement> {
                 width: 45,
                 height: 45,
                 decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(5),
+                  color: ColorUtils.getRandomColor(),
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 child: Center(
                   child: Icon(
                     widget.setting.icon,
                     size: 30,
-                    color: Colors.white,
+                    color: context.read<SettingBloc>().getTheme().primaryColor,
                   ),
                 ),
               ),
               const SizedBox(width: 10),
               Text(
                 widget.setting.name,
-                style: TextStyle(fontSize: 22),
+                style: TextStyle(
+                  fontSize: 22,
+                  color: context.read<SettingBloc>().getTheme().accentColor,
+                ),
               ),
               Spacer(),
               widget.setting.type == 0
@@ -51,6 +60,7 @@ class _SettingRowElementState extends State<SettingRowElement> {
                       value: widget.setting.boolValue,
                       onChanged: (value) {
                         widget.setting.boolValue = value;
+                        widget.action();
                         setState(() {});
                       },
                     )
@@ -59,9 +69,11 @@ class _SettingRowElementState extends State<SettingRowElement> {
             ],
           ),
           const SizedBox(height: 5),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(left: 50),
-            child: Divider(),
+            child: Divider(
+              color: Colors.grey[300],
+            ),
           ),
         ],
       ),

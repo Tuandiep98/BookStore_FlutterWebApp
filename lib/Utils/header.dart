@@ -1,5 +1,7 @@
 import 'package:book_store/Utils/platform_utils.dart';
+import 'package:book_store/core/bloc/setting_bloc/setting_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../elements/setting_element.dart';
 import 'dialog_utils.dart';
@@ -21,7 +23,11 @@ class _HeaderState extends State<Header> {
       constraints: const BoxConstraints(
         minHeight: 100,
       ),
-      color: Colors.white.withOpacity(0.9),
+      color: context
+          .read<SettingBloc>()
+          .getTheme()
+          .backgroundColor
+          .withOpacity(0.9),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,

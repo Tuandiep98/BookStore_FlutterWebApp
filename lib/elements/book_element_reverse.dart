@@ -2,7 +2,10 @@ import 'package:book_store/core/dto/book/book_dto.dart';
 import 'package:book_store/elements/author_activity_element.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:math' as math;
+
+import '../core/bloc/setting_bloc/setting_bloc.dart';
 
 class BookElementReverse extends StatefulWidget {
   final BookDto book;
@@ -55,7 +58,7 @@ class _BookElementReverseState extends State<BookElementReverse> {
                 child: Container(
                   height: 250,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: context.read<SettingBloc>().getTheme().primaryColor,
                     borderRadius: BorderRadius.circular(3),
                     // boxShadow: const [
                     //   BoxShadow(
@@ -122,7 +125,12 @@ class _BookElementReverseState extends State<BookElementReverse> {
                         ),
                       ),
                       const SizedBox(height: 40),
-                      const SizedBox(width: 430, height: 1, child: Divider()),
+                      SizedBox(
+                          width: 430,
+                          height: 1,
+                          child: Divider(
+                            color: Colors.grey[300],
+                          )),
                       AuthorActivityElement(
                           authors: [0, 1, 2],
                           description: 'tuandiep & 2 people likes this.'),
@@ -147,9 +155,12 @@ class _BookElementReverseState extends State<BookElementReverse> {
                           decoration: BoxDecoration(
                             color: Colors.grey,
                             borderRadius: BorderRadius.circular(3),
-                            boxShadow: const [
+                            boxShadow: [
                               BoxShadow(
-                                color: Colors.grey,
+                                color: context
+                                    .read<SettingBloc>()
+                                    .getTheme()
+                                    .primaryColorDark,
                                 offset: Offset(0.0, 1.0), //(x,y)
                                 blurRadius: 15.0,
                               ),
@@ -158,7 +169,7 @@ class _BookElementReverseState extends State<BookElementReverse> {
                           height: 240,
                           width: 150,
                           child: CachedNetworkImage(
-                            imageUrl: widget.book.imgUrl,
+                            imageUrl: 'widget.book.imgUrl',
                             errorWidget: (context, url, error) => Image.asset(
                               'assets/images/thumb.jpg',
                               fit: BoxFit.cover,

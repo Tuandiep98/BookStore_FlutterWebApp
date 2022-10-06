@@ -1,7 +1,10 @@
 import 'package:book_store/core/dto/book/book_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:math' as math;
+
+import '../core/bloc/setting_bloc/setting_bloc.dart';
 
 class BookElement extends StatefulWidget {
   final BookDto book;
@@ -48,7 +51,9 @@ class _BookElementState extends State<BookElement> {
           child: Container(
             height: 240,
             padding: const EdgeInsets.only(left: 180),
-            color: Color(color).withOpacity(1.0),
+            color: context.read<SettingBloc>().isDarkMode()
+                ? context.read<SettingBloc>().getTheme().primaryColor
+                : Color(color).withOpacity(1.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,7 +127,12 @@ class _BookElementState extends State<BookElement> {
                     child: Text(
                       'See the book',
                       style: TextStyle(
-                        color: Color(color).withOpacity(1.0),
+                        color: context.read<SettingBloc>().isDarkMode()
+                            ? context
+                                .read<SettingBloc>()
+                                .getTheme()
+                                .primaryColor
+                            : Color(color).withOpacity(1.0),
                       ),
                     ),
                   ),
@@ -143,15 +153,22 @@ class _BookElementState extends State<BookElement> {
             duration: const Duration(milliseconds: 200),
             child: Material(
               elevation: elevation,
-              color: Colors.grey,
+              color: context.read<SettingBloc>().isDarkMode()
+                  ? context.read<SettingBloc>().getTheme().primaryColor
+                  : Color(color).withOpacity(1.0),
               type: MaterialType.transparency,
               child: Center(
                 child: Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.grey,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey,
+                        color: context.read<SettingBloc>().isDarkMode()
+                            ? context
+                                .read<SettingBloc>()
+                                .getTheme()
+                                .primaryColor
+                            : Color(color).withOpacity(1.0),
                         offset: Offset(0.0, 1.0), //(x,y)
                         blurRadius: 15.0,
                       ),
@@ -160,7 +177,7 @@ class _BookElementState extends State<BookElement> {
                   height: 240,
                   width: 150,
                   child: CachedNetworkImage(
-                    imageUrl: widget.book.imgUrl,
+                    imageUrl: 'widget.book.imgUrl',
                     errorWidget: (context, url, error) => Image.asset(
                       'assets/images/thumb.jpg',
                       fit: BoxFit.cover,
