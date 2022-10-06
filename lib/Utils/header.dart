@@ -1,5 +1,6 @@
 import 'package:book_store/Utils/platform_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:panara_dialogs/panara_dialogs.dart';
 
 class Header extends StatefulWidget {
   const Header({Key? key}) : super(key: key);
@@ -111,12 +112,33 @@ class _HeaderState extends State<Header> {
     return Row(
       children: [
         CircleAvatar(
+          radius: 20,
           child: Image.asset(
-            'assets/images/thumb.jpg',
+            'assets/images/girl_emoji_01.png',
+            height: 40,
+            width: 40,
           ),
         ),
         const SizedBox(width: 20),
-        const Icon(Icons.settings, size: 24),
+        InkWell(
+          onTap: () {
+            PanaraInfoDialog.show(
+              context,
+              title: "Hello",
+              message: "This is the PanaraInfoDialog",
+              buttonText: "Okay",
+              onTapDismiss: () {
+                Navigator.pop(context);
+              },
+              panaraDialogType: PanaraDialogType.success,
+              barrierDismissible: false, // optional parameter (default is true)
+            );
+          },
+          child: const Icon(
+            Icons.settings,
+            size: 24,
+          ),
+        ),
         const SizedBox(width: 20),
       ],
     );

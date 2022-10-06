@@ -78,6 +78,7 @@ class _HomePageState extends State<HomePage> {
                         carouselController: _controllerOfCarousel,
                         items: state.books
                             .map((e) => BookElement(book: e))
+                            .take(10)
                             .toList(),
                         options: CarouselOptions(
                           // enlargeCenterPage: false,
@@ -186,26 +187,12 @@ class _HomePageState extends State<HomePage> {
                                   : const SizedBox.shrink(),
                               buildScrollingView(
                                 _controller,
-                                const <Widget>[
-                                  BookElementReverse(
-                                      authors: [0, 1, 2],
-                                      description:
-                                          'Kimberly Jones and 2 other friends like this'),
-                                  BookElementReverse(
-                                      authors: [0],
-                                      description: 'Kimberly Jones like this'),
-                                  BookElementReverse(
-                                      authors: [0, 1, 2],
-                                      description:
-                                          'Kimberly Jones and 2 other friends like this'),
-                                  BookElementReverse(authors: []),
-                                  BookElementReverse(
-                                      authors: [0, 1],
-                                      description:
-                                          'Kimberly Jones, John Doe like this'),
-                                  BookElementReverse(authors: []),
-                                  BookElementReverse(authors: []),
-                                ],
+                                <Widget>[]..addAll(state.books
+                                    .map((e) => BookElementReverse(
+                                          book: e,
+                                        ))
+                                    .toList()
+                                    .take(10)),
                               ),
                               const Center(child: Text('No data to display.')),
                               const Center(child: Text('No data to display.')),

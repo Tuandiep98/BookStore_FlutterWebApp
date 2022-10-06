@@ -55,7 +55,7 @@ class _AuthorTrendingShimmerState extends State<AuthorTrendingShimmer> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    width: 60,
+                    width: 100,
                     height: 10,
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -64,8 +64,17 @@ class _AuthorTrendingShimmerState extends State<AuthorTrendingShimmer> {
                   ),
                   const SizedBox(height: 10),
                   Container(
-                    width: 80,
-                    height: 10,
+                    width: 60,
+                    height: 8,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Container(
+                    width: 140,
+                    height: 8,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12),

@@ -27,7 +27,7 @@ class _AuthorActivityElementState extends State<AuthorActivityElement> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: widget.paddingLeft),
-      constraints: const BoxConstraints(
+      constraints: BoxConstraints(
         maxHeight: 40,
         maxWidth: 460,
       ),
@@ -59,6 +59,7 @@ class _AuthorActivityElementState extends State<AuthorActivityElement> {
             ),
           ),
           const SizedBox(width: 5),
+          Divider(),
           Expanded(
             child: SizedBox(
               width: 380,

@@ -28,14 +28,14 @@ class _AuthorTrendingElementState extends State<AuthorTrendingElement> {
     return Container(
       padding: EdgeInsets.only(left: widget.paddingLeft, top: 10, bottom: 10),
       constraints: const BoxConstraints(
-        maxHeight: 60,
+        maxHeight: 65,
         maxWidth: 460,
       ),
       child: Row(
         children: [
           SizedBox(
             width: 60,
-            height: 60,
+            height: 75,
             child: CircleAvatar(
               backgroundImage: NetworkImage(
                 widget.author.imgUrl,
@@ -56,17 +56,18 @@ class _AuthorTrendingElementState extends State<AuthorTrendingElement> {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.bold,
                       fontSize: widget.fontSize,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 2),
                   Text(
                     widget.author.bio,
-                    maxLines: 1,
+                    maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
+                      fontStyle: FontStyle.italic,
                       fontSize: widget.fontSize - 5,
                     ),
                   ),

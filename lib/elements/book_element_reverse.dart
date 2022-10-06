@@ -1,13 +1,12 @@
+import 'package:book_store/core/dto/book/book_dto.dart';
 import 'package:book_store/elements/author_activity_element.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class BookElementReverse extends StatefulWidget {
-  final List<int> authors;
-  final String description;
-  const BookElementReverse(
-      {Key? key, required this.authors, this.description = ''})
-      : super(key: key);
+  final BookDto book;
+  const BookElementReverse({Key? key, required this.book}) : super(key: key);
 
   @override
   State<BookElementReverse> createState() => _BookElementReverseState();
@@ -54,7 +53,7 @@ class _BookElementReverseState extends State<BookElementReverse> {
                 bottom: 0,
                 left: 0,
                 child: Container(
-                  height: 240,
+                  height: 250,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(3),
@@ -76,16 +75,18 @@ class _BookElementReverseState extends State<BookElementReverse> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const SizedBox(height: 30),
-                            const Text(
-                              'After You',
+                            Text(
+                              widget.book.title,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
                               ),
                             ),
                             const SizedBox(height: 5),
-                            const Text(
-                              'by Jojo Moyes',
+                            Text(
+                              widget.book.authors.length > 0
+                                  ? 'by ${widget.book.authors.first.name}'
+                                  : 'Anonymous',
                               style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 13,
@@ -121,10 +122,10 @@ class _BookElementReverseState extends State<BookElementReverse> {
                         ),
                       ),
                       const SizedBox(height: 40),
-                      const SizedBox(width: 460, height: 1, child: Divider()),
+                      const SizedBox(width: 430, height: 1, child: Divider()),
                       AuthorActivityElement(
-                          authors: widget.authors,
-                          description: widget.description),
+                          authors: [0, 1, 2],
+                          description: 'tuandiep & 2 people likes this.'),
                     ],
                   ),
                 ),
@@ -156,9 +157,15 @@ class _BookElementReverseState extends State<BookElementReverse> {
                           ),
                           height: 240,
                           width: 150,
-                          child: Image.asset(
-                            'assets/images/thumb.jpg',
+                          child: CachedNetworkImage(
+                            imageUrl: widget.book.imgUrl,
+                            errorWidget: (context, url, error) => Image.asset(
+                              'assets/images/thumb.jpg',
+                              fit: BoxFit.cover,
+                            ),
                             fit: BoxFit.cover,
+                            height: 240,
+                            width: 150,
                           ),
                         ),
                       ),

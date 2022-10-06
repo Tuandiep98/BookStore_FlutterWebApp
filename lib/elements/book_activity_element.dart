@@ -95,7 +95,7 @@ class _BookActivityElementState extends State<BookActivityElement> {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.bold,
                       fontSize: widget.fontSize,
                     ),
                   ),
@@ -105,7 +105,7 @@ class _BookActivityElementState extends State<BookActivityElement> {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      fontWeight: FontWeight.w300,
+                      fontWeight: FontWeight.w400,
                       fontSize: widget.fontSize - 3,
                     ),
                   ),
