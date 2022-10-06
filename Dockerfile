@@ -15,8 +15,8 @@ RUN flutter doctor -v
 COPY . /usr/local/bin/app
 WORKDIR /usr/local/bin/app
 RUN flutter pub get
-RUN flutter build web
+RUN flutter build web --web-renderer html --no-sound-null-safety 
 
 # Document the exposed port and start serser
 EXPOSE 8080
-ENTRYPOINT [ "/usr/local/bin/app/server/server.sh" ]
+RUN ["chmod", "+x", "/usr/local/bin/app/server/server.sh"]

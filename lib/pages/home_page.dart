@@ -9,7 +9,7 @@ import '../core/bloc/book_bloc/book_bloc.dart';
 import '../core/bloc/setting_bloc/setting_bloc.dart';
 import '../elements/book_element.dart';
 import '../elements/book_element_reverse.dart';
-import '../utils/scroll_view.dart';
+import '../Utils/scroll_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
