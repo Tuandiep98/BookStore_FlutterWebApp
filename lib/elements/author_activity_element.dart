@@ -30,7 +30,7 @@ class _AuthorActivityElementState extends State<AuthorActivityElement> {
       padding: EdgeInsets.only(left: widget.paddingLeft),
       constraints: BoxConstraints(
         maxHeight: 40,
-        maxWidth: 460,
+        maxWidth: 340,
       ),
       child: Row(
         children: [
@@ -61,7 +61,7 @@ class _AuthorActivityElementState extends State<AuthorActivityElement> {
           Divider(),
           Expanded(
             child: SizedBox(
-              width: 380,
+              width: 300,
               child: Text(
                 widget.description,
                 maxLines: 1,

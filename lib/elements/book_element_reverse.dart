@@ -6,6 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:math' as math;
 
 import '../core/bloc/setting_bloc/setting_bloc.dart';
+import '../utils/dialog_utils.dart';
+import 'book_details_element.dart';
 
 class BookElementReverse extends StatefulWidget {
   final BookDto book;
@@ -15,7 +17,8 @@ class BookElementReverse extends StatefulWidget {
   State<BookElementReverse> createState() => _BookElementReverseState();
 }
 
-class _BookElementReverseState extends State<BookElementReverse> {
+class _BookElementReverseState extends State<BookElementReverse>
+    with SingleTickerProviderStateMixin {
   double elevation = 4.0;
   double scale = 1.0;
   Offset translate = const Offset(0, 0);
@@ -33,7 +36,14 @@ class _BookElementReverseState extends State<BookElementReverse> {
       cursor: SystemMouseCursors.click,
       child: InkWell(
         hoverColor: Colors.transparent,
-        onTap: () {},
+        onTap: () async {
+          await DialogUtils.showDialogWithChild(
+            context,
+            child: BookDetailsDialog(book: widget.book),
+            padding: const EdgeInsets.all(0),
+            paddingCloseBtn: 10,
+          );
+        },
         onHover: (value) {
           if (value) {
             setState(() {
@@ -69,7 +79,7 @@ class _BookElementReverseState extends State<BookElementReverse> {
                     // ],
                   ),
                   child: Column(
-                    // crossAxisAlignment: CrossAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
