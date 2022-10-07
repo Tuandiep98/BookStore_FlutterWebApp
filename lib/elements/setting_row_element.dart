@@ -9,9 +9,13 @@ import '../core/bloc/setting_bloc/setting_bloc.dart';
 class SettingRowElement extends StatefulWidget {
   final SettingUIModel setting;
   final Function action;
-  const SettingRowElement(
-      {Key? key, required this.setting, required this.action})
-      : super(key: key);
+  final bool showDivider;
+  const SettingRowElement({
+    Key? key,
+    required this.setting,
+    required this.action,
+    this.showDivider = true,
+  }) : super(key: key);
 
   @override
   State<SettingRowElement> createState() => _SettingRowElementState();
@@ -50,7 +54,8 @@ class _SettingRowElementState extends State<SettingRowElement> {
                   color: context.read<SettingBloc>().getTheme().accentColor,
                 ),
               ),
-              Spacer(),
+              const SizedBox(width: 50),
+              const Spacer(),
               widget.setting.type == 0
                   ? Text(widget.setting.value, style: TextStyle(fontSize: 20))
                   : const SizedBox.shrink(),
@@ -69,12 +74,14 @@ class _SettingRowElementState extends State<SettingRowElement> {
             ],
           ),
           const SizedBox(height: 5),
-          Padding(
-            padding: EdgeInsets.only(left: 50),
-            child: Divider(
-              color: Colors.grey[300],
-            ),
-          ),
+          widget.showDivider
+              ? Padding(
+                  padding: EdgeInsets.only(left: 50),
+                  child: Divider(
+                    color: Colors.grey[300],
+                  ),
+                )
+              : const SizedBox.shrink(),
         ],
       ),
     );

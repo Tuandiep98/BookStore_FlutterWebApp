@@ -24,7 +24,7 @@ class DialogUtils {
                 borderRadius: BorderRadius.circular(3),
               ),
               constraints: BoxConstraints(
-                minWidth: MediaQuery.of(context).size.width / 2,
+                minWidth: MediaQuery.of(context).size.width / 3.5,
               ),
               child: Column(
                 children: [

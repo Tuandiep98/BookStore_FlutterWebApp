@@ -78,6 +78,7 @@ class _SettingElementState extends State<SettingElement> {
                       icon: Icons.logout_rounded,
                       type: 2,
                     ),
+                    showDivider: false,
                   ),
                 ],
               ),
