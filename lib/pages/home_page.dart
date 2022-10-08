@@ -39,10 +39,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.only(top: PlatformUtils.isDevice() ? 130 : 100),
+        padding: EdgeInsets.only(top: 80),
         width: double.infinity,
         height: MediaQuery.of(context).size.height +
-            (PlatformUtils.isDevice() ? 240 * 7 + 200 : 500),
+            (PlatformUtils.isDevice(context) ? 240 * 7 + 200 : 500),
         child: DefaultTabController(
           length: 7,
           initialIndex: 1,
@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                         options: CarouselOptions(
                           // enlargeCenterPage: false,
                           viewportFraction:
-                              PlatformUtils.isDevice() ? 0.9 : 0.4,
+                              PlatformUtils.isDevice(context) ? 0.9 : 0.4,
                           height: 300,
                           enableInfiniteScroll: true,
                           autoPlay: true,
@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                         options: CarouselOptions(
                           // enlargeCenterPage: false,
                           viewportFraction:
-                              PlatformUtils.isDevice() ? 0.9 : 0.4,
+                              PlatformUtils.isDevice(context) ? 0.9 : 0.4,
                           height: 300,
                           enableInfiniteScroll: true,
                           autoPlay: true,
@@ -130,7 +130,7 @@ class _HomePageState extends State<HomePage> {
                           indicatorSize: TabBarIndicatorSize.label,
                           mouseCursor: MouseCursor.defer,
                           tabs: [
-                            PlatformUtils.isDevice()
+                            PlatformUtils.isDevice(context)
                                 ? Tab(
                                     icon: Text(
                                       'Trending',
@@ -174,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PlatformUtils.isDevice()
+                    PlatformUtils.isDevice(context)
                         ? const SizedBox.shrink()
                         : const TrendingElement(),
                     BlocBuilder<BookBloc, BookState>(builder: (context, state) {
@@ -185,7 +185,7 @@ class _HomePageState extends State<HomePage> {
                         return Expanded(
                           child: TabBarView(
                             children: [
-                              PlatformUtils.isDevice()
+                              PlatformUtils.isDevice(context)
                                   ? const TrendingElement()
                                   : const SizedBox.shrink(),
                               buildScrollingView(

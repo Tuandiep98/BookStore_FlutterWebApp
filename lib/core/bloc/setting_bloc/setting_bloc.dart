@@ -15,6 +15,7 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
     accentColor: Colors.white,
     accentIconTheme: IconThemeData(color: Colors.black),
     dividerColor: Colors.black12,
+    dialogBackgroundColor: Colors.grey[600],
   );
 
   final lightTheme = ThemeData(
@@ -25,6 +26,7 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
     accentColor: Colors.black,
     accentIconTheme: IconThemeData(color: Colors.white),
     dividerColor: Colors.white54,
+    dialogBackgroundColor: Colors.grey[200],
   );
 
   late ThemeData _themeData = lightTheme;

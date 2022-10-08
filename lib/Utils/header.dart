@@ -1,5 +1,6 @@
 import 'package:book_store/Utils/platform_utils.dart';
 import 'package:book_store/core/bloc/setting_bloc/setting_bloc.dart';
+import 'package:book_store/elements/blur_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,29 +17,28 @@ class Header extends StatefulWidget {
 class _HeaderState extends State<Header> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: PlatformUtils.isDevice() ? 130 : 50,
-      padding: EdgeInsets.only(top: PlatformUtils.isDevice() ? 20 : 0),
-      constraints: const BoxConstraints(
-        minHeight: 100,
-      ),
-      color: context
-          .read<SettingBloc>()
-          .getTheme()
-          .backgroundColor
-          .withOpacity(0.9),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _buildLogo(),
-          const SizedBox(width: 10),
-          // _buildCategories(),
-          const Spacer(),
-          _buildFunction(),
-          const Divider(),
-        ],
+    return BlurContainer(
+      color: Colors.grey.shade200,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 80,
+        color: context
+            .read<SettingBloc>()
+            .getTheme()
+            .backgroundColor
+            .withOpacity(0.9),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _buildLogo(),
+            const SizedBox(width: 10),
+            // _buildCategories(),
+            const Spacer(),
+            _buildFunction(),
+            const Divider(),
+          ],
+        ),
       ),
     );
   }
@@ -124,6 +124,9 @@ class _HeaderState extends State<Header> {
             await DialogUtils.showDialogWithChild(
               context,
               child: SettingElement(),
+              padding: const EdgeInsets.all(12),
+              backgroundColor:
+                  context.read<SettingBloc>().getTheme().primaryColor,
             );
           },
           child: CircleAvatar(

@@ -23,6 +23,7 @@ class _SettingElementState extends State<SettingElement> {
       builder: (context, state) {
         return Column(
           children: [
+            const SizedBox(height: 30),
             CircleAvatar(
               radius: 80,
               child: Image.asset(

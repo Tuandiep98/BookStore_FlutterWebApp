@@ -1,4 +1,5 @@
 import 'package:book_store/Utils/color_utils.dart';
+import 'package:book_store/Utils/platform_utils.dart';
 import 'package:book_store/core/ui_models/setting_ui_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -54,10 +55,15 @@ class _SettingRowElementState extends State<SettingRowElement> {
                   color: context.read<SettingBloc>().getTheme().accentColor,
                 ),
               ),
-              const SizedBox(width: 50),
+              SizedBox(width: PlatformUtils.isDevice(context) ? 0 : 100),
               const Spacer(),
               widget.setting.type == 0
-                  ? Text(widget.setting.value, style: TextStyle(fontSize: 20))
+                  ? Text(widget.setting.value,
+                      style: TextStyle(
+                        fontSize: 20,
+                        color:
+                            context.read<SettingBloc>().getTheme().accentColor,
+                      ))
                   : const SizedBox.shrink(),
               const SizedBox(width: 2),
               widget.setting.type == 1

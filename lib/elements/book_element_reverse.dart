@@ -39,9 +39,11 @@ class _BookElementReverseState extends State<BookElementReverse>
         onTap: () async {
           await DialogUtils.showDialogWithChild(
             context,
+            enableBlur: false,
             child: BookDetailsDialog(book: widget.book),
             padding: const EdgeInsets.all(0),
             paddingCloseBtn: 10,
+            backgroundColor: Colors.transparent,
           );
         },
         onHover: (value) {
