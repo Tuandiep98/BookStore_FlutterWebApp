@@ -123,10 +123,9 @@ class _HeaderState extends State<Header> {
           onTap: () async {
             await DialogUtils.showDialogWithChild(
               context,
+              enableBlur: true,
               child: SettingElement(),
               padding: const EdgeInsets.all(12),
-              backgroundColor:
-                  context.read<SettingBloc>().getTheme().primaryColor,
             );
           },
           child: CircleAvatar(

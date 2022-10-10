@@ -16,6 +16,7 @@ class DialogUtils {
     bool isFullScreenForDevice = true,
     Color? backgroundColor = null,
     bool enableBlur = true,
+    double? maxHeight,
   }) async {
     if (PlatformUtils.isDevice(context)) {
       return showMaterialModalBottomSheet(
@@ -42,7 +43,7 @@ class DialogUtils {
                 // ),
                 ),
             constraints: BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height - 100,
+              maxHeight: maxHeight ?? MediaQuery.of(context).size.height - 100,
             ),
             child:
                 isFullScreenForDevice ? IntrinsicHeight(child: child) : child,
@@ -69,6 +70,7 @@ class DialogUtils {
                 ),
                 child: Stack(
                   children: [
+                    child,
                     Positioned(
                       top: paddingCloseBtn,
                       right: paddingCloseBtn,
@@ -99,7 +101,6 @@ class DialogUtils {
                         ),
                       ),
                     ),
-                    child,
                   ],
                 ),
               ),

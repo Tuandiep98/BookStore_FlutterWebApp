@@ -4,7 +4,7 @@ import 'package:book_store/core/bloc/home_page_trending_bloc/home_page_trending_
 import 'package:book_store/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'Utils/scroll_behavior.dart';
+import 'utils/scroll_behavior.dart';
 import 'core/bloc/book_bloc/book_bloc.dart';
 import 'core/bloc/setting_bloc/setting_bloc.dart';
 import 'core/global/locator.dart';
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             title: 'iLibrary',
             theme: _themeData,
-            scrollBehavior: const CustomScrollBehaviour(),
+            scrollBehavior: MyCustomScrollBehavior(),
             home: MyHomePage(title: 'Home Page'),
           );
         },

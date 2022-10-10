@@ -20,7 +20,11 @@ class BlurContainer extends StatelessWidget {
     return enabled
         ? new ClipRect(
             child: new BackdropFilter(
-              filter: new ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+              filter: new ImageFilter.blur(
+                sigmaX: 50.0,
+                sigmaY: 5.0,
+                tileMode: TileMode.decal,
+              ),
               child: Container(
                 decoration:
                     new BoxDecoration(color: color!.withOpacity(opacity)),
