@@ -17,6 +17,8 @@ class DialogUtils {
     Color? backgroundColor = null,
     bool enableBlur = true,
     double? maxHeight,
+    double sigmaX = 5,
+    double sigmaY = 5,
   }) async {
     if (PlatformUtils.isDevice(context)) {
       return showMaterialModalBottomSheet(
@@ -29,6 +31,8 @@ class DialogUtils {
         builder: (context) => BlurContainer(
           opacity: 0.5,
           enabled: enableBlur,
+          sigmaX: sigmaX,
+          sigmaY: sigmaY,
           child: Container(
             padding: padding,
             decoration: BoxDecoration(

@@ -153,6 +153,7 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                         ],
                       ),
                     ),
+                    const SizedBox(height: 5),
                     Container(
                       width: MediaQuery.of(context).size.width,
                       child: ScrollConfiguration(
@@ -239,7 +240,7 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 5),
                     Padding(
                       padding: const EdgeInsets.only(left: 15),
                       child: Row(
@@ -267,7 +268,7 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 5),
                     Container(
                       width: MediaQuery.of(context).size.width,
                       child: ScrollConfiguration(

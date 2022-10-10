@@ -45,6 +45,7 @@ class _BookElementReverseState extends State<BookElementReverse>
             paddingCloseBtn: 10,
             backgroundColor: Colors.transparent,
             maxHeight: MediaQuery.of(context).size.height,
+            sigmaX: 50,
           );
         },
         onHover: (value) {

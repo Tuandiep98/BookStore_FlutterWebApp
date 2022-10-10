@@ -7,12 +7,16 @@ class BlurContainer extends StatelessWidget {
   final Color? color;
   final double opacity;
   final bool enabled;
+  final double sigmaX;
+  final double sigmaY;
   const BlurContainer({
     Key? key,
     required this.child,
     this.color = Colors.grey,
     this.opacity = 0.2,
     this.enabled = true,
+    this.sigmaX = 5,
+    this.sigmaY = 5,
   }) : super(key: key);
 
   @override
@@ -21,8 +25,8 @@ class BlurContainer extends StatelessWidget {
         ? new ClipRect(
             child: new BackdropFilter(
               filter: new ImageFilter.blur(
-                sigmaX: 50.0,
-                sigmaY: 5.0,
+                sigmaX: sigmaX,
+                sigmaY: sigmaY,
                 tileMode: TileMode.decal,
               ),
               child: Container(
