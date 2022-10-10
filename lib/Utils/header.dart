@@ -126,6 +126,7 @@ class _HeaderState extends State<Header> {
               enableBlur: true,
               child: SettingElement(),
               padding: const EdgeInsets.all(12),
+              backgroundColor: Colors.transparent,
             );
           },
           child: CircleAvatar(
