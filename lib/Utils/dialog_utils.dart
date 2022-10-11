@@ -23,6 +23,7 @@ class DialogUtils {
     if (PlatformUtils.isDevice(context)) {
       return showMaterialModalBottomSheet(
         bounce: true,
+        animationCurve: Curves.easeInOutCubicEmphasized,
         backgroundColor: backgroundColor ??
             (context.read<SettingBloc>().isDarkMode()
                 ? context.read<SettingBloc>().getTheme().primaryColor

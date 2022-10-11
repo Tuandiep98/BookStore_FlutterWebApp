@@ -5,6 +5,13 @@ class CustomScrollBehaviour extends MaterialScrollBehavior {
   const CustomScrollBehaviour();
 
   @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        // etc.
+      };
+
+  @override
   Widget buildScrollbar(
     BuildContext context,
     Widget child,
@@ -21,14 +28,4 @@ class CustomScrollBehaviour extends MaterialScrollBehavior {
         return child;
     }
   }
-}
-
-class MyCustomScrollBehavior extends MaterialScrollBehavior {
-  // Override behavior methods and getters like dragDevices
-  @override
-  Set<PointerDeviceKind> get dragDevices => {
-        PointerDeviceKind.touch,
-        PointerDeviceKind.mouse,
-        // etc.
-      };
 }
