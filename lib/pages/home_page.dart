@@ -1,6 +1,8 @@
 import 'package:book_store/Utils/footer.dart';
+import 'package:book_store/elements/shimmers/book_reverse_shimmer.dart';
 import 'package:book_store/elements/shimmers/book_shimmer.dart';
 import 'package:book_store/elements/trending_element.dart';
+import 'package:book_store/utils/scroll_view.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +11,7 @@ import '../core/bloc/book_bloc/book_bloc.dart';
 import '../core/bloc/setting_bloc/setting_bloc.dart';
 import '../elements/book_element.dart';
 import '../elements/book_element_reverse.dart';
-import '../Utils/scroll_view.dart';
+import '../utils/scroll_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,6 +22,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final ScrollController _controller = ScrollController();
+  final ScrollController _shimmerController = ScrollController();
   final CarouselController _controllerOfCarousel = CarouselController();
   String activeTab = 'All genres';
 
@@ -32,6 +35,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     _controller.dispose();
+    _shimmerController.dispose();
     super.dispose();
   }
 
@@ -120,49 +124,106 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     const SizedBox(width: 20),
                     BlocBuilder<BookBloc, BookState>(builder: (context, state) {
-                      if (state is BookInitial) {
-                        return const SizedBox(height: 48);
-                      }
-                      if (state is BookLoaded) {
-                        return TabBar(
-                          isScrollable: true,
-                          indicatorPadding: const EdgeInsets.only(bottom: -8),
-                          indicatorSize: TabBarIndicatorSize.label,
-                          mouseCursor: MouseCursor.defer,
-                          tabs: [
-                            PlatformUtils.isDevice(context)
-                                ? Tab(
-                                    icon: Text(
-                                      'Trending',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 13,
-                                        color: context
-                                            .read<SettingBloc>()
-                                            .getTheme()
-                                            .accentColor,
-                                      ),
+                      return TabBar(
+                        isScrollable: true,
+                        indicatorPadding: const EdgeInsets.only(bottom: -8),
+                        indicatorSize: TabBarIndicatorSize.label,
+                        mouseCursor: MouseCursor.defer,
+                        tabs: [
+                          PlatformUtils.isDevice(context)
+                              ? Tab(
+                                  icon: Text(
+                                    'Trending',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 13,
+                                      color: context
+                                          .read<SettingBloc>()
+                                          .getTheme()
+                                          .accentColor,
                                     ),
-                                  )
-                                : const SizedBox.shrink(),
-                          ]..addAll(state.categories
-                              .map((e) => Tab(
-                                    icon: Text(
-                                      e.name,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 13,
-                                        color: context
-                                            .read<SettingBloc>()
-                                            .getTheme()
-                                            .accentColor,
+                                  ),
+                                )
+                              : const SizedBox.shrink(),
+                        ]..addAll((state is BookLoaded)
+                            ? state.categories
+                                .map((e) => Tab(
+                                      icon: Text(
+                                        e.name,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 13,
+                                          color: context
+                                              .read<SettingBloc>()
+                                              .getTheme()
+                                              .accentColor,
+                                        ),
                                       ),
+                                    ))
+                                .toList()
+                            : [
+                                Tab(
+                                  icon: Container(
+                                    width: 40,
+                                    height: 10,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12),
                                     ),
-                                  ))
-                              .toList()),
-                        );
-                      }
-                      return const SizedBox(height: 48);
+                                  ),
+                                ),
+                                Tab(
+                                  icon: Container(
+                                    width: 80,
+                                    height: 10,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                  ),
+                                ),
+                                Tab(
+                                  icon: Container(
+                                    width: 40,
+                                    height: 10,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                  ),
+                                ),
+                                Tab(
+                                  icon: Container(
+                                    width: 80,
+                                    height: 10,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                  ),
+                                ),
+                                Tab(
+                                  icon: Container(
+                                    width: 40,
+                                    height: 10,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                  ),
+                                ),
+                                Tab(
+                                  icon: Container(
+                                    width: 80,
+                                    height: 10,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                      );
                     }),
                     const SizedBox(width: 20),
                   ],
@@ -179,7 +240,25 @@ class _HomePageState extends State<HomePage> {
                         : const TrendingElement(),
                     BlocBuilder<BookBloc, BookState>(builder: (context, state) {
                       if (state is BookInitial) {
-                        return const SizedBox.shrink();
+                        return Expanded(
+                          child: Container(
+                            child: buildScrollingView(
+                              _shimmerController,
+                              const [
+                                BookElementReverseShimmer(),
+                                BookElementReverseShimmer(),
+                                BookElementReverseShimmer(),
+                                BookElementReverseShimmer(),
+                                BookElementReverseShimmer(),
+                                BookElementReverseShimmer(),
+                                BookElementReverseShimmer(),
+                                BookElementReverseShimmer(),
+                                BookElementReverseShimmer(),
+                                BookElementReverseShimmer(),
+                              ],
+                            ),
+                          ),
+                        );
                       }
                       if (state is BookLoaded) {
                         return Expanded(

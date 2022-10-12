@@ -162,12 +162,12 @@ class _BookElementReverseState extends State<BookElementReverse>
                     duration: const Duration(milliseconds: 200),
                     child: Material(
                       elevation: elevation,
-                      color: Colors.grey,
+                      color: Colors.grey[200],
                       type: MaterialType.transparency,
                       child: Center(
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.grey,
+                            color: Colors.grey[200],
                             borderRadius: BorderRadius.circular(3),
                             boxShadow: [
                               BoxShadow(

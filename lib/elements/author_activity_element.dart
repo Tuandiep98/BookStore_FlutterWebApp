@@ -9,6 +9,7 @@ class AuthorActivityElement extends StatefulWidget {
   final double thickness;
   final double fontSize;
   final double paddingLeft;
+  final bool isShimmer;
   const AuthorActivityElement({
     Key? key,
     required this.authors,
@@ -17,6 +18,7 @@ class AuthorActivityElement extends StatefulWidget {
     this.thickness = 2,
     this.fontSize = 13,
     this.paddingLeft = 15,
+    this.isShimmer = false,
   }) : super(key: key);
 
   @override
@@ -46,7 +48,9 @@ class _AuthorActivityElementState extends State<AuthorActivityElement> {
                           height: widget.size,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: ColorUtils.getRandomColor(),
+                            color: widget.isShimmer
+                                ? Colors.grey[300]
+                                : ColorUtils.getRandomColor(),
                             border: Border.all(
                               color: Colors.white,
                               width: widget.thickness,
@@ -62,15 +66,24 @@ class _AuthorActivityElementState extends State<AuthorActivityElement> {
           Expanded(
             child: SizedBox(
               width: 300,
-              child: Text(
-                widget.description,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: widget.fontSize,
-                ),
-              ),
+              child: widget.isShimmer
+                  ? Container(
+                      width: 80,
+                      height: 8,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    )
+                  : Text(
+                      widget.description,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: widget.fontSize,
+                      ),
+                    ),
             ),
           ),
         ],
