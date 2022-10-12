@@ -22,3 +22,8 @@ class BookAdded extends BookEvent {
   @override
   List<Object> get props => [bookDto];
 }
+
+class BookReload extends BookEvent {
+  @override
+  List<Object> get props => [];
+}

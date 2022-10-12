@@ -71,6 +71,10 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 22,
+                            color: context
+                                .read<SettingBloc>()
+                                .getTheme()
+                                .accentColor,
                           ),
                         ),
                       ),
@@ -84,6 +88,10 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 18,
+                            color: context
+                                .read<SettingBloc>()
+                                .getTheme()
+                                .accentColor,
                           ),
                         ),
                       ),
@@ -109,19 +117,23 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                       const SizedBox(height: 25),
                       Container(
                         padding: const EdgeInsets.only(left: 190),
-                        child: const Text(
+                        child: Text(
                           'Louisa Clark is no longer hust an ordinary girl\nliving an ordinary life. After the transaformative\nsix months spent.',
                           maxLines: 4,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 13,
+                            color: context
+                                .read<SettingBloc>()
+                                .getTheme()
+                                .accentColor,
                           ),
                         ),
                       ),
                       Container(
                         padding: const EdgeInsets.only(left: 190),
-                        child: const Divider(),
+                        child: Divider(),
                       ),
                       Container(
                         padding: const EdgeInsets.only(left: 15),
@@ -154,6 +166,10 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
+                                color: context
+                                    .read<SettingBloc>()
+                                    .getTheme()
+                                    .accentColor,
                               ),
                             ),
                           ],
@@ -270,6 +286,10 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
+                                color: context
+                                    .read<SettingBloc>()
+                                    .getTheme()
+                                    .accentColor,
                               ),
                             ),
                           ],

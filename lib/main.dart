@@ -29,18 +29,15 @@ class MyApp extends StatelessWidget {
       ],
       child: BlocBuilder<SettingBloc, SettingState>(
         builder: (context, state) {
-          var _themeData = ThemeData(
-            primarySwatch: Colors.blue,
-          );
           if (state is ThemeLoaded) {
-            _themeData = state.themeData;
+            return MaterialApp(
+              title: 'iLibrary',
+              theme: state.themeData,
+              scrollBehavior: MyCustomScrollBehavior(),
+              home: MyHomePage(title: 'Home Page'),
+            );
           }
-          return MaterialApp(
-            title: 'iLibrary',
-            theme: _themeData,
-            scrollBehavior: MyCustomScrollBehavior(),
-            home: MyHomePage(title: 'Home Page'),
-          );
+          return const SizedBox.shrink();
         },
       ),
     );

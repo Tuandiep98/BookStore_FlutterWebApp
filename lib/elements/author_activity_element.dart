@@ -1,6 +1,7 @@
 import 'package:book_store/Utils/color_utils.dart';
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../core/bloc/setting_bloc/setting_bloc.dart';
 
 class AuthorActivityElement extends StatefulWidget {
   final List<int> authors;
@@ -82,6 +83,8 @@ class _AuthorActivityElementState extends State<AuthorActivityElement> {
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: widget.fontSize,
+                        color:
+                            context.read<SettingBloc>().getTheme().accentColor,
                       ),
                     ),
             ),

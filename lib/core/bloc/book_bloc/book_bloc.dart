@@ -39,5 +39,9 @@ class BookBloc extends Bloc<BookEvent, BookState> {
     on<BookAdded>((event, emit) {
       // final state = this.state;
     });
+
+    on<BookReload>((event, emit) {
+      emit(BookInitial());
+    });
   }
 }

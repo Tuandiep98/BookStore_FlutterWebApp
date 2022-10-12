@@ -97,6 +97,10 @@ class _BookElementReverseState extends State<BookElementReverse>
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
+                                color: context
+                                    .read<SettingBloc>()
+                                    .getTheme()
+                                    .accentColor,
                               ),
                             ),
                             const SizedBox(height: 5),
@@ -107,6 +111,10 @@ class _BookElementReverseState extends State<BookElementReverse>
                               style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 13,
+                                color: context
+                                    .read<SettingBloc>()
+                                    .getTheme()
+                                    .accentColor,
                               ),
                             ),
                             const SizedBox(height: 10),
@@ -126,13 +134,17 @@ class _BookElementReverseState extends State<BookElementReverse>
                               ],
                             ),
                             const SizedBox(height: 15),
-                            const Text(
+                            Text(
                               'Louisa Clark is no longer hust an ordinary girl\nliving an ordinary life. After the transaformative\nsix months spent.',
                               maxLines: 4,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 13,
+                                color: context
+                                    .read<SettingBloc>()
+                                    .getTheme()
+                                    .accentColor,
                               ),
                             ),
                           ],

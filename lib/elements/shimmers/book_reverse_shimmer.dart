@@ -118,12 +118,12 @@ class BookElementReverseShimmer extends StatelessWidget {
               left: 15,
               child: Material(
                 elevation: 4.0,
-                color: Colors.grey[200],
+                color: Colors.grey[300],
                 type: MaterialType.transparency,
                 child: Center(
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
+                      color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(3),
                       boxShadow: [
                         BoxShadow(
@@ -140,10 +140,10 @@ class BookElementReverseShimmer extends StatelessWidget {
                     width: 150,
                     child: ShimmerElement(
                       decoration: BoxDecoration(
-                        color: Colors.grey[200],
+                        color: Colors.grey[300],
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.shade200,
+                            color: Colors.grey.shade300,
                             offset: Offset(0.0, 1.0), //(x,y)
                             blurRadius: 15.0,
                           ),

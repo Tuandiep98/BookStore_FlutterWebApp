@@ -1,6 +1,5 @@
 import 'package:book_store/elements/shimmers/shimmer_element.dart';
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
 
 class BookShimmer extends StatefulWidget {
   const BookShimmer({Key? key}) : super(key: key);

@@ -1,4 +1,3 @@
-import 'package:book_store/Utils/platform_utils.dart';
 import 'package:book_store/core/bloc/setting_bloc/setting_bloc.dart';
 import 'package:book_store/elements/blur_container.dart';
 import 'package:flutter/material.dart';
@@ -65,56 +64,56 @@ class _HeaderState extends State<Header> {
     );
   }
 
-  Widget _buildCategories() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Icon(Icons.book_outlined, size: 24),
-              SizedBox(height: 5),
-              Text(
-                'Books',
-                style: TextStyle(
-                    // fontWeight: FontWeight.w600,
-                    ),
-              ),
-            ],
-          ),
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Icon(Icons.spatial_audio_rounded, size: 24),
-            SizedBox(height: 5),
-            Text(
-              'Audiobooks',
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Icon(Icons.mic, size: 24),
-            SizedBox(height: 5),
-            Text(
-              'Podcasts',
-              style: TextStyle(
-                  // fontWeight: FontWeight.w600,
-                  ),
-            ),
-          ],
-        )
-      ],
-    );
-  }
+  // Widget _buildCategories() {
+  //   return Row(
+  //     mainAxisAlignment: MainAxisAlignment.center,
+  //     crossAxisAlignment: CrossAxisAlignment.center,
+  //     children: [
+  //       Padding(
+  //         padding: const EdgeInsets.symmetric(horizontal: 40),
+  //         child: Column(
+  //           mainAxisAlignment: MainAxisAlignment.center,
+  //           children: const [
+  //             Icon(Icons.book_outlined, size: 24),
+  //             SizedBox(height: 5),
+  //             Text(
+  //               'Books',
+  //               style: TextStyle(
+  //                   // fontWeight: FontWeight.w600,
+  //                   ),
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //       Column(
+  //         mainAxisAlignment: MainAxisAlignment.center,
+  //         children: const [
+  //           Icon(Icons.spatial_audio_rounded, size: 24),
+  //           SizedBox(height: 5),
+  //           Text(
+  //             'Audiobooks',
+  //             style: TextStyle(
+  //               fontWeight: FontWeight.w600,
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //       Column(
+  //         mainAxisAlignment: MainAxisAlignment.center,
+  //         children: const [
+  //           Icon(Icons.mic, size: 24),
+  //           SizedBox(height: 5),
+  //           Text(
+  //             'Podcasts',
+  //             style: TextStyle(
+  //                 // fontWeight: FontWeight.w600,
+  //                 ),
+  //           ),
+  //         ],
+  //       )
+  //     ],
+  //   );
+  // }
 
   Widget _buildFunction() {
     return Row(

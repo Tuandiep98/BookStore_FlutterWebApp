@@ -45,7 +45,7 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
           setLightMode();
         } else {
           print('setting dark theme');
-          setLightMode();
+          setDarkMode();
         }
       });
       emit(ThemeLoaded(themeData: _themeData));

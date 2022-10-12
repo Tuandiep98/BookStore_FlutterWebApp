@@ -1,8 +1,9 @@
+import 'package:book_store/core/bloc/setting_bloc/setting_bloc.dart';
 import 'package:book_store/core/dto/author/author_dto.dart';
 import 'package:book_store/core/dto/book/book_dto.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BookActivityElement extends StatefulWidget {
   final AuthorDto author;
@@ -53,7 +54,7 @@ class _BookActivityElementState extends State<BookActivityElement> {
                   ),
                 ),
                 Positioned(
-                  left: 25,
+                  left: 20,
                   bottom: 15,
                   child: Container(
                     width: widget.size,
@@ -97,6 +98,7 @@ class _BookActivityElementState extends State<BookActivityElement> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: widget.fontSize,
+                      color: context.read<SettingBloc>().getTheme().accentColor,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -107,6 +109,7 @@ class _BookActivityElementState extends State<BookActivityElement> {
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: widget.fontSize - 3,
+                      color: context.read<SettingBloc>().getTheme().accentColor,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -117,6 +120,7 @@ class _BookActivityElementState extends State<BookActivityElement> {
                     style: TextStyle(
                       fontWeight: FontWeight.w300,
                       fontSize: widget.fontSize - 5,
+                      color: context.read<SettingBloc>().getTheme().accentColor,
                     ),
                   ),
                 ],
