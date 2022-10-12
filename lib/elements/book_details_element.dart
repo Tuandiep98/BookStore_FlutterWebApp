@@ -63,7 +63,7 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 20),
                       Container(
                         padding: const EdgeInsets.only(left: 190),
                         child: Text(
@@ -448,6 +448,55 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                       ),
                     )
                   : const SizedBox.shrink(),
+              Positioned(
+                right: 10,
+                top: 180,
+                child: Row(
+                  children: [
+                    CustomButton(
+                      width: 30,
+                      height: 30,
+                      iconSize: 25,
+                      color: Colors.grey,
+                      iconData: Icons.remove_red_eye_outlined,
+                      onPressed: () {},
+                      tooltips: 'Start read this book',
+                      title: 'Read',
+                      hasShadow: true,
+                    ),
+                    !PlatformUtils.isDevice(context)
+                        ? Row(
+                            children: [
+                              const SizedBox(width: 5),
+                              CustomButton(
+                                width: 30,
+                                height: 30,
+                                iconSize: 25,
+                                color: Colors.grey,
+                                iconData: Icons.favorite_border_rounded,
+                                onPressed: () {},
+                                tooltips: 'Add to favorites',
+                                title: 'Favorite',
+                                hasShadow: true,
+                              ),
+                              const SizedBox(width: 5),
+                              CustomButton(
+                                width: 30,
+                                height: 30,
+                                iconSize: 25,
+                                color: Colors.grey,
+                                iconData: Icons.bookmark_border_rounded,
+                                onPressed: () {},
+                                tooltips: 'Add to bookmarks',
+                                title: 'Bookmark',
+                                hasShadow: true,
+                              ),
+                            ],
+                          )
+                        : const SizedBox.shrink(),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

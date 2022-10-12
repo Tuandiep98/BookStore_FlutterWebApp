@@ -1,4 +1,6 @@
+import 'package:book_store/core/bloc/setting_bloc/setting_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomButton extends StatelessWidget {
   final IconData iconData;
@@ -8,6 +10,10 @@ class CustomButton extends StatelessWidget {
   final Color color;
   final double iconSize;
   final String tooltips;
+  final bool hasShadow;
+  final String title;
+  final Color titleColor;
+  final double titleSize;
   const CustomButton({
     Key? key,
     required this.iconData,
@@ -17,27 +23,104 @@ class CustomButton extends StatelessWidget {
     this.color = Colors.white,
     this.iconSize = 35,
     this.tooltips = 'no content',
+    this.hasShadow = false,
+    this.title = '',
+    this.titleColor = Colors.grey,
+    this.titleSize = 18,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      minWidth: 50,
-      height: 50,
-      shape: CircleBorder(),
-      onPressed: () => onPressed(),
-      child: Tooltip(
-        message: tooltips,
-        child: Container(
-          // width: width,
-          // height: height,
-          child: Icon(
-            iconData,
-            size: iconSize,
-            color: color,
-          ),
-        ),
-      ),
-    );
+    return hasShadow
+        ? Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(24),
+              color: context.read<SettingBloc>().getTheme().primaryColor,
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.grey,
+                  offset: Offset(0, 1), //(x,y)
+                  blurRadius: 2.0,
+                ),
+              ],
+            ),
+            child: MaterialButton(
+              minWidth: 50,
+              height: 50,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.horizontal(
+                  left: Radius.circular(24),
+                  right: Radius.circular(24),
+                ),
+              ),
+              onPressed: () => onPressed(),
+              child: Tooltip(
+                message: tooltips,
+                child: Container(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: title != '' ? 5 : 0),
+                  child: Row(
+                    children: [
+                      Icon(
+                        iconData,
+                        size: iconSize,
+                        color: color,
+                      ),
+                      title != ''
+                          ? const SizedBox(width: 5)
+                          : const SizedBox.shrink(),
+                      title != ''
+                          ? Text(
+                              title,
+                              style: TextStyle(
+                                color: color,
+                                fontSize: titleSize,
+                              ),
+                            )
+                          : const SizedBox.shrink(),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          )
+        : MaterialButton(
+            minWidth: 50,
+            height: 50,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.horizontal(
+                left: Radius.circular(24),
+                right: Radius.circular(24),
+              ),
+            ),
+            onPressed: () => onPressed(),
+            child: Tooltip(
+              message: tooltips,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: title != '' ? 5 : 0),
+                child: Row(
+                  children: [
+                    Icon(
+                      iconData,
+                      size: iconSize,
+                      color: color,
+                    ),
+                    title != ''
+                        ? const SizedBox(width: 5)
+                        : const SizedBox.shrink(),
+                    title != ''
+                        ? Text(
+                            title,
+                            style: TextStyle(
+                              color: color,
+                              fontSize: titleSize,
+                            ),
+                          )
+                        : const SizedBox.shrink(),
+                  ],
+                ),
+              ),
+            ),
+          );
   }
 }
