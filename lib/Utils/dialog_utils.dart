@@ -19,8 +19,9 @@ class DialogUtils {
     double? maxHeight,
     double sigmaX = 5,
     double sigmaY = 5,
+    bool forgeShowBottomSheet = false,
   }) async {
-    if (PlatformUtils.isDevice(context)) {
+    if (PlatformUtils.isDevice(context) || forgeShowBottomSheet) {
       return showMaterialModalBottomSheet(
         bounce: true,
         animationCurve: Curves.easeInOutCubicEmphasized,
