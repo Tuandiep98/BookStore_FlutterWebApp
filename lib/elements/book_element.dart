@@ -2,6 +2,7 @@ import 'package:book_store/core/dto/book/book_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'dart:math' as math;
 
 import '../core/bloc/setting_bloc/setting_bloc.dart';
@@ -32,7 +33,9 @@ class _BookElementState extends State<BookElement> {
       MouseRegion(
         cursor: SystemMouseCursors.click,
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            context.go('/page2');
+          },
           onHover: (value) {
             if (value) {
               setState(() {

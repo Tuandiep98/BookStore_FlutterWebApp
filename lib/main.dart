@@ -1,7 +1,9 @@
 import 'package:book_store/Utils/header.dart';
 import 'package:book_store/Utils/web_platform.dart';
 import 'package:book_store/core/bloc/home_page_trending_bloc/home_page_trending_bloc.dart';
+import 'package:book_store/core/global/router_config.dart';
 import 'package:book_store/pages/home_page.dart';
+import 'package:book_store/utils/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'utils/my_custom_scroll_behavior.dart';
@@ -16,7 +18,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -29,15 +31,18 @@ class MyApp extends StatelessWidget {
       ],
       child: BlocBuilder<SettingBloc, SettingState>(
         builder: (context, state) {
+          var _themeData = ThemeData(
+            primarySwatch: Colors.blue,
+          );
           if (state is ThemeLoaded) {
-            return MaterialApp(
-              title: 'iLibrary',
-              theme: state.themeData,
-              scrollBehavior: MyCustomScrollBehavior(),
-              home: MyHomePage(title: 'Home Page'),
-            );
+            _themeData = state.themeData;
           }
-          return const SizedBox.shrink();
+          return MaterialApp.router(
+            title: 'iLibrary',
+            theme: _themeData,
+            scrollBehavior: MyCustomScrollBehavior(),
+            routerConfig: Routerconfiguration().router,
+          );
         },
       ),
     );
@@ -57,9 +62,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.read<SettingBloc>().getTheme().backgroundColor,
-      body: WebPlatform(
-        header: Header(),
-        body: HomePage(),
+      body: SafeArea(
+        child: WebPlatform(
+          header: Header(),
+          body: HomePage(),
+        ),
       ),
     );
   }
