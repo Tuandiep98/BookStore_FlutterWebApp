@@ -10,7 +10,7 @@ class Routerconfiguration {
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) =>
-            const MyHomePage(title: 'Home Page'),
+            MyHomePage(title: 'Home Page'),
         routes: <GoRoute>[
           GoRoute(
             path: 'page2',

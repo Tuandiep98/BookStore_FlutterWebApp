@@ -1,3 +1,5 @@
+import 'package:book_store/core/global/global_data.dart';
+import 'package:book_store/core/global/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../core/bloc/setting_bloc/setting_bloc.dart';
@@ -32,6 +34,22 @@ class _SettingElementState extends State<SettingElement> {
                 width: 160,
               ),
             ),
+            const SizedBox(height: 10),
+            state is ThemeLoadedWithAccount
+                ? Text(
+                    state.currentUser.displayName ?? 'Guest',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: context.read<SettingBloc>().getTheme().accentColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                : GestureDetector(
+                    onTap: () {
+                      context.read<SettingBloc>().add(GoogleSigninClicked());
+                    },
+                    child: Text('Sign in'),
+                  ),
             const SizedBox(height: 50),
             Container(
               padding: const EdgeInsets.all(12.0),
@@ -73,7 +91,9 @@ class _SettingElementState extends State<SettingElement> {
                     ),
                   ),
                   SettingRowElement(
-                    action: () {},
+                    action: () {
+                      context.read<SettingBloc>().add(SignoutClicked());
+                    },
                     setting: SettingUIModel(
                       name: 'Sign out',
                       icon: Icons.logout_rounded,

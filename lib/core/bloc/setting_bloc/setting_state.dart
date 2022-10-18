@@ -1,21 +1,33 @@
 part of 'setting_bloc.dart';
 
 abstract class SettingState extends Equatable {
-  const SettingState();
-
-  @override
-  List<Object> get props => [];
-}
-
-class ThemeInitial extends SettingState {}
-
-class ThemeLoaded extends SettingState {
   final ThemeData themeData;
 
-  const ThemeLoaded({
+  const SettingState({
     required this.themeData,
   });
 
   @override
   List<Object> get props => [themeData];
+}
+
+class ThemeLoaded extends SettingState {
+  const ThemeLoaded({
+    required themeData,
+  }) : super(themeData: themeData);
+
+  @override
+  List<Object> get props => [themeData];
+}
+
+class ThemeLoadedWithAccount extends SettingState {
+  final GoogleSignInAccount currentUser;
+
+  const ThemeLoadedWithAccount(
+    this.currentUser, {
+    required themeData,
+  }) : super(themeData: themeData);
+
+  @override
+  List<Object> get props => [themeData, currentUser];
 }

@@ -19,3 +19,11 @@ class ThemeChaged extends SettingEvent {
   @override
   List<Object> get props => [setToDark];
 }
+
+class GoogleSigninClicked extends SettingEvent {
+  const GoogleSigninClicked();
+  @override
+  List<Object> get props => [];
+}
+
+class SignoutClicked extends SettingEvent {}

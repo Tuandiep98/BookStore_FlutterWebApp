@@ -52,7 +52,7 @@ class _BookElementState extends State<BookElement> {
             }
           },
           child: Container(
-            height: 240,
+            height: 250,
             padding: const EdgeInsets.only(left: 180),
             color: context.read<SettingBloc>().isDarkMode()
                 ? context.read<SettingBloc>().getTheme().primaryColor

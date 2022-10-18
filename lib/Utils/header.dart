@@ -16,29 +16,56 @@ class Header extends StatefulWidget {
 class _HeaderState extends State<Header> {
   @override
   Widget build(BuildContext context) {
-    return BlurContainer(
-      color: Colors.grey.shade200,
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 80,
-        color: context
-            .read<SettingBloc>()
-            .getTheme()
-            .backgroundColor
-            .withOpacity(0.9),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _buildLogo(),
-            const SizedBox(width: 10),
-            // _buildCategories(),
-            const Spacer(),
-            _buildFunction(),
-            const Divider(),
-          ],
-        ),
-      ),
+    return BlocBuilder<SettingBloc, SettingState>(
+      builder: (context, state) {
+        return BlurContainer(
+          color: Colors.grey.shade200,
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: 80,
+            color: context
+                .read<SettingBloc>()
+                .getTheme()
+                .backgroundColor
+                .withOpacity(0.9),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _buildLogo(),
+                const SizedBox(width: 10),
+                // _buildCategories(),
+                const Spacer(),
+                Row(
+                  children: [
+                    InkWell(
+                      onTap: () async {
+                        await DialogUtils.showDialogWithChild(
+                          context,
+                          enableBlur: true,
+                          child: SettingElement(),
+                          padding: const EdgeInsets.all(12),
+                          backgroundColor: Colors.transparent,
+                        );
+                      },
+                      child: CircleAvatar(
+                        radius: 20,
+                        child: Image.asset(
+                          'assets/images/girl_emoji_01.png',
+                          height: 40,
+                          width: 40,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(width: 20),
+                const Divider(),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -115,30 +142,4 @@ class _HeaderState extends State<Header> {
   //   );
   // }
 
-  Widget _buildFunction() {
-    return Row(
-      children: [
-        InkWell(
-          onTap: () async {
-            await DialogUtils.showDialogWithChild(
-              context,
-              enableBlur: true,
-              child: SettingElement(),
-              padding: const EdgeInsets.all(12),
-              backgroundColor: Colors.transparent,
-            );
-          },
-          child: CircleAvatar(
-            radius: 20,
-            child: Image.asset(
-              'assets/images/girl_emoji_01.png',
-              height: 40,
-              width: 40,
-            ),
-          ),
-        ),
-        const SizedBox(width: 20),
-      ],
-    );
-  }
 }

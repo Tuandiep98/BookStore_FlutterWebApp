@@ -26,7 +26,7 @@ class _SettingRowElementState extends State<SettingRowElement> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () => widget.action(),
       child: Column(
         children: [
           const SizedBox(height: 5),

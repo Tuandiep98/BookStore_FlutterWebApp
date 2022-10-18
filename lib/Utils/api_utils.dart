@@ -13,7 +13,7 @@ class ApiUtils {
       result.errorMessage = '';
     } on DioError catch (e) {
       try {
-        ErrorApiDto errorResponse = ErrorApiDto.fromJson(e.response.data);
+        ErrorApiDto errorResponse = ErrorApiDto.fromJson(e.response?.data);
         result.isSuccess = false;
         result.errorMessage = errorResponse.errors!.first;
       } catch (e) {

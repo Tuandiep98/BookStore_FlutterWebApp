@@ -32,6 +32,7 @@
   <title>book_store</title>
   <link rel="manifest" href="manifest.json">
 
+  <meta name="google-signin-client_id" content="1053757662020-tt5v67b8bj07picoefioj5p2gaknnqg4.apps.googleusercontent.com">
   <script>
     // The value below is injected by flutter build, do not touch.
     var serviceWorkerVersion = null;
@@ -40,6 +41,39 @@
   <script src="flutter.js" defer></script>
 </head>
 <body>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-analytics.js"></script>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/8.6.1/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyARc8y--XsvZevcf9iTq_jglQODFwg1Uc0",
+      authDomain: "ilibrary-flutterwebapp.firebaseapp.com",
+      projectId: "ilibrary-flutterwebapp",
+      storageBucket: "ilibrary-flutterwebapp.appspot.com",
+      messagingSenderId: "1053757662020",
+      appId: "1:1053757662020:web:267127d1cffec92fcfad11",
+      measurementId: "G-B2PFNL0KS0"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    console.log('firebase initial successfully.');
+    const analytics = getAnalytics(app);
+  </script>
+  
+
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
