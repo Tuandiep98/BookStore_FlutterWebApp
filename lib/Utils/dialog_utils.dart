@@ -1,4 +1,4 @@
-import 'package:book_store/Utils/platform_utils.dart';
+import 'package:book_store/utils/platform_utils.dart';
 import 'package:book_store/elements/blur_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

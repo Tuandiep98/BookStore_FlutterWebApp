@@ -1,5 +1,5 @@
-import 'package:book_store/Utils/header.dart';
-import 'package:book_store/Utils/web_platform.dart';
+import 'package:book_store/utils/header.dart';
+import 'package:book_store/utils/web_platform.dart';
 import 'package:book_store/core/bloc/home_page_trending_bloc/home_page_trending_bloc.dart';
 import 'package:book_store/core/global/router_config.dart';
 import 'package:book_store/pages/home_page.dart';

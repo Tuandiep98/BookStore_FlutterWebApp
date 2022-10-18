@@ -1,4 +1,4 @@
-import 'package:book_store/Utils/footer.dart';
+import 'package:book_store/utils/footer.dart';
 import 'package:book_store/elements/shimmers/book_reverse_shimmer.dart';
 import 'package:book_store/elements/shimmers/book_shimmer.dart';
 import 'package:book_store/elements/trending_element.dart';
@@ -7,7 +7,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
-import '../Utils/platform_utils.dart';
+import '../utils/platform_utils.dart';
 import '../core/bloc/book_bloc/book_bloc.dart';
 import '../core/bloc/setting_bloc/setting_bloc.dart';
 import '../elements/book_element.dart';

@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:book_store/Utils/storage_manager.dart';
+import 'package:book_store/utils/storage_manager.dart';
 import 'package:book_store/core/global/global_data.dart';
 import 'package:book_store/core/global/locator.dart';
 import 'package:book_store/core/services/interfaces/ifirebase_service.dart';

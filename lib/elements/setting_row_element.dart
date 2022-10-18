@@ -1,5 +1,5 @@
-import 'package:book_store/Utils/color_utils.dart';
-import 'package:book_store/Utils/platform_utils.dart';
+import 'package:book_store/utils/color_utils.dart';
+import 'package:book_store/utils/platform_utils.dart';
 import 'package:book_store/core/ui_models/setting_ui_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

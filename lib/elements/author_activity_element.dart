@@ -1,4 +1,4 @@
-import 'package:book_store/Utils/color_utils.dart';
+import 'package:book_store/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../core/bloc/setting_bloc/setting_bloc.dart';
