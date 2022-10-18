@@ -19,7 +19,7 @@ class _RestClient implements RestClient {
   String? baseUrl;
 
   @override
-  Future<List<BookDto>> getBooks({deviceSerial}) async {
+  Future<List<BookDto>> getBooks() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -69,7 +69,7 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<List<AuthorDto>> getAuthors({deviceSerial}) async {
+  Future<List<AuthorDto>> getAuthors() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

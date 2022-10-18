@@ -10,17 +10,13 @@ abstract class RestClient {
   factory RestClient(Dio dio, {required String baseUrl}) = _RestClient;
 
   @GET("/api/Books")
-  Future<List<BookDto>> getBooks({
-    @Path("serial") deviceSerial,
-  });
+  Future<List<BookDto>> getBooks();
 
   @POST("/api/CreateBook")
   Future<HttpResponse> createBook(@Body() BookDto model);
 
   @GET("/api/TrendingAuthor")
-  Future<List<AuthorDto>> getAuthors({
-    @Path("serial") deviceSerial,
-  });
+  Future<List<AuthorDto>> getAuthors();
 
   @POST("/api/CreateAuthor")
   Future<HttpResponse> createAuthor(@Body() AuthorDto model);

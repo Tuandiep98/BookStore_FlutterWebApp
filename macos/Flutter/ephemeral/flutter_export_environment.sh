@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=C:\Users\user\fvm\versions\3.3.0"
-export "FLUTTER_APPLICATION_PATH=E:\demo projects\BookStore_FlutterWebApp"
+export "FLUTTER_ROOT=/Users/tuandiep98/fvm/versions/3.3.0"
+export "FLUTTER_APPLICATION_PATH=/Users/tuandiep98/development/flutter/BookStore_FlutterWebApp"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"
