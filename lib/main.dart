@@ -3,6 +3,7 @@ import 'package:book_store/utils/web_platform.dart';
 import 'package:book_store/core/bloc/home_page_trending_bloc/home_page_trending_bloc.dart';
 import 'package:book_store/core/global/router_config.dart';
 import 'package:book_store/pages/home_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'utils/my_custom_scroll_behavior.dart';
@@ -12,6 +13,14 @@ import 'core/global/locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: FirebaseOptions(
+      apiKey: "AIzaSyARc8y--XsvZevcf9iTq_jglQODFwg1Uc0",
+      appId: "1:1053757662020:web:267127d1cffec92fcfad11",
+      messagingSenderId: "1053757662020",
+      projectId: "ilibrary-flutterwebapp",
+    ),
+  );
   await setupLocator();
   runApp(MyApp());
 }

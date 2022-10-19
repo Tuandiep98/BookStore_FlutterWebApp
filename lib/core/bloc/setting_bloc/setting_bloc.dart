@@ -58,6 +58,7 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
       }
 
       // session check
+      
       var accountAlreadyLogged = await _firebaseService.getCurrentUser();
       if (accountAlreadyLogged != null) {
         var accountModel = await storeAccountToStorage(accountAlreadyLogged);
