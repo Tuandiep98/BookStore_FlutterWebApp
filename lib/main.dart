@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           var _themeData = ThemeData(
             primarySwatch: Colors.blue,
           );
-          if (state is ThemeLoaded) {
+          if (state is ThemeLoaded || state is ThemeLoadedWithAccount) {
             _themeData = state.themeData;
           }
           return MaterialApp.router(

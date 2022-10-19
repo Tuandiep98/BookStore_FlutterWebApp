@@ -267,7 +267,9 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                           child: Row(
                             children: [
                               CachedNetworkImage(
-                                imageUrl: 'widget.book.imgUrl',
+                                imageUrl: widget.book.authors.length > 0
+                                    ? widget.book.authors.first.imgUrl
+                                    : widget.book.imgUrl,
                                 errorWidget: (context, url, error) =>
                                     Image.asset(
                                   'assets/images/thumb.jpg',
@@ -407,7 +409,7 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                       ],
                     ),
                     child: CachedNetworkImage(
-                      imageUrl: 'widget.book.imgUrl',
+                      imageUrl: widget.book.imgUrl,
                       errorWidget: (context, url, error) => Image.asset(
                         'assets/images/thumb.jpg',
                         fit: BoxFit.cover,

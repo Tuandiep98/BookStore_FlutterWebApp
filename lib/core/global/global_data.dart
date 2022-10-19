@@ -1,5 +1,5 @@
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:book_store/core/models/account/account_model.dart';
 
 class GlobalData {
-  GoogleSignInAccount? currentUser;
+  AccountModel? currentUser;
 }

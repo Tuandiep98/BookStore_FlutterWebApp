@@ -6,5 +6,5 @@ abstract class IFirebaseService {
   Future<UserInfo?> signInWithEmailPassword(String email, String password);
   Future<String> signOut();
   Future<GoogleSignInAccount?> signInWithGoogle();
-  GoogleSignInAccount? getCurrentUser();
+  Future<GoogleSignInAccount?> getCurrentUser();
 }

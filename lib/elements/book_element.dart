@@ -180,7 +180,7 @@ class _BookElementState extends State<BookElement> {
                   height: 240,
                   width: 150,
                   child: CachedNetworkImage(
-                    imageUrl: 'widget.book.imgUrl',
+                    imageUrl: widget.book.imgUrl,
                     errorWidget: (context, url, error) => Image.asset(
                       'assets/images/thumb.jpg',
                       fit: BoxFit.cover,

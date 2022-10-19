@@ -25,70 +25,83 @@ class SettingRowElement extends StatefulWidget {
 class _SettingRowElementState extends State<SettingRowElement> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => widget.action(),
-      child: Column(
-        children: [
-          const SizedBox(height: 5),
-          Row(
-            children: [
-              Container(
-                width: 45,
-                height: 45,
-                decoration: BoxDecoration(
-                  color: ColorUtils.getRandomColor(),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Center(
-                  child: Icon(
-                    widget.setting.icon,
-                    size: 30,
-                    color: context.read<SettingBloc>().getTheme().primaryColor,
+    return InkWell(
+      onTap: () {
+        if (widget.setting.type != 1) {
+          widget.action();
+        }
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: Column(
+          children: [
+            const SizedBox(height: 5),
+            Row(
+              children: [
+                Container(
+                  width: 45,
+                  height: 45,
+                  decoration: BoxDecoration(
+                    color: ColorUtils.getRandomColor(),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Center(
+                    child: Icon(
+                      widget.setting.icon,
+                      size: 30,
+                      color:
+                          context.read<SettingBloc>().getTheme().primaryColor,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: 10),
-              Text(
-                widget.setting.name,
-                style: TextStyle(
-                  fontSize: 22,
-                  color: context.read<SettingBloc>().getTheme().accentColor,
-                ),
-              ),
-              SizedBox(width: PlatformUtils.isDevice(context) ? 0 : 100),
-              const Spacer(),
-              widget.setting.type == 0
-                  ? Text(widget.setting.value,
-                      style: TextStyle(
-                        fontSize: 20,
-                        color:
-                            context.read<SettingBloc>().getTheme().accentColor,
-                      ))
-                  : const SizedBox.shrink(),
-              const SizedBox(width: 2),
-              widget.setting.type == 1
-                  ? CupertinoSwitch(
-                      value: widget.setting.boolValue,
-                      onChanged: (value) {
-                        widget.setting.boolValue = value;
-                        widget.action();
-                        setState(() {});
-                      },
-                    )
-                  : Icon(Icons.arrow_forward_ios_rounded,
-                      size: 30, color: Colors.grey[300]),
-            ],
-          ),
-          const SizedBox(height: 5),
-          widget.showDivider
-              ? Padding(
-                  padding: EdgeInsets.only(left: 50),
-                  child: Divider(
-                    color: Colors.grey[300],
+                const SizedBox(width: 10),
+                Text(
+                  widget.setting.name,
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: context.read<SettingBloc>().getTheme().accentColor,
                   ),
-                )
-              : const SizedBox.shrink(),
-        ],
+                ),
+                SizedBox(width: PlatformUtils.isDevice(context) ? 0 : 100),
+                const Spacer(),
+                widget.setting.type == 0
+                    ? Text(widget.setting.value,
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: context
+                              .read<SettingBloc>()
+                              .getTheme()
+                              .accentColor,
+                        ))
+                    : const SizedBox.shrink(),
+                const SizedBox(width: 2),
+                widget.setting.type == 1
+                    ? CupertinoSwitch(
+                        value: widget.setting.boolValue,
+                        onChanged: (value) {
+                          widget.setting.boolValue = value;
+                          widget.action();
+                          setState(() {});
+                        },
+                      )
+                    : Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 30,
+                        color: Colors.grey[300],
+                      ),
+              ],
+            ),
+            const SizedBox(height: 5),
+            widget.showDivider
+                ? Padding(
+                    padding: EdgeInsets.only(left: 50),
+                    child: Divider(
+                      color: Colors.grey[300],
+                    ),
+                  )
+                : const SizedBox.shrink(),
+          ],
+        ),
       ),
     );
   }

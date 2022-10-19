@@ -21,7 +21,7 @@ class ThemeLoaded extends SettingState {
 }
 
 class ThemeLoadedWithAccount extends SettingState {
-  final GoogleSignInAccount currentUser;
+  final AccountModel currentUser;
 
   const ThemeLoadedWithAccount(
     this.currentUser, {

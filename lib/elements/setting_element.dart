@@ -1,9 +1,8 @@
-import 'package:book_store/core/global/global_data.dart';
-import 'package:book_store/core/global/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../core/bloc/setting_bloc/setting_bloc.dart';
 import '../core/ui_models/setting_ui_model.dart';
+import 'setting_group_element.dart';
 import 'setting_row_element.dart';
 
 class SettingElement extends StatefulWidget {
@@ -35,75 +34,71 @@ class _SettingElementState extends State<SettingElement> {
               ),
             ),
             const SizedBox(height: 10),
-            state is ThemeLoadedWithAccount
-                ? Text(
-                    state.currentUser.displayName ?? 'Guest',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: context.read<SettingBloc>().getTheme().accentColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                : GestureDetector(
-                    onTap: () {
-                      context.read<SettingBloc>().add(GoogleSigninClicked());
-                    },
-                    child: Text('Sign in'),
-                  ),
-            const SizedBox(height: 50),
-            Container(
-              padding: const EdgeInsets.all(12.0),
-              decoration: BoxDecoration(
-                color: context.read<SettingBloc>().isDarkMode()
-                    ? context.read<SettingBloc>().getTheme().backgroundColor
-                    : Colors.white,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Column(
-                children: [
-                  SettingRowElement(
-                    action: () {},
-                    setting: SettingUIModel(
-                      name: 'Accounts',
-                      icon: Icons.account_circle_outlined,
-                      type: 2,
-                    ),
-                  ),
-                  SettingRowElement(
-                    action: () {},
-                    setting: SettingUIModel(
-                      name: 'Language',
-                      value: 'English',
-                      icon: Icons.language,
-                    ),
-                  ),
-                  SettingRowElement(
-                    action: () {
-                      var _settingBloc = context.read<SettingBloc>();
-                      _settingBloc.add(
-                          ThemeChaged(setToDark: !_settingBloc.isDarkMode()));
-                    },
-                    setting: SettingUIModel(
-                      name: 'Dark mode',
-                      type: 1,
-                      icon: Icons.wb_sunny_rounded,
-                      boolValue: context.read<SettingBloc>().isDarkMode(),
-                    ),
-                  ),
-                  SettingRowElement(
-                    action: () {
-                      context.read<SettingBloc>().add(SignoutClicked());
-                    },
-                    setting: SettingUIModel(
-                      name: 'Sign out',
-                      icon: Icons.logout_rounded,
-                      type: 2,
-                    ),
-                    showDivider: false,
-                  ),
-                ],
+            Text(
+              state is ThemeLoadedWithAccount
+                  ? state.currentUser.displayName ?? 'Guest'
+                  : 'Guest',
+              style: TextStyle(
+                fontSize: 24,
+                color: context.read<SettingBloc>().getTheme().accentColor,
+                fontWeight: FontWeight.bold,
               ),
             ),
+            const SizedBox(height: 50),
+            SettingGroupElement(
+              children: [
+                SettingRowElement(
+                  action: () {},
+                  setting: SettingUIModel(
+                    name: 'Accounts',
+                    icon: Icons.account_circle_outlined,
+                    type: 2,
+                  ),
+                ),
+                SettingRowElement(
+                  action: () {},
+                  setting: SettingUIModel(
+                    name: 'Language',
+                    value: 'English',
+                    icon: Icons.language,
+                  ),
+                ),
+                SettingRowElement(
+                  action: () {
+                    context.read<SettingBloc>().add(ThemeChanged());
+                  },
+                  setting: SettingUIModel(
+                    name: 'Dark mode',
+                    type: 1,
+                    icon: Icons.wb_sunny_rounded,
+                    boolValue: context.read<SettingBloc>().isDarkMode(),
+                  ),
+                  showDivider: false,
+                ),
+              ],
+            ),
+            state is ThemeLoadedWithAccount
+                ? Column(
+                    children: [
+                      const SizedBox(height: 20),
+                      SettingGroupElement(
+                        children: [
+                          SettingRowElement(
+                            action: () {
+                              context.read<SettingBloc>().add(SignoutClicked());
+                            },
+                            setting: SettingUIModel(
+                              name: 'Sign out',
+                              icon: Icons.logout_rounded,
+                              type: 2,
+                            ),
+                            showDivider: false,
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
+                : const SizedBox.shrink(),
           ],
         );
       },

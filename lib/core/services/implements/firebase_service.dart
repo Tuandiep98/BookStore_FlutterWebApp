@@ -1,4 +1,5 @@
-import 'package:firebase_core/firebase_core.dart';
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -6,10 +7,9 @@ import '../../../utils/storage_manager.dart';
 import '../interfaces/ifirebase_service.dart';
 
 class FirebaseService implements IFirebaseService {
-  // final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn(
-    // clientId:
-    //     '1053757662020-tt5v67b8bj07picoefioj5p2gaknnqg4.apps.googleusercontent.com',
+    clientId:
+        '1053757662020-tt5v67b8bj07picoefioj5p2gaknnqg4.apps.googleusercontent.com',
     scopes: [
       'email',
       'https://www.googleapis.com/auth/contacts.readonly',
@@ -76,7 +76,7 @@ class FirebaseService implements IFirebaseService {
   Future<String> signOut() async {
     // await _auth.signOut();
     await _googleSignIn.disconnect();
-    StorageManager.saveData('auth', false);
+    // StorageManager.saveData('auth', false);
 
     // uid = null;
     // userEmail = null;
@@ -89,10 +89,12 @@ class FirebaseService implements IFirebaseService {
     // Initialize Firebase
     // await Firebase.initializeApp();
     GoogleSignInAccount? account;
-
     try {
-      account = await _googleSignIn.signIn();
-      StorageManager.saveData('auth', true);
+      account = await getCurrentUser();
+      if (account == null) {
+        account = await _googleSignIn.signIn();
+      }
+      StorageManager.saveJsonData('auth', jsonEncode(account));
     } catch (error) {
       print(error);
     }
@@ -101,7 +103,9 @@ class FirebaseService implements IFirebaseService {
   }
 
   @override
-  GoogleSignInAccount? getCurrentUser() {
-    return _googleSignIn.currentUser;
+  Future<GoogleSignInAccount?> getCurrentUser() async {
+    var signed = await _googleSignIn.isSignedIn();
+    if (signed) return _googleSignIn.currentUser;
+    return null;
   }
 }

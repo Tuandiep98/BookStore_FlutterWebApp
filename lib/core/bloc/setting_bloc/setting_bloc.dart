@@ -1,10 +1,12 @@
 import 'package:bloc/bloc.dart';
+import 'package:book_store/core/models/account/account_model.dart';
 import 'package:book_store/utils/storage_manager.dart';
 import 'package:book_store/core/global/global_data.dart';
 import 'package:book_store/core/global/locator.dart';
 import 'package:book_store/core/services/interfaces/ifirebase_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:book_store/utils/string_extension.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 part 'setting_event.dart';
@@ -42,71 +44,109 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
   bool _isDarkMode = false;
   bool isDarkMode() => _isDarkMode;
   SettingBloc() : super(ThemeLoaded(themeData: lightTheme)) {
-    on<ThemeStarted>((event, emit) {
-      StorageManager.readData('themeMode').then((value) {
-        print('value read from storage: ' + value.toString());
-        var themeMode = value ?? 'light';
-        if (themeMode == 'light') {
-          print('setting light theme');
-          setLightMode();
-        } else {
-          print('setting dark theme');
-          setDarkMode();
+    on<ThemeStarted>((event, emit) async {
+      // theme check
+      var theme = await StorageManager.readData('themeMode');
+      print('value read from storage: ' + theme.toString());
+      var themeMode = theme ?? 'light';
+      if (themeMode == 'light') {
+        print('setting light theme');
+        await setLightMode();
+      } else {
+        print('setting dark theme');
+        await setDarkMode();
+      }
+
+      // session check
+      var accountAlreadyLogged = await _firebaseService.getCurrentUser();
+      if (accountAlreadyLogged != null) {
+        var accountModel = await storeAccountToStorage(accountAlreadyLogged);
+        emit(ThemeLoadedWithAccount(accountModel, themeData: _themeData));
+        return;
+      }
+
+      var accountModelJson = await StorageManager.readJsonData('auth');
+      if (accountModelJson != null) {
+        var accountModel = AccountModel.fromJson(accountModelJson);
+        if (!accountModel.id.isNullOrEmpty()) {
+          emit(ThemeLoadedWithAccount(accountModel, themeData: _themeData));
+          return;
         }
-      });
+      }
+
       emit(ThemeLoaded(themeData: _themeData));
     });
 
-    on<ThemeChaged>((event, emit) {
-      final state = this.state;
-      if (state is ThemeLoaded) {
-        if (event.setToDark) {
-          setDarkMode();
-        } else {
-          setLightMode();
-        }
-        emit(ThemeLoaded(themeData: _themeData));
+    on<ThemeChanged>((event, emit) async {
+      if (!isDarkMode()) {
+        await setDarkMode();
+      } else {
+        await setLightMode();
       }
+      // session check
+      var accountModelJson = await StorageManager.readJsonData('auth');
+      if (accountModelJson != null) {
+        AccountModel accountModel = AccountModel.fromJson(accountModelJson);
+        if (!accountModel.id.isNullOrEmpty()) {
+          emit(ThemeLoadedWithAccount(accountModel, themeData: _themeData));
+          return;
+        }
+      }
+
+      emit(ThemeLoaded(themeData: _themeData));
     });
 
     on<GoogleSigninClicked>((event, emit) async {
-      GoogleSignInAccount account;
-      if (_globalData.currentUser != null) {
-        account = _globalData.currentUser!;
-      } else {
-        account = await signInWithGoogle();
-      }
+      AccountModel account;
+      account = await signInWithGoogle();
       emit(ThemeLoadedWithAccount(account, themeData: _themeData));
     });
 
     on<SignoutClicked>((event, emit) async {
-      if (_globalData.currentUser != null) {
+      AccountModel account =
+          AccountModel.fromJson(await StorageManager.readJsonData('auth'));
+      if (!account.id.isNullOrEmpty()) {
         await signOut();
       }
       emit(ThemeLoaded(themeData: _themeData));
     });
   }
 
-  void setDarkMode() {
+  Future<void> setDarkMode() async {
     _themeData = darkTheme;
     _isDarkMode = true;
-    StorageManager.saveData('themeMode', 'dark');
+    await StorageManager.saveData('themeMode', 'dark');
   }
 
-  void setLightMode() {
+  Future<void> setLightMode() async {
     _isDarkMode = false;
     _themeData = lightTheme;
-    StorageManager.saveData('themeMode', 'light');
+    await StorageManager.saveData('themeMode', 'light');
   }
 
-  Future<GoogleSignInAccount> signInWithGoogle() async {
+  Future<AccountModel> signInWithGoogle() async {
     var currentUser = await _firebaseService.signInWithGoogle();
-    _globalData.currentUser = currentUser!;
-    return currentUser;
+    return await storeAccountToStorage(currentUser);
   }
 
   Future<void> signOut() async {
     await _firebaseService.signOut();
+    await StorageManager.deleteData('auth');
     _globalData.currentUser = null;
+  }
+
+  Future<AccountModel> storeAccountToStorage(
+      GoogleSignInAccount? account) async {
+    var accountModel = AccountModel(
+      email: account!.email,
+      id: account.id,
+      displayName: account.displayName,
+      photoUrl: account.photoUrl,
+      serverAuthCode: account.serverAuthCode,
+    );
+
+    await StorageManager.saveJsonData('auth', accountModel);
+    _globalData.currentUser = accountModel;
+    return accountModel;
   }
 }

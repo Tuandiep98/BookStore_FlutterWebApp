@@ -9,15 +9,11 @@ abstract class SettingEvent extends Equatable {
 
 class ThemeStarted extends SettingEvent {}
 
-class ThemeChaged extends SettingEvent {
-  final bool setToDark;
-
-  const ThemeChaged({
-    required this.setToDark,
-  });
+class ThemeChanged extends SettingEvent {
+  const ThemeChanged();
 
   @override
-  List<Object> get props => [setToDark];
+  List<Object> get props => [];
 }
 
 class GoogleSigninClicked extends SettingEvent {

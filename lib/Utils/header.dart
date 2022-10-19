@@ -32,12 +32,46 @@ class _HeaderState extends State<Header> {
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                _buildLogo(),
+                Row(
+                  children: [
+                    const SizedBox(width: 10),
+                    Image.asset(
+                      'assets/images/thumb.jpg',
+                      width: 45,
+                      height: 45,
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      'iLibrary',
+                      style: TextStyle(
+                        fontSize: 23,
+                        fontWeight: FontWeight.w700,
+                        color:
+                            context.read<SettingBloc>().getTheme().accentColor,
+                      ),
+                    ),
+                  ],
+                ),
                 const SizedBox(width: 10),
-                // _buildCategories(),
                 const Spacer(),
                 Row(
                   children: [
+                    state is ThemeLoadedWithAccount
+                        ? const SizedBox.shrink()
+                        : InkWell(
+                            onTap: () {
+                              context
+                                  .read<SettingBloc>()
+                                  .add(GoogleSigninClicked());
+                            },
+                            child: Text(
+                              'Sign in',
+                              style: TextStyle(
+                                color: state.themeData.accentColor,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
                     InkWell(
                       onTap: () async {
                         await DialogUtils.showDialogWithChild(
@@ -48,13 +82,32 @@ class _HeaderState extends State<Header> {
                           backgroundColor: Colors.transparent,
                         );
                       },
-                      child: CircleAvatar(
-                        radius: 20,
-                        child: Image.asset(
-                          'assets/images/girl_emoji_01.png',
-                          height: 40,
-                          width: 40,
-                        ),
+                      child: Row(
+                        children: [
+                          state is ThemeLoadedWithAccount
+                              ? Text(
+                                  'Hi, ${state.currentUser.displayName}',
+                                  style: TextStyle(
+                                    color: state.themeData.accentColor,
+                                    fontSize: 18,
+                                  ),
+                                )
+                              : const SizedBox.shrink(),
+                          const SizedBox(width: 5),
+                          state is ThemeLoadedWithAccount
+                              ? CircleAvatar(
+                                  radius: 20,
+                                  child: Image.asset(
+                                    'assets/images/girl_emoji_01.png',
+                                    height: 40,
+                                    width: 40,
+                                  ),
+                                )
+                              : Icon(
+                                  Icons.menu_rounded,
+                                  size: 25,
+                                ),
+                        ],
                       ),
                     ),
                   ],
@@ -68,78 +121,4 @@ class _HeaderState extends State<Header> {
       },
     );
   }
-
-  Widget _buildLogo() {
-    return Row(
-      children: [
-        const SizedBox(width: 10),
-        Image.asset(
-          'assets/images/thumb.jpg',
-          width: 45,
-          height: 45,
-        ),
-        const SizedBox(width: 5),
-        const Text(
-          'iLibrary',
-          style: TextStyle(
-            fontSize: 23,
-            fontWeight: FontWeight.w700,
-            color: Colors.green,
-          ),
-        ),
-      ],
-    );
-  }
-
-  // Widget _buildCategories() {
-  //   return Row(
-  //     mainAxisAlignment: MainAxisAlignment.center,
-  //     crossAxisAlignment: CrossAxisAlignment.center,
-  //     children: [
-  //       Padding(
-  //         padding: const EdgeInsets.symmetric(horizontal: 40),
-  //         child: Column(
-  //           mainAxisAlignment: MainAxisAlignment.center,
-  //           children: const [
-  //             Icon(Icons.book_outlined, size: 24),
-  //             SizedBox(height: 5),
-  //             Text(
-  //               'Books',
-  //               style: TextStyle(
-  //                   // fontWeight: FontWeight.w600,
-  //                   ),
-  //             ),
-  //           ],
-  //         ),
-  //       ),
-  //       Column(
-  //         mainAxisAlignment: MainAxisAlignment.center,
-  //         children: const [
-  //           Icon(Icons.spatial_audio_rounded, size: 24),
-  //           SizedBox(height: 5),
-  //           Text(
-  //             'Audiobooks',
-  //             style: TextStyle(
-  //               fontWeight: FontWeight.w600,
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //       Column(
-  //         mainAxisAlignment: MainAxisAlignment.center,
-  //         children: const [
-  //           Icon(Icons.mic, size: 24),
-  //           SizedBox(height: 5),
-  //           Text(
-  //             'Podcasts',
-  //             style: TextStyle(
-  //                 // fontWeight: FontWeight.w600,
-  //                 ),
-  //           ),
-  //         ],
-  //       )
-  //     ],
-  //   );
-  // }
-
 }
