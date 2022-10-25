@@ -1,4 +1,3 @@
-import 'package:book_store/main.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -23,109 +22,107 @@ class _ReadingBookScreenState extends State<ReadingBookScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseScreen(
-      body: Container(
-        padding: const EdgeInsets.all(10),
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: Column(
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  width: MediaQuery.of(context).size.width / 2 - 15,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(18),
-                  ),
-                  child: Text(
-                    content.substring(0, content.length ~/ 2),
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 20,
-                      color: Theme.of(context).accentColor,
-                    ),
+    return Container(
+      padding: const EdgeInsets.all(10),
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child: Column(
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(20),
+                width: MediaQuery.of(context).size.width / 2 - 15,
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(18),
+                ),
+                child: Text(
+                  content.substring(0, content.length ~/ 2),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                    color: Theme.of(context).accentColor,
                   ),
                 ),
-                const SizedBox(width: 10),
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  width: MediaQuery.of(context).size.width / 2 - 15,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(18),
-                  ),
-                  child: Text(
-                    content.substring(content.length ~/ 2, content.length),
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 20,
-                      color: Theme.of(context).accentColor,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Container(
-              height: 15,
-              width: MediaQuery.of(context).size.width,
-              child: LinearPercentIndicator(
-                animation: true,
-                barRadius: Radius.circular(15),
-                lineHeight: 15.0,
-                animationDuration: 1500,
-                percent: 0.8,
-                linearStrokeCap: LinearStrokeCap.roundAll,
-                progressColor: Colors.green,
               ),
-            ),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  '354 pages',
+              const SizedBox(width: 10),
+              Container(
+                padding: const EdgeInsets.all(20),
+                width: MediaQuery.of(context).size.width / 2 - 15,
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(18),
+                ),
+                child: Text(
+                  content.substring(content.length ~/ 2, content.length),
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w400,
                     fontSize: 20,
                     color: Theme.of(context).accentColor,
                   ),
                 ),
-                const Spacer(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.arrow_back_ios_rounded),
-                    const SizedBox(width: 5),
-                    Text(
-                      'PAGE 301 OF 354',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 22,
-                        color: Theme.of(context).accentColor,
-                      ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          Container(
+            height: 15,
+            width: MediaQuery.of(context).size.width,
+            child: LinearPercentIndicator(
+              animation: true,
+              barRadius: Radius.circular(15),
+              lineHeight: 15.0,
+              animationDuration: 1500,
+              percent: 0.8,
+              linearStrokeCap: LinearStrokeCap.roundAll,
+              progressColor: Colors.green,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '354 pages',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Theme.of(context).accentColor,
+                ),
+              ),
+              const Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.arrow_back_ios_rounded),
+                  const SizedBox(width: 5),
+                  Text(
+                    'PAGE 301 OF 354',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22,
+                      color: Theme.of(context).accentColor,
                     ),
-                    const SizedBox(width: 5),
-                    Icon(Icons.arrow_forward_ios_rounded),
-                  ],
-                ),
-                const Spacer(),
-                Text(
-                  '82% read',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Theme.of(context).accentColor,
                   ),
+                  const SizedBox(width: 5),
+                  Icon(Icons.arrow_forward_ios_rounded),
+                ],
+              ),
+              const Spacer(),
+              Text(
+                '82% read',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Theme.of(context).accentColor,
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

@@ -17,7 +17,7 @@ class Routerconfiguration {
             name: 'read-book',
             path: 'read-book/:bookId',
             builder: (BuildContext context, GoRouterState state) =>
-                ReadingBookScreen(bookId: state.params['bookId'] ?? ''),
+                BaseScreen(body: ReadingBookScreen(bookId: state.params['bookId'] ?? ''),),
           ),
         ],
       ),
