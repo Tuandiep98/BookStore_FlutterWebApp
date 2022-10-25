@@ -27,7 +27,7 @@ class DialogUtils {
         animationCurve: Curves.easeInOutCubicEmphasized,
         backgroundColor: backgroundColor ??
             (context.read<SettingBloc>().isDarkMode()
-                ? context.read<SettingBloc>().getTheme().primaryColor
+                ? Theme.of(context).primaryColor
                 : Colors.grey[200]),
         context: context,
         builder: (context) => BlurContainer(
@@ -41,7 +41,7 @@ class DialogUtils {
                 // color: backgroundColor == null
                 //     ? Colors.transparent
                 //     : context.read<SettingBloc>().isDarkMode()
-                //         ? context.read<SettingBloc>().getTheme().primaryColor
+                //         ? Theme.of(context).primaryColor
                 //         : Colors.grey[200],
                 // borderRadius: BorderRadius.only(
                 //   topLeft: Radius.circular(12),
@@ -67,7 +67,7 @@ class DialogUtils {
                 padding: padding,
                 decoration: BoxDecoration(
                   color: context.read<SettingBloc>().isDarkMode()
-                      ? context.read<SettingBloc>().getTheme().primaryColor
+                      ? Theme.of(context).primaryColor
                       : Colors.grey[200],
                   borderRadius: BorderRadius.circular(3),
                 ),

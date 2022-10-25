@@ -1,3 +1,5 @@
+import 'package:book_store/elements/book_info_widget.dart';
+import 'package:book_store/elements/book_rating_widget.dart';
 import 'package:book_store/elements/review_widget.dart';
 import 'package:book_store/utils/my_custom_scroll_behavior.dart';
 import 'package:book_store/utils/platform_utils.dart';
@@ -6,6 +8,7 @@ import 'package:book_store/utils/scroll_behavior.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../core/bloc/setting_bloc/setting_bloc.dart';
 import '../core/dto/author/author_dto.dart';
 import 'author_activity_element.dart';
@@ -103,27 +106,17 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                               size: 35, color: Colors.amber),
                           Icon(Icons.star_rounded,
                               size: 35, color: Colors.grey),
-                          const SizedBox(width: 20),
-                          Text(
-                            '${widget.book.rate} votes',
-                            style: TextStyle(
-                              fontSize: 22,
-                              color: context
-                                  .read<SettingBloc>()
-                                  .getTheme()
-                                  .primaryColor,
-                            ),
-                          ),
                         ],
                       ),
                       const SizedBox(height: 20),
                       Wrap(
-                        children: [
-                          CategoryWidget(name: 'Fantasy'),
-                          CategoryWidget(name: 'Adventure'),
-                          CategoryWidget(name: 'Drama'),
-                          CategoryWidget(name: 'Hornor'),
-                        ],
+                        children: widget.book.categories.length > 0
+                            ? widget.book.categories
+                                .map((e) => CategoryWidget(
+                                      name: e.name,
+                                    ))
+                                .toList()
+                            : [],
                       ),
                     ],
                   ),
@@ -133,7 +126,7 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                   top: 300,
                   child: Container(
                     padding: const EdgeInsets.only(left: 240),
-                    color: context.read<SettingBloc>().getTheme().primaryColor,
+                    color: Theme.of(context).primaryColor,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,21 +144,28 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                           ),
                         ),
                         const SizedBox(height: 15),
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          child: Text(
-                            'Louisa Clark is no longer hust an ordinary girl living an ordinary life. After the transaformative six months spent.',
-                            maxLines: 4,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 24,
-                              color: context
-                                  .read<SettingBloc>()
-                                  .getTheme()
-                                  .accentColor,
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.5,
+                              child: Text(
+                                'Louisa Clark is no longer hust an ordinary girl living an ordinary life. After the transaformative six months spent.',
+                                maxLines: 4,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 24,
+                                  color: context
+                                      .read<SettingBloc>()
+                                      .getTheme()
+                                      .accentColor,
+                                ),
+                              ),
                             ),
-                          ),
+                            const SizedBox(width: 50),
+                            const BookInfoWidget(),
+                          ],
                         ),
                         const SizedBox(height: 20),
                         AuthorActivityElement(
@@ -208,32 +208,45 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                           maxWidth: MediaQuery.of(context).size.width * 0.5,
                         ),
                         const SizedBox(height: 20),
-                        Text(
-                          'Customer reviews',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 28,
-                            color: context
-                                .read<SettingBloc>()
-                                .getTheme()
-                                .accentColor,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        ReviewWidget(
-                          authorName: 'Megan Fold',
-                          review:
-                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s',
-                          imgUrl: 'assets/images/girl_emoji_01.png',
-                          datetime: 'July 17, 2021',
-                        ),
-                        const SizedBox(height: 20),
-                        ReviewWidget(
-                          authorName: 'Martin Jr',
-                          review:
-                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s',
-                          imgUrl: 'assets/images/memoji_2.png',
-                          datetime: 'May 05, 2020',
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Customer reviews',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 28,
+                                    color: context
+                                        .read<SettingBloc>()
+                                        .getTheme()
+                                        .accentColor,
+                                  ),
+                                ),
+                                const SizedBox(height: 20),
+                                ReviewWidget(
+                                  authorName: 'Megan Fold',
+                                  review:
+                                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s',
+                                  imgUrl: 'assets/images/girl_emoji_01.png',
+                                  datetime: 'July 17, 2021',
+                                ),
+                                const SizedBox(height: 20),
+                                ReviewWidget(
+                                  authorName: 'Martin Jr',
+                                  review:
+                                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s',
+                                  imgUrl: 'assets/images/memoji_2.png',
+                                  datetime: 'May 05, 2020',
+                                ),
+                              ],
+                            ),
+                            const SizedBox(width: 50),
+                            BookRatingWidget(book: widget.book),
+                          ],
                         ),
                         const SizedBox(height: 20),
                         Text(
@@ -381,7 +394,12 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                         iconSize: 25,
                         radius: 0,
                         color: Colors.grey,
-                        onPressed: () {},
+                        onPressed: () {
+                          context.go(context.namedLocation('read-book',
+                              params: <String, String>{
+                                'bookId': '${widget.book.id}'
+                              }));
+                        },
                         tooltips: 'Start read this book',
                         title: 'Read online',
                         hasShadow: false,
@@ -417,12 +435,14 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                             Navigator.of(context).pop();
                           },
                           tooltips: 'Close',
+                          color: Theme.of(context).primaryColor,
                         ),
                         const Spacer(),
                         CustomButton(
                           iconData: Icons.bookmark_border_rounded,
                           onPressed: () {},
                           tooltips: 'Add to bookmarks',
+                          color: Theme.of(context).primaryColor,
                         ),
                       ],
                     ),

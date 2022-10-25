@@ -18,7 +18,7 @@ class _SettingGroupElementState extends State<SettingGroupElement> {
       padding: const EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
         color: context.read<SettingBloc>().isDarkMode()
-            ? context.read<SettingBloc>().getTheme().backgroundColor
+            ? Theme.of(context).backgroundColor
             : Colors.white,
         borderRadius: BorderRadius.circular(8),
       ),

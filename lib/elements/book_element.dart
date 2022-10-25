@@ -2,10 +2,11 @@ import 'package:book_store/core/dto/book/book_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'dart:math' as math;
 
 import '../core/bloc/setting_bloc/setting_bloc.dart';
+import '../utils/dialog_utils.dart';
+import 'book_details_element.dart';
 
 class BookElement extends StatefulWidget {
   final BookDto book;
@@ -33,8 +34,18 @@ class _BookElementState extends State<BookElement> {
       MouseRegion(
         cursor: SystemMouseCursors.click,
         child: InkWell(
-          onTap: () {
-            context.go('/page2');
+          onTap: () async {
+            await DialogUtils.showDialogWithChild(
+              context,
+              enableBlur: true,
+              child: BookDetailsDialog(book: widget.book),
+              padding: const EdgeInsets.all(0),
+              paddingCloseBtn: 10,
+              backgroundColor: Colors.transparent,
+              maxHeight: MediaQuery.of(context).size.height,
+              sigmaX: 50,
+              forgeShowBottomSheet: true,
+            );
           },
           onHover: (value) {
             if (value) {
@@ -55,7 +66,7 @@ class _BookElementState extends State<BookElement> {
             height: 250,
             padding: const EdgeInsets.only(left: 180),
             color: context.read<SettingBloc>().isDarkMode()
-                ? context.read<SettingBloc>().getTheme().primaryColor
+                ? Theme.of(context).primaryColor
                 : Color(color).withOpacity(1.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -157,7 +168,7 @@ class _BookElementState extends State<BookElement> {
             child: Material(
               elevation: elevation,
               color: context.read<SettingBloc>().isDarkMode()
-                  ? context.read<SettingBloc>().getTheme().primaryColor
+                  ? Theme.of(context).primaryColor
                   : Color(color).withOpacity(1.0),
               type: MaterialType.transparency,
               child: Center(

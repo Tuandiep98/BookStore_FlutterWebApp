@@ -98,7 +98,7 @@ class ReviewWidget extends StatelessWidget {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w300,
-              color: context.read<SettingBloc>().getTheme().accentColor,
+              color: Theme.of(context).accentColor,
             ),
           ),
         ],

@@ -74,7 +74,7 @@ class _BookElementReverseState extends State<BookElementReverse>
                 child: Container(
                   height: 250,
                   decoration: BoxDecoration(
-                    color: context.read<SettingBloc>().getTheme().primaryColor,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(3),
                     // boxShadow: const [
                     //   BoxShadow(

@@ -40,7 +40,7 @@ class _SettingElementState extends State<SettingElement> {
                   : 'Guest',
               style: TextStyle(
                 fontSize: 24,
-                color: context.read<SettingBloc>().getTheme().accentColor,
+                color: Theme.of(context).accentColor,
                 fontWeight: FontWeight.bold,
               ),
             ),

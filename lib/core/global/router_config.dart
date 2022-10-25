@@ -1,4 +1,5 @@
-import 'package:book_store/pages/test_page.dart';
+import 'package:book_store/pages/home_page.dart';
+import 'package:book_store/pages/reading_book_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,12 +11,13 @@ class Routerconfiguration {
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) =>
-            MyHomePage(title: 'Home Page'),
+            BaseScreen(body: HomePage()),
         routes: <GoRoute>[
           GoRoute(
-            path: 'page2',
+            name: 'read-book',
+            path: 'read-book/:bookId',
             builder: (BuildContext context, GoRouterState state) =>
-                const TestPage(),
+                ReadingBookScreen(bookId: state.params['bookId'] ?? ''),
           ),
         ],
       ),

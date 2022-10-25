@@ -1,14 +1,13 @@
 import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../../utils/storage_manager.dart';
 import '../interfaces/ifirebase_service.dart';
 
 class FirebaseService implements IFirebaseService {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn(
     clientId:
         '1053757662020-tt5v67b8bj07picoefioj5p2gaknnqg4.apps.googleusercontent.com',

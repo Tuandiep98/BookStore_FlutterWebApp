@@ -1,7 +1,5 @@
 import 'package:book_store/core/dto/author/author_dto.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../core/bloc/setting_bloc/setting_bloc.dart';
 
 class AuthorActivityElement extends StatefulWidget {
   final List<AuthorDto> authors;
@@ -97,8 +95,7 @@ class _AuthorActivityElementState extends State<AuthorActivityElement> {
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: widget.fontSize,
-                        color:
-                            context.read<SettingBloc>().getTheme().accentColor,
+                        color: Theme.of(context).accentColor,
                       ),
                     ),
             ),

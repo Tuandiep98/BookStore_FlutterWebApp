@@ -49,8 +49,7 @@ class _SettingRowElementState extends State<SettingRowElement> {
                     child: Icon(
                       widget.setting.icon,
                       size: 30,
-                      color:
-                          context.read<SettingBloc>().getTheme().primaryColor,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                 ),
@@ -59,7 +58,7 @@ class _SettingRowElementState extends State<SettingRowElement> {
                   widget.setting.name,
                   style: TextStyle(
                     fontSize: 22,
-                    color: context.read<SettingBloc>().getTheme().accentColor,
+                    color: Theme.of(context).accentColor,
                   ),
                 ),
                 SizedBox(width: PlatformUtils.isDevice(context) ? 0 : 100),

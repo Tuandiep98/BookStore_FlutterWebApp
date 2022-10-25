@@ -39,11 +39,10 @@ class CustomButton extends StatelessWidget {
         ? Container(
             decoration: BoxDecoration(
               border: hasBorder
-                  ? Border.all(
-                      color: context.read<SettingBloc>().getTheme().accentColor)
+                  ? Border.all(color: Theme.of(context).accentColor)
                   : null,
               borderRadius: BorderRadius.circular(radius),
-              color: context.read<SettingBloc>().getTheme().primaryColor,
+              color: Theme.of(context).primaryColor,
               boxShadow: const [
                 BoxShadow(
                   color: Colors.grey,
@@ -97,8 +96,7 @@ class CustomButton extends StatelessWidget {
         : Container(
             decoration: BoxDecoration(
               border: hasBorder
-                  ? Border.all(
-                      color: context.read<SettingBloc>().getTheme().accentColor)
+                  ? Border.all(color: Theme.of(context).accentColor)
                   : null,
               borderRadius: BorderRadius.circular(radius),
             ),

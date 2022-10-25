@@ -2,7 +2,6 @@ import 'package:book_store/utils/header.dart';
 import 'package:book_store/utils/web_platform.dart';
 import 'package:book_store/core/bloc/home_page_trending_bloc/home_page_trending_bloc.dart';
 import 'package:book_store/core/global/router_config.dart';
-import 'package:book_store/pages/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,23 +56,23 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
+class BaseScreen extends StatefulWidget {
+  final Widget body;
+  BaseScreen({Key? key, required this.body}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<BaseScreen> createState() => _BaseScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _BaseScreenState extends State<BaseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.read<SettingBloc>().getTheme().backgroundColor,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
         child: WebPlatform(
           header: Header(),
-          body: HomePage(),
+          body: widget.body,
         ),
       ),
     );

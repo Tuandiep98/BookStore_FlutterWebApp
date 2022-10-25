@@ -1,8 +1,5 @@
 import 'package:book_store/core/dto/author/author_dto.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../core/bloc/setting_bloc/setting_bloc.dart';
 
 class AuthorTrendingElement extends StatefulWidget {
   final AuthorDto author;
@@ -61,7 +58,7 @@ class _AuthorTrendingElementState extends State<AuthorTrendingElement> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: widget.fontSize,
-                      color: context.read<SettingBloc>().getTheme().accentColor,
+                      color: Theme.of(context).accentColor,
                     ),
                   ),
                   const SizedBox(height: 2),
@@ -73,7 +70,7 @@ class _AuthorTrendingElementState extends State<AuthorTrendingElement> {
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.italic,
                       fontSize: widget.fontSize - 5,
-                      color: context.read<SettingBloc>().getTheme().accentColor,
+                      color: Theme.of(context).accentColor,
                     ),
                   ),
                 ],
