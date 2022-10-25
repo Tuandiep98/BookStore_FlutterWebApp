@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:math' as math;
 
 import '../core/bloc/setting_bloc/setting_bloc.dart';
+import '../core/dto/author/author_dto.dart';
 import '../utils/dialog_utils.dart';
 import 'book_details_element.dart';
 
@@ -158,9 +159,38 @@ class _BookElementReverseState extends State<BookElementReverse>
                           child: Divider(
                             color: Colors.grey[300],
                           )),
-                      AuthorActivityElement(
-                          authors: [0, 1, 2],
-                          description: 'tuandiep & 2 people likes this.'),
+                      AuthorActivityElement(authors: [
+                        AuthorDto(
+                          id: '01',
+                          age: 18,
+                          bio: 'this is bio',
+                          createdAt: DateTime.now(),
+                          name: 'Martin Jr',
+                          updatedAt: DateTime.now(),
+                          point: 1003,
+                          imgUrl: 'assets/images/girl_emoji_01.png',
+                        ),
+                        AuthorDto(
+                          id: '02',
+                          age: 18,
+                          bio: 'this is bio',
+                          createdAt: DateTime.now(),
+                          name: 'Megan Fold',
+                          updatedAt: DateTime.now(),
+                          point: 801,
+                          imgUrl: 'assets/images/memoji_2.png',
+                        ),
+                        AuthorDto(
+                          id: '03',
+                          age: 18,
+                          bio: 'this is bio',
+                          createdAt: DateTime.now(),
+                          name: 'Thomas Clark',
+                          updatedAt: DateTime.now(),
+                          point: 1512,
+                          imgUrl: 'assets/images/memoji_3.png',
+                        ),
+                      ], description: 'tuandiep & 2 people likes this.'),
                     ],
                   ),
                 ),

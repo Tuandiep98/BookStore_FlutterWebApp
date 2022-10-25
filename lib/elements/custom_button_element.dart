@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomButton extends StatelessWidget {
-  final IconData iconData;
+  final IconData? iconData;
   final double width;
   final double height;
   final Function onPressed;
@@ -14,9 +14,11 @@ class CustomButton extends StatelessWidget {
   final String title;
   final Color titleColor;
   final double titleSize;
+  final bool hasBorder;
+  final double radius;
   const CustomButton({
     Key? key,
-    required this.iconData,
+    this.iconData,
     this.width = 50,
     this.height = 50,
     required this.onPressed,
@@ -27,6 +29,8 @@ class CustomButton extends StatelessWidget {
     this.title = '',
     this.titleColor = Colors.grey,
     this.titleSize = 18,
+    this.hasBorder = false,
+    this.radius = 24,
   }) : super(key: key);
 
   @override
@@ -34,7 +38,11 @@ class CustomButton extends StatelessWidget {
     return hasShadow
         ? Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(24),
+              border: hasBorder
+                  ? Border.all(
+                      color: context.read<SettingBloc>().getTheme().accentColor)
+                  : null,
+              borderRadius: BorderRadius.circular(radius),
               color: context.read<SettingBloc>().getTheme().primaryColor,
               boxShadow: const [
                 BoxShadow(
@@ -45,12 +53,12 @@ class CustomButton extends StatelessWidget {
               ],
             ),
             child: MaterialButton(
-              minWidth: 50,
+              minWidth: width,
               height: 50,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.horizontal(
-                  left: Radius.circular(24),
-                  right: Radius.circular(24),
+                  left: Radius.circular(radius),
+                  right: Radius.circular(radius),
                 ),
               ),
               onPressed: () => onPressed(),
@@ -61,11 +69,13 @@ class CustomButton extends StatelessWidget {
                       EdgeInsets.symmetric(horizontal: title != '' ? 5 : 0),
                   child: Row(
                     children: [
-                      Icon(
-                        iconData,
-                        size: iconSize,
-                        color: color,
-                      ),
+                      iconData != null
+                          ? Icon(
+                              iconData,
+                              size: iconSize,
+                              color: color,
+                            )
+                          : const SizedBox.shrink(),
                       title != ''
                           ? const SizedBox(width: 5)
                           : const SizedBox.shrink(),
@@ -84,40 +94,55 @@ class CustomButton extends StatelessWidget {
               ),
             ),
           )
-        : MaterialButton(
-            minWidth: 50,
-            height: 50,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.horizontal(
-                left: Radius.circular(24),
-                right: Radius.circular(24),
-              ),
+        : Container(
+            decoration: BoxDecoration(
+              border: hasBorder
+                  ? Border.all(
+                      color: context.read<SettingBloc>().getTheme().accentColor)
+                  : null,
+              borderRadius: BorderRadius.circular(radius),
             ),
-            onPressed: () => onPressed(),
-            child: Tooltip(
-              message: tooltips,
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: title != '' ? 5 : 0),
-                child: Row(
-                  children: [
-                    Icon(
-                      iconData,
-                      size: iconSize,
-                      color: color,
-                    ),
-                    title != ''
-                        ? const SizedBox(width: 5)
-                        : const SizedBox.shrink(),
-                    title != ''
-                        ? Text(
-                            title,
-                            style: TextStyle(
+            child: MaterialButton(
+              minWidth: width,
+              height: 50,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.horizontal(
+                  left: Radius.circular(radius),
+                  right: Radius.circular(radius),
+                ),
+              ),
+              onPressed: () => onPressed(),
+              child: Tooltip(
+                message: tooltips,
+                child: Container(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: title != '' ? 5 : 0),
+                  child: Row(
+                    children: [
+                      iconData != null
+                          ? Icon(
+                              iconData,
+                              size: iconSize,
                               color: color,
-                              fontSize: titleSize,
-                            ),
-                          )
-                        : const SizedBox.shrink(),
-                  ],
+                            )
+                          : const SizedBox.shrink(),
+                      title != ''
+                          ? const SizedBox(width: 5)
+                          : const SizedBox.shrink(),
+                      title != ''
+                          ? Text(
+                              title,
+                              style: TextStyle(
+                                color: context
+                                    .read<SettingBloc>()
+                                    .getTheme()
+                                    .accentColor,
+                                fontSize: titleSize,
+                              ),
+                            )
+                          : const SizedBox.shrink(),
+                    ],
+                  ),
                 ),
               ),
             ),

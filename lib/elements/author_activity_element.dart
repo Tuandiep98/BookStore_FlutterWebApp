@@ -1,16 +1,17 @@
-import 'package:book_store/utils/color_utils.dart';
+import 'package:book_store/core/dto/author/author_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../core/bloc/setting_bloc/setting_bloc.dart';
 
 class AuthorActivityElement extends StatefulWidget {
-  final List<int> authors;
+  final List<AuthorDto> authors;
   final String description;
   final double size;
   final double thickness;
   final double fontSize;
   final double paddingLeft;
   final bool isShimmer;
+  final double maxWidth;
   const AuthorActivityElement({
     Key? key,
     required this.authors,
@@ -20,6 +21,7 @@ class AuthorActivityElement extends StatefulWidget {
     this.fontSize = 13,
     this.paddingLeft = 15,
     this.isShimmer = false,
+    this.maxWidth = 340,
   }) : super(key: key);
 
   @override
@@ -32,29 +34,35 @@ class _AuthorActivityElementState extends State<AuthorActivityElement> {
     return Container(
       padding: EdgeInsets.only(left: widget.paddingLeft),
       constraints: BoxConstraints(
-        maxHeight: 40,
-        maxWidth: 340,
+        maxHeight: widget.size * 1.5,
+        maxWidth: widget.maxWidth,
       ),
       child: Row(
         children: [
           SizedBox(
-            width: 60,
+            width: widget.size * 2.5,
             child: Stack(
               alignment: AlignmentDirectional.center,
               children: widget.authors
-                  .map((index) => Positioned(
-                        left: index * 16,
+                  .map((e) => Positioned(
+                        left: widget.authors.indexOf(e) * (widget.size * 0.6),
                         child: Container(
                           width: widget.size,
                           height: widget.size,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: widget.isShimmer
-                                ? Colors.grey[300]
-                                : ColorUtils.getRandomColor(),
+                            color: Colors.grey[300],
                             border: Border.all(
                               color: Colors.white,
                               width: widget.thickness,
+                            ),
+                          ),
+                          child: CircleAvatar(
+                            radius: 20,
+                            child: Image.asset(
+                              e.imgUrl,
+                              height: 40,
+                              width: 40,
                             ),
                           ),
                         ),
@@ -77,7 +85,13 @@ class _AuthorActivityElementState extends State<AuthorActivityElement> {
                       ),
                     )
                   : Text(
-                      widget.description,
+                      widget.authors.length > 0
+                          ? '${widget.authors.first.name}' +
+                              (widget.authors.length > 1
+                                  ? ' & ${widget.authors.length - 1} people'
+                                  : '') +
+                              ' likes this'
+                          : '',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(

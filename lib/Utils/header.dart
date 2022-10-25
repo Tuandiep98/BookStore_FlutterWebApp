@@ -2,6 +2,7 @@ import 'package:book_store/core/bloc/setting_bloc/setting_bloc.dart';
 import 'package:book_store/elements/blur_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../elements/setting_element.dart';
 import 'dialog_utils.dart';
@@ -32,25 +33,32 @@ class _HeaderState extends State<Header> {
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Row(
-                  children: [
-                    const SizedBox(width: 10),
-                    Image.asset(
-                      'assets/images/thumb.jpg',
-                      width: 45,
-                      height: 45,
-                    ),
-                    const SizedBox(width: 5),
-                    Text(
-                      'iLibrary',
-                      style: TextStyle(
-                        fontSize: 23,
-                        fontWeight: FontWeight.w700,
-                        color:
-                            context.read<SettingBloc>().getTheme().accentColor,
+                GestureDetector(
+                  onTap: () {
+                    context.go("/");
+                  },
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 10),
+                      Image.asset(
+                        'assets/images/thumb.jpg',
+                        width: 45,
+                        height: 45,
                       ),
-                    ),
-                  ],
+                      const SizedBox(width: 5),
+                      Text(
+                        'iLibrary',
+                        style: TextStyle(
+                          fontSize: 23,
+                          fontWeight: FontWeight.w700,
+                          color: context
+                              .read<SettingBloc>()
+                              .getTheme()
+                              .accentColor,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(width: 10),
                 const Spacer(),

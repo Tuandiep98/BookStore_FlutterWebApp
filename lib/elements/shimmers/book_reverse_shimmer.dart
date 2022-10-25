@@ -106,7 +106,7 @@ class BookElementReverseShimmer extends StatelessWidget {
                       ),
                     ),
                     AuthorActivityElement(
-                      authors: [0, 1, 2],
+                      authors: [],
                       isShimmer: true,
                     ),
                   ],
