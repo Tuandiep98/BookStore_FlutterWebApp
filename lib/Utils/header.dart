@@ -24,11 +24,7 @@ class _HeaderState extends State<Header> {
           child: Container(
             width: MediaQuery.of(context).size.width,
             height: 80,
-            color: context
-                .read<SettingBloc>()
-                .getTheme()
-                .backgroundColor
-                .withOpacity(0.9),
+            color: Theme.of(context).backgroundColor.withOpacity(0.9),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
@@ -51,10 +47,7 @@ class _HeaderState extends State<Header> {
                         style: TextStyle(
                           fontSize: 23,
                           fontWeight: FontWeight.w700,
-                          color: context
-                              .read<SettingBloc>()
-                              .getTheme()
-                              .accentColor,
+                          color: Theme.of(context).accentColor,
                         ),
                       ),
                     ],

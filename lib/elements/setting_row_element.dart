@@ -67,10 +67,7 @@ class _SettingRowElementState extends State<SettingRowElement> {
                     ? Text(widget.setting.value,
                         style: TextStyle(
                           fontSize: 20,
-                          color: context
-                              .read<SettingBloc>()
-                              .getTheme()
-                              .accentColor,
+                          color: Theme.of(context).accentColor,
                         ))
                     : const SizedBox.shrink(),
                 const SizedBox(width: 2),

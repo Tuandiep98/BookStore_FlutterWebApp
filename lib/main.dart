@@ -1,3 +1,4 @@
+import 'package:book_store/core/bloc/book_reader_bloc/book_reader_bloc.dart';
 import 'package:book_store/utils/header.dart';
 import 'package:book_store/utils/web_platform.dart';
 import 'package:book_store/core/bloc/home_page_trending_bloc/home_page_trending_bloc.dart';
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => BookBloc()),
         BlocProvider(create: (_) => HomePageTrendingBloc()),
-        BlocProvider(create: (_) => SettingBloc()..add(ThemeStarted()))
+        BlocProvider(create: (_) => SettingBloc()..add(ThemeStarted())),
+        BlocProvider(create: (_) => BookReaderBloc()),
       ],
       child: BlocBuilder<SettingBloc, SettingState>(
         builder: (context, state) {
@@ -58,8 +60,9 @@ class MyApp extends StatelessWidget {
 }
 
 class BaseScreen extends StatefulWidget {
+  final Widget? header;
   final Widget body;
-  BaseScreen({Key? key, required this.body}) : super(key: key);
+  BaseScreen({Key? key, required this.body, this.header}) : super(key: key);
 
   @override
   State<BaseScreen> createState() => _BaseScreenState();
@@ -72,7 +75,7 @@ class _BaseScreenState extends State<BaseScreen> {
       backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
         child: WebPlatform(
-          header: Header(),
+          header: widget.header != null ? widget.header! : Header(),
           body: Container(
             padding: const EdgeInsets.only(top: 80),
             child: widget.body,

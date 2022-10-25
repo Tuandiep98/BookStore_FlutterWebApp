@@ -39,7 +39,7 @@ class ReviewWidget extends StatelessWidget {
               ),
               const SizedBox(width: 10),
               Container(
-                width: MediaQuery.of(context).size.width * 0.45,
+                width: MediaQuery.of(context).size.width * 0.4,
                 child: Column(
                   children: [
                     Row(
@@ -91,14 +91,17 @@ class ReviewWidget extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          Text(
-            review,
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w300,
-              color: Theme.of(context).accentColor,
+          Container(
+            width: MediaQuery.of(context).size.width * 0.46,
+            child: Text(
+              review,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w300,
+                color: Theme.of(context).accentColor,
+              ),
             ),
           ),
         ],

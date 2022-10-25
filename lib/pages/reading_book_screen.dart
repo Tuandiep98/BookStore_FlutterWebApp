@@ -39,7 +39,7 @@ class _ReadingBookScreenState extends State<ReadingBookScreen> {
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(18),
                 ),
-                child: Text(
+                child: SelectableText(
                   content.substring(0, content.length ~/ 2),
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
@@ -56,7 +56,7 @@ class _ReadingBookScreenState extends State<ReadingBookScreen> {
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(18),
                 ),
-                child: Text(
+                child: SelectableText(
                   content.substring(content.length ~/ 2, content.length),
                   style: TextStyle(
                     fontWeight: FontWeight.w400,

@@ -8,7 +8,6 @@ GetIt locator = GetIt.instance;
 
 Future<void> setupLocator() async {
   registerRestClient();
-  // registerDaoSingletons(locator);
   locator.registerLazySingleton(() => GlobalData());
   registerServiceSingletons(locator);
 }

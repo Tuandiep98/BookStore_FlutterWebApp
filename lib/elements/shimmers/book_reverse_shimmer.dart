@@ -127,10 +127,7 @@ class BookElementReverseShimmer extends StatelessWidget {
                       borderRadius: BorderRadius.circular(3),
                       boxShadow: [
                         BoxShadow(
-                          color: context
-                              .read<SettingBloc>()
-                              .getTheme()
-                              .primaryColorDark,
+                          color: Theme.of(context).primaryColorDark,
                           offset: Offset(0.0, 1.0), //(x,y)
                           blurRadius: 15.0,
                         ),

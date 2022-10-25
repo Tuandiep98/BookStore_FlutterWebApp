@@ -44,4 +44,6 @@ class BookBloc extends Bloc<BookEvent, BookState> {
       emit(BookInitial());
     });
   }
+
+  List<BookDto> getCurrentBooks() => _books;
 }
