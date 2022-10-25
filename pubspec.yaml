@@ -60,6 +60,7 @@ dependencies:
   bouncing_widget: ^2.0.0
   modal_bottom_sheet: ^2.1.2
   pull_to_refresh_flutter3: ^2.0.1
+  percent_indicator: ^4.2.2
 
 dev_dependencies:
   retrofit_generator: 4.0.3

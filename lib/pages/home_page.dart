@@ -59,7 +59,6 @@ class _HomePageState extends State<HomePage> {
       onRefresh: _onRefresh,
       child: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.only(top: 80),
           width: double.infinity,
           height: MediaQuery.of(context).size.height +
               (PlatformUtils.isDevice(context) ? 240 * 7 + 200 : 500),

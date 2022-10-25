@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
             theme: _themeData,
             scrollBehavior: MyCustomScrollBehavior(),
             routerConfig: Routerconfiguration().router,
+            debugShowCheckedModeBanner: false,
           );
         },
       ),
@@ -72,7 +73,10 @@ class _BaseScreenState extends State<BaseScreen> {
       body: SafeArea(
         child: WebPlatform(
           header: Header(),
-          body: widget.body,
+          body: Container(
+            padding: const EdgeInsets.only(top: 80),
+            child: widget.body,
+          ),
         ),
       ),
     );
