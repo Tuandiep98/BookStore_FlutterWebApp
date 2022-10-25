@@ -52,7 +52,8 @@ class ReviewWidget extends StatelessWidget {
                             color: context
                                 .read<SettingBloc>()
                                 .getTheme()
-                                .accentColor,
+                                .colorScheme
+                                .secondary,
                           ),
                         ),
                         const Spacer(),
@@ -66,7 +67,8 @@ class ReviewWidget extends StatelessWidget {
                                 color: context
                                     .read<SettingBloc>()
                                     .getTheme()
-                                    .accentColor,
+                                    .colorScheme
+                                    .secondary,
                               ),
                             ),
                             const SizedBox(height: 5),
@@ -100,7 +102,7 @@ class ReviewWidget extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w300,
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ),
           ),

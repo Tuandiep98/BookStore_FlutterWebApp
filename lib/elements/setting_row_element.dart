@@ -3,9 +3,6 @@ import 'package:book_store/utils/platform_utils.dart';
 import 'package:book_store/core/ui_models/setting_ui_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../core/bloc/setting_bloc/setting_bloc.dart';
 
 class SettingRowElement extends StatefulWidget {
   final SettingUIModel setting;
@@ -58,7 +55,7 @@ class _SettingRowElementState extends State<SettingRowElement> {
                   widget.setting.name,
                   style: TextStyle(
                     fontSize: 22,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
                 SizedBox(width: PlatformUtils.isDevice(context) ? 0 : 100),
@@ -67,7 +64,7 @@ class _SettingRowElementState extends State<SettingRowElement> {
                     ? Text(widget.setting.value,
                         style: TextStyle(
                           fontSize: 20,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                         ))
                     : const SizedBox.shrink(),
                 const SizedBox(width: 2),

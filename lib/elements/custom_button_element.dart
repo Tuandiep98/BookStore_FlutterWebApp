@@ -39,7 +39,7 @@ class CustomButton extends StatelessWidget {
         ? Container(
             decoration: BoxDecoration(
               border: hasBorder
-                  ? Border.all(color: Theme.of(context).accentColor)
+                  ? Border.all(color: Theme.of(context).colorScheme.secondary)
                   : null,
               borderRadius: BorderRadius.circular(radius),
               color: Theme.of(context).primaryColor,
@@ -96,7 +96,7 @@ class CustomButton extends StatelessWidget {
         : Container(
             decoration: BoxDecoration(
               border: hasBorder
-                  ? Border.all(color: Theme.of(context).accentColor)
+                  ? Border.all(color: Theme.of(context).colorScheme.secondary)
                   : null,
               borderRadius: BorderRadius.circular(radius),
             ),
@@ -134,7 +134,8 @@ class CustomButton extends StatelessWidget {
                                 color: context
                                     .read<SettingBloc>()
                                     .getTheme()
-                                    .accentColor,
+                                    .colorScheme
+                                    .secondary,
                                 fontSize: titleSize,
                               ),
                             )

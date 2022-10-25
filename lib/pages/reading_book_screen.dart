@@ -44,7 +44,7 @@ class _ReadingBookScreenState extends State<ReadingBookScreen> {
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 20,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
               ),
@@ -61,7 +61,7 @@ class _ReadingBookScreenState extends State<ReadingBookScreen> {
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 20,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
               ),
@@ -90,7 +90,7 @@ class _ReadingBookScreenState extends State<ReadingBookScreen> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
               const Spacer(),
@@ -104,7 +104,7 @@ class _ReadingBookScreenState extends State<ReadingBookScreen> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 22,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                   const SizedBox(width: 5),
@@ -117,7 +117,7 @@ class _ReadingBookScreenState extends State<ReadingBookScreen> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
             ],

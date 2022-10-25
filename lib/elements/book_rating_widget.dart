@@ -18,7 +18,7 @@ class BookRatingWidget extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
             ),
           ),
           const SizedBox(height: 20),
@@ -35,7 +35,7 @@ class BookRatingWidget extends StatelessWidget {
                 '4 out of 5',
                 style: TextStyle(
                   fontSize: 18,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
             ],
@@ -47,7 +47,7 @@ class BookRatingWidget extends StatelessWidget {
                 '5 star',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
               const SizedBox(width: 10),
@@ -68,7 +68,7 @@ class BookRatingWidget extends StatelessWidget {
                 '4 star',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
               const SizedBox(width: 10),
@@ -89,7 +89,7 @@ class BookRatingWidget extends StatelessWidget {
                 '3 star',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
               const SizedBox(width: 10),
@@ -110,7 +110,7 @@ class BookRatingWidget extends StatelessWidget {
                 '2 star',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
               const SizedBox(width: 10),
@@ -131,7 +131,7 @@ class BookRatingWidget extends StatelessWidget {
                 '1 star',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
               const SizedBox(width: 10),

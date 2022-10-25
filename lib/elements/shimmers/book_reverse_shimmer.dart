@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../core/bloc/setting_bloc/setting_bloc.dart';
 import '../author_activity_element.dart';
 import 'shimmer_element.dart';
 

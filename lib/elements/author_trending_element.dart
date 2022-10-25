@@ -58,7 +58,7 @@ class _AuthorTrendingElementState extends State<AuthorTrendingElement> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: widget.fontSize,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                   const SizedBox(height: 2),
@@ -70,7 +70,7 @@ class _AuthorTrendingElementState extends State<AuthorTrendingElement> {
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.italic,
                       fontSize: widget.fontSize - 5,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                 ],

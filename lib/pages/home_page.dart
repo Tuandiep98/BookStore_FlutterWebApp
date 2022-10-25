@@ -157,7 +157,8 @@ class _HomePageState extends State<HomePage> {
                                         color: context
                                             .read<SettingBloc>()
                                             .getTheme()
-                                            .accentColor,
+                                            .colorScheme
+                                            .secondary,
                                       ),
                                     ),
                                   )
@@ -173,7 +174,8 @@ class _HomePageState extends State<HomePage> {
                                             color: context
                                                 .read<SettingBloc>()
                                                 .getTheme()
-                                                .accentColor,
+                                                .colorScheme
+                                                .secondary,
                                           ),
                                         ),
                                       ))

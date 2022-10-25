@@ -102,7 +102,8 @@ class _BookElementReverseState extends State<BookElementReverse>
                                 color: context
                                     .read<SettingBloc>()
                                     .getTheme()
-                                    .accentColor,
+                                    .colorScheme
+                                    .secondary,
                               ),
                             ),
                             const SizedBox(height: 5),
@@ -116,7 +117,8 @@ class _BookElementReverseState extends State<BookElementReverse>
                                 color: context
                                     .read<SettingBloc>()
                                     .getTheme()
-                                    .accentColor,
+                                    .colorScheme
+                                    .secondary,
                               ),
                             ),
                             const SizedBox(height: 10),
@@ -146,7 +148,8 @@ class _BookElementReverseState extends State<BookElementReverse>
                                 color: context
                                     .read<SettingBloc>()
                                     .getTheme()
-                                    .accentColor,
+                                    .colorScheme
+                                    .secondary,
                               ),
                             ),
                           ],

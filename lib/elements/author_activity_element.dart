@@ -95,7 +95,7 @@ class _AuthorActivityElementState extends State<AuthorActivityElement> {
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: widget.fontSize,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                     ),
             ),

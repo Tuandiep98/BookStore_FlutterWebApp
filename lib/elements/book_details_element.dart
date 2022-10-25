@@ -140,7 +140,8 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                             color: context
                                 .read<SettingBloc>()
                                 .getTheme()
-                                .accentColor,
+                                .colorScheme
+                                .secondary,
                           ),
                         ),
                         const SizedBox(height: 15),
@@ -159,7 +160,8 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                                   color: context
                                       .read<SettingBloc>()
                                       .getTheme()
-                                      .accentColor,
+                                      .colorScheme
+                                      .secondary,
                                 ),
                               ),
                             ),
@@ -223,7 +225,8 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                                     color: context
                                         .read<SettingBloc>()
                                         .getTheme()
-                                        .accentColor,
+                                        .colorScheme
+                                        .secondary,
                                   ),
                                 ),
                                 const SizedBox(height: 20),
@@ -259,7 +262,8 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                             color: context
                                 .read<SettingBloc>()
                                 .getTheme()
-                                .accentColor,
+                                .colorScheme
+                                .secondary,
                           ),
                         ),
                         const SizedBox(height: 5),

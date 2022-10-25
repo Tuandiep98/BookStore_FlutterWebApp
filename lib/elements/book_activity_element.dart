@@ -96,7 +96,7 @@ class _BookActivityElementState extends State<BookActivityElement> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: widget.fontSize,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -107,7 +107,7 @@ class _BookActivityElementState extends State<BookActivityElement> {
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: widget.fontSize - 3,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -118,7 +118,7 @@ class _BookActivityElementState extends State<BookActivityElement> {
                     style: TextStyle(
                       fontWeight: FontWeight.w300,
                       fontSize: widget.fontSize - 5,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                 ],

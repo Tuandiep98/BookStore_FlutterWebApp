@@ -47,7 +47,7 @@ class _HeaderState extends State<Header> {
                         style: TextStyle(
                           fontSize: 23,
                           fontWeight: FontWeight.w700,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
                     ],
@@ -68,7 +68,7 @@ class _HeaderState extends State<Header> {
                             child: Text(
                               'Sign in',
                               style: TextStyle(
-                                color: state.themeData.accentColor,
+                                color: state.themeData.colorScheme.secondary,
                                 fontSize: 16,
                               ),
                             ),
@@ -89,7 +89,8 @@ class _HeaderState extends State<Header> {
                               ? Text(
                                   'Hi, ${state.currentUser.displayName}',
                                   style: TextStyle(
-                                    color: state.themeData.accentColor,
+                                    color:
+                                        state.themeData.colorScheme.secondary,
                                     fontSize: 18,
                                   ),
                                 )

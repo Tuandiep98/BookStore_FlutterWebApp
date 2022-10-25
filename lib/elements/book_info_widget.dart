@@ -20,7 +20,7 @@ class BookInfoWidget extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -28,7 +28,7 @@ class BookInfoWidget extends StatelessWidget {
                     'Orbit',
                     style: TextStyle(
                       fontSize: 18,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                 ],
@@ -42,7 +42,7 @@ class BookInfoWidget extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -50,7 +50,7 @@ class BookInfoWidget extends StatelessWidget {
                     '354 pages',
                     style: TextStyle(
                       fontSize: 18,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                 ],
@@ -68,7 +68,7 @@ class BookInfoWidget extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -76,7 +76,7 @@ class BookInfoWidget extends StatelessWidget {
                     'English',
                     style: TextStyle(
                       fontSize: 18,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                 ],
@@ -90,7 +90,7 @@ class BookInfoWidget extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -98,7 +98,7 @@ class BookInfoWidget extends StatelessWidget {
                     'E-book',
                     style: TextStyle(
                       fontSize: 18,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                 ],
