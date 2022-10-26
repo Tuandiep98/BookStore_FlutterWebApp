@@ -20,7 +20,7 @@ final darkTheme = ThemeData(
   accentColor: Colors.white,
   accentIconTheme: IconThemeData(color: Colors.black),
   dividerColor: Colors.black12,
-  dialogBackgroundColor: Colors.grey[600],
+  dialogBackgroundColor: Colors.black54,
 );
 
 final lightTheme = ThemeData(

@@ -72,14 +72,12 @@ class _BaseScreenState extends State<BaseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
         child: WebPlatform(
           header: widget.header != null ? widget.header! : Header(),
-          body: Container(
-            padding: const EdgeInsets.only(top: 80),
-            child: widget.body,
-          ),
+          body: widget.body,
         ),
       ),
     );

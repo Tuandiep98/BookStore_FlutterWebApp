@@ -22,107 +22,115 @@ class _ReadingBookScreenState extends State<ReadingBookScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(20),
-                width: MediaQuery.of(context).size.width / 2 - 15,
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(18),
-                ),
-                child: SelectableText(
-                  content.substring(0, content.length ~/ 2),
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 20,
-                    color: Theme.of(context).colorScheme.secondary,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              Container(
-                padding: const EdgeInsets.all(20),
-                width: MediaQuery.of(context).size.width / 2 - 15,
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(18),
-                ),
-                child: SelectableText(
-                  content.substring(content.length ~/ 2, content.length),
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 20,
-                    color: Theme.of(context).colorScheme.secondary,
-                  ),
-                ),
-              ),
-            ],
+    return SingleChildScrollView(
+      child: IntrinsicHeight(
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(10, 90, 10, 10),
+          width: MediaQuery.of(context).size.width,
+          color: Theme.of(context).backgroundColor,
+          constraints: BoxConstraints(
+            minHeight: MediaQuery.of(context).size.height - 80,
           ),
-          const SizedBox(height: 20),
-          Container(
-            height: 15,
-            width: MediaQuery.of(context).size.width,
-            child: LinearPercentIndicator(
-              animation: true,
-              barRadius: Radius.circular(15),
-              lineHeight: 15.0,
-              animationDuration: 1500,
-              percent: 0.8,
-              linearStrokeCap: LinearStrokeCap.roundAll,
-              progressColor: Colors.green,
-            ),
-          ),
-          const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Column(
             children: [
-              Text(
-                '354 pages',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Theme.of(context).colorScheme.secondary,
-                ),
-              ),
-              const Spacer(),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.arrow_back_ios_rounded),
-                  const SizedBox(width: 5),
-                  Text(
-                    'PAGE 301 OF 354',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22,
-                      color: Theme.of(context).colorScheme.secondary,
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    width: MediaQuery.of(context).size.width / 2 - 15,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).dialogBackgroundColor,
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                    child: SelectableText(
+                      content.substring(0, content.length ~/ 2),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
                     ),
                   ),
-                  const SizedBox(width: 5),
-                  Icon(Icons.arrow_forward_ios_rounded),
+                  const SizedBox(width: 10),
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    width: MediaQuery.of(context).size.width / 2 - 15,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).dialogBackgroundColor,
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                    child: SelectableText(
+                      content.substring(content.length ~/ 2, content.length),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
+                    ),
+                  ),
                 ],
               ),
               const Spacer(),
-              Text(
-                '82% read',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Theme.of(context).colorScheme.secondary,
+              const SizedBox(height: 10),
+              Container(
+                height: 15,
+                width: MediaQuery.of(context).size.width,
+                child: LinearPercentIndicator(
+                  animation: true,
+                  barRadius: Radius.circular(15),
+                  lineHeight: 15.0,
+                  animationDuration: 1500,
+                  percent: 0.8,
+                  linearStrokeCap: LinearStrokeCap.roundAll,
+                  progressColor: Colors.green,
                 ),
+              ),
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '354 pages',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                  ),
+                  const Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.arrow_back_ios_rounded),
+                      const SizedBox(width: 5),
+                      Text(
+                        'PAGE 301 OF 354',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22,
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
+                      ),
+                      const SizedBox(width: 5),
+                      Icon(Icons.arrow_forward_ios_rounded),
+                    ],
+                  ),
+                  const Spacer(),
+                  Text(
+                    '82% read',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }

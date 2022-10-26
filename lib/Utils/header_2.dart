@@ -24,13 +24,15 @@ class _Header2State extends State<Header2> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (widget.bookId != '') {
-        book = context
-            .read<BookBloc>()
-            .getCurrentBooks()
-            .firstWhere((x) => x.id == widget.bookId);
-        setState(() {});
-      }
+      try {
+        if (widget.bookId != '') {
+          book = context
+              .read<BookBloc>()
+              .getCurrentBooks()
+              .firstWhere((x) => x.id == widget.bookId);
+          setState(() {});
+        }
+      } catch (e) {}
     });
     super.initState();
   }
@@ -40,11 +42,11 @@ class _Header2State extends State<Header2> {
     return BlocBuilder<BookReaderBloc, BookReaderState>(
       builder: (context, state) {
         return BlurContainer(
-          color: Colors.grey.shade200,
+          color: Colors.grey[600],
           child: Container(
             width: MediaQuery.of(context).size.width,
             height: 80,
-            color: Theme.of(context).backgroundColor.withOpacity(0.9),
+            color: Theme.of(context).backgroundColor.withOpacity(0.7),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
@@ -147,13 +149,25 @@ class _Header2State extends State<Header2> {
                   radius: 8,
                   onPressed: () {},
                   color: Theme.of(context).colorScheme.secondary,
-                  iconData: Icons.more_vert_rounded,
-                  tooltips: 'more settings',
+                  iconData: Icons.color_lens_outlined,
+                  tooltips: 'Personalize',
                   hasShadow: false,
                   hasBorder: true,
                 ),
                 const SizedBox(width: 10),
-                const Divider(),
+                CustomButton(
+                  width: 45,
+                  height: 45,
+                  iconSize: 25,
+                  radius: 8,
+                  onPressed: () {},
+                  color: Theme.of(context).colorScheme.secondary,
+                  iconData: Icons.more_vert_rounded,
+                  tooltips: 'More settings',
+                  hasShadow: false,
+                  hasBorder: true,
+                ),
+                const SizedBox(width: 10),
               ],
             ),
           ),
