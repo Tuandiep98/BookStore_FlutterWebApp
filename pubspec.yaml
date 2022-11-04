@@ -61,6 +61,7 @@ dependencies:
   modal_bottom_sheet: ^2.1.2
   pull_to_refresh_flutter3: ^2.0.1
   percent_indicator: ^4.2.2
+  overlay_container: ^0.0.5+1
 
 dev_dependencies:
   retrofit_generator: 4.0.3

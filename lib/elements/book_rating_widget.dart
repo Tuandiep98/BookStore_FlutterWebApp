@@ -1,4 +1,5 @@
 import 'package:book_store/core/dto/book/book_dto.dart';
+import 'package:book_store/utils/platform_utils.dart';
 import 'package:flutter/material.dart';
 
 class BookRatingWidget extends StatelessWidget {
@@ -8,7 +9,8 @@ class BookRatingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 20),
+      width: MediaQuery.of(context).size.width *
+          (PlatformUtils.isDevice(context) ? 0.9 : 0.3),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,7 +55,9 @@ class BookRatingWidget extends StatelessWidget {
               const SizedBox(width: 10),
               Container(
                 height: 25,
-                width: 170,
+                width: PlatformUtils.isDevice(context)
+                    ? (MediaQuery.of(context).size.width * 0.8)
+                    : 170,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: Colors.grey[200],
@@ -74,7 +78,9 @@ class BookRatingWidget extends StatelessWidget {
               const SizedBox(width: 10),
               Container(
                 height: 25,
-                width: 170,
+                width: PlatformUtils.isDevice(context)
+                    ? (MediaQuery.of(context).size.width * 0.8)
+                    : 170,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: Colors.grey[200],
@@ -95,7 +101,9 @@ class BookRatingWidget extends StatelessWidget {
               const SizedBox(width: 10),
               Container(
                 height: 25,
-                width: 170,
+                width: PlatformUtils.isDevice(context)
+                    ? (MediaQuery.of(context).size.width * 0.8)
+                    : 170,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: Colors.grey[200],
@@ -116,7 +124,9 @@ class BookRatingWidget extends StatelessWidget {
               const SizedBox(width: 10),
               Container(
                 height: 25,
-                width: 170,
+                width: PlatformUtils.isDevice(context)
+                    ? (MediaQuery.of(context).size.width * 0.8)
+                    : 170,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: Colors.grey[200],
@@ -137,7 +147,9 @@ class BookRatingWidget extends StatelessWidget {
               const SizedBox(width: 10),
               Container(
                 height: 25,
-                width: 170,
+                width: PlatformUtils.isDevice(context)
+                    ? (MediaQuery.of(context).size.width * 0.8)
+                    : 170,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: Colors.grey[200],

@@ -48,7 +48,8 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
         behavior: CustomScrollBehaviour(),
         child: SingleChildScrollView(
           child: Container(
-            height: MediaQuery.of(context).size.height + 350,
+            height: MediaQuery.of(context).size.height *
+                (PlatformUtils.isDevice(context) ? 2 : 1.5),
             padding: const EdgeInsets.only(top: 20),
             constraints: BoxConstraints(
               minHeight: MediaQuery.of(context).size.height /
@@ -64,8 +65,12 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
+                        width: MediaQuery.of(context).size.width *
+                            (PlatformUtils.isDevice(context) ? 0.5 : 1),
                         child: Text(
                           widget.book.title,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 35,
@@ -78,13 +83,17 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                       ),
                       const SizedBox(height: 10),
                       Container(
+                        width: MediaQuery.of(context).size.width *
+                            (PlatformUtils.isDevice(context) ? 0.5 : 1),
                         child: Text(
                           widget.book.authors.length > 0
-                              ? 'by ${widget.book.authors.first.name}'
+                              ? '${widget.book.authors.first.name}'
                               : 'Anonymous',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
-                            fontSize: 28,
+                            fontSize: 25,
                             color: context
                                 .read<SettingBloc>()
                                 .getTheme()
@@ -109,29 +118,78 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                         ],
                       ),
                       const SizedBox(height: 20),
-                      Wrap(
-                        children: widget.book.categories.length > 0
-                            ? widget.book.categories
-                                .map((e) => CategoryWidget(
-                                      name: e.name,
-                                    ))
-                                .toList()
-                            : [],
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Container(
+                          height: 45,
+                          width: MediaQuery.of(context).size.width *
+                              (PlatformUtils.isDevice(context) ? 0.7 : 0.5),
+                          child: Row(
+                            children: widget.book.categories.length > 0
+                                ? widget.book.categories
+                                    .map((e) => CategoryWidget(
+                                          name: e.name,
+                                        ))
+                                    .toList()
+                                : [],
+                          ),
+                        ),
                       ),
+                      const SizedBox(height: 20),
+                      PlatformUtils.isDevice(context)
+                          ? Column(
+                              children: [
+                                CustomButton(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.5,
+                                  height: 30,
+                                  iconSize: 25,
+                                  radius: 0,
+                                  color: Colors.grey,
+                                  onPressed: () {
+                                    context.go(context.namedLocation(
+                                        'read-book',
+                                        params: <String, String>{
+                                          'bookId': '${widget.book.id}'
+                                        }));
+                                  },
+                                  tooltips: 'Start read this book',
+                                  title: 'Read online',
+                                  hasShadow: false,
+                                  hasBorder: true,
+                                ),
+                                const SizedBox(height: 10),
+                                CustomButton(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.5,
+                                  height: 30,
+                                  iconSize: 25,
+                                  radius: 0,
+                                  color: Colors.amber,
+                                  onPressed: () {},
+                                  tooltips: 'Listen',
+                                  title: 'Listen',
+                                  hasShadow: false,
+                                  hasBorder: true,
+                                ),
+                              ],
+                            )
+                          : const SizedBox.shrink(),
                     ],
                   ),
                 ),
                 Positioned(
                   left: 0,
-                  top: 300,
+                  top: PlatformUtils.isDevice(context) ? 450 : 300,
                   child: Container(
-                    padding: const EdgeInsets.only(left: 240),
+                    padding: EdgeInsets.only(
+                        left: PlatformUtils.isDevice(context) ? 10 : 240),
                     color: Theme.of(context).primaryColor,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 25),
+                        const SizedBox(height: 20),
                         Text(
                           'About',
                           style: TextStyle(
@@ -149,7 +207,8 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              width: MediaQuery.of(context).size.width * 0.5,
+                              width: MediaQuery.of(context).size.width *
+                                  (PlatformUtils.isDevice(context) ? 0.9 : 0.5),
                               child: Text(
                                 'Louisa Clark is no longer hust an ordinary girl living an ordinary life. After the transaformative six months spent.',
                                 maxLines: 4,
@@ -166,9 +225,15 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                               ),
                             ),
                             const SizedBox(width: 50),
-                            const BookInfoWidget(),
+                            PlatformUtils.isDevice(context)
+                                ? const SizedBox()
+                                : const BookInfoWidget(),
                           ],
                         ),
+                        const SizedBox(height: 20),
+                        PlatformUtils.isDevice(context)
+                            ? const BookInfoWidget()
+                            : const SizedBox.shrink(),
                         const SizedBox(height: 20),
                         AuthorActivityElement(
                           authors: [
@@ -207,8 +272,13 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                           paddingLeft: 0,
                           fontSize: 18,
                           size: 50,
-                          maxWidth: MediaQuery.of(context).size.width * 0.5,
+                          maxWidth: MediaQuery.of(context).size.width *
+                              (PlatformUtils.isDevice(context) ? 0.9 : 0.5),
                         ),
+                        const SizedBox(height: 20),
+                        PlatformUtils.isDevice(context)
+                            ? BookRatingWidget(book: widget.book)
+                            : const SizedBox.shrink(),
                         const SizedBox(height: 20),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -248,7 +318,9 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                               ],
                             ),
                             const SizedBox(width: 50),
-                            BookRatingWidget(book: widget.book),
+                            PlatformUtils.isDevice(context)
+                                ? const SizedBox.shrink()
+                                : BookRatingWidget(book: widget.book),
                           ],
                         ),
                         const SizedBox(height: 20),
@@ -365,8 +437,8 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                   child: Column(
                     children: [
                       Container(
-                        width: 200,
-                        height: 300,
+                        width: PlatformUtils.isDevice(context) ? 210 : 200,
+                        height: PlatformUtils.isDevice(context) ? 370 : 300,
                         decoration: BoxDecoration(
                           color: Colors.grey,
                           boxShadow: [
@@ -392,36 +464,43 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      CustomButton(
-                        width: 205,
-                        height: 30,
-                        iconSize: 25,
-                        radius: 0,
-                        color: Colors.grey,
-                        onPressed: () {
-                          context.go(context.namedLocation('read-book',
-                              params: <String, String>{
-                                'bookId': '${widget.book.id}'
-                              }));
-                        },
-                        tooltips: 'Start read this book',
-                        title: 'Read online',
-                        hasShadow: false,
-                        hasBorder: true,
-                      ),
-                      const SizedBox(height: 10),
-                      CustomButton(
-                        width: 205,
-                        height: 30,
-                        iconSize: 25,
-                        radius: 0,
-                        color: Colors.amber,
-                        onPressed: () {},
-                        tooltips: 'Listen',
-                        title: 'Listen',
-                        hasShadow: false,
-                        hasBorder: true,
-                      ),
+                      PlatformUtils.isDevice(context)
+                          ? const SizedBox.shrink()
+                          : Column(
+                              children: [
+                                CustomButton(
+                                  width: 205,
+                                  height: 30,
+                                  iconSize: 25,
+                                  radius: 0,
+                                  color: Colors.grey,
+                                  onPressed: () {
+                                    context.go(context.namedLocation(
+                                        'read-book',
+                                        params: <String, String>{
+                                          'bookId': '${widget.book.id}'
+                                        }));
+                                  },
+                                  tooltips: 'Start read this book',
+                                  title: 'Read online',
+                                  hasShadow: false,
+                                  hasBorder: true,
+                                ),
+                                const SizedBox(height: 10),
+                                CustomButton(
+                                  width: 205,
+                                  height: 30,
+                                  iconSize: 25,
+                                  radius: 0,
+                                  color: Colors.amber,
+                                  onPressed: () {},
+                                  tooltips: 'Listen',
+                                  title: 'Listen',
+                                  hasShadow: false,
+                                  hasBorder: true,
+                                ),
+                              ],
+                            ),
                     ],
                   ),
                 ),

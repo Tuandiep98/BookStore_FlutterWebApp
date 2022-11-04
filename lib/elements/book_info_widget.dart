@@ -1,3 +1,4 @@
+import 'package:book_store/utils/platform_utils.dart';
 import 'package:flutter/material.dart';
 
 class BookInfoWidget extends StatelessWidget {
@@ -5,12 +6,14 @@ class BookInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width *
+              (PlatformUtils.isDevice(context) ? 0.9 : 0.2),
+          child: Row(
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +36,10 @@ class BookInfoWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(width: 20),
+              SizedBox(
+                  width: PlatformUtils.isDevice(context)
+                      ? (MediaQuery.of(context).size.width * 0.25)
+                      : 20),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -57,8 +63,12 @@ class BookInfoWidget extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 20),
-          Row(
+        ),
+        const SizedBox(height: 20),
+        Container(
+          width: MediaQuery.of(context).size.width *
+              (PlatformUtils.isDevice(context) ? 0.9 : 0.2),
+          child: Row(
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,7 +91,10 @@ class BookInfoWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(width: 20),
+              SizedBox(
+                  width: PlatformUtils.isDevice(context)
+                      ? (MediaQuery.of(context).size.width * 0.25)
+                      : 20),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -105,8 +118,8 @@ class BookInfoWidget extends StatelessWidget {
               ),
             ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

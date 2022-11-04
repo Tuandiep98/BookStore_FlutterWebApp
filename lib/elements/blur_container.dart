@@ -9,6 +9,9 @@ class BlurContainer extends StatelessWidget {
   final bool enabled;
   final double sigmaX;
   final double sigmaY;
+  final double radius;
+  final List<BoxShadow>? shadow;
+  final bool hasBorder;
   const BlurContainer({
     Key? key,
     required this.child,
@@ -17,21 +20,30 @@ class BlurContainer extends StatelessWidget {
     this.enabled = true,
     this.sigmaX = 5,
     this.sigmaY = 5,
+    this.radius = 0,
+    this.shadow,
+    this.hasBorder = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return enabled
-        ? new ClipRect(
-            child: new BackdropFilter(
-              filter: new ImageFilter.blur(
-                sigmaX: sigmaX,
-                sigmaY: sigmaY,
-                tileMode: TileMode.decal,
-              ),
-              child: Container(
-                decoration:
-                    new BoxDecoration(color: color!.withOpacity(opacity)),
+        ? Container(
+            decoration: new BoxDecoration(
+              color: color!.withOpacity(opacity),
+              boxShadow: shadow != null ? shadow : null,
+              border: hasBorder
+                  ? Border.all(color: Theme.of(context).colorScheme.secondary)
+                  : null,
+            ),
+            child: new ClipRRect(
+              borderRadius: BorderRadius.circular(radius),
+              child: new BackdropFilter(
+                filter: new ImageFilter.blur(
+                  sigmaX: sigmaX,
+                  sigmaY: sigmaY,
+                  tileMode: TileMode.decal,
+                ),
                 child: child,
               ),
             ),
