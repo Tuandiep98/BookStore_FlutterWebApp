@@ -12,7 +12,9 @@ class BookInfoWidget extends StatelessWidget {
       children: [
         Container(
           width: MediaQuery.of(context).size.width *
-              (PlatformUtils.isDevice(context) ? 0.9 : 0.2),
+              (PlatformUtils.isWebsite(context)
+                  ? 0.3
+                  : (PlatformUtils.isTablet(context) ? 0.6 : 0.9)),
           child: Row(
             children: [
               Column(
@@ -37,9 +39,9 @@ class BookInfoWidget extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                  width: PlatformUtils.isDevice(context)
-                      ? (MediaQuery.of(context).size.width * 0.25)
-                      : 20),
+                  width: PlatformUtils.isWebsite(context)
+                      ? 20
+                      : MediaQuery.of(context).size.width * 0.3),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -67,7 +69,9 @@ class BookInfoWidget extends StatelessWidget {
         const SizedBox(height: 20),
         Container(
           width: MediaQuery.of(context).size.width *
-              (PlatformUtils.isDevice(context) ? 0.9 : 0.2),
+              (PlatformUtils.isWebsite(context)
+                  ? 0.3
+                  : (PlatformUtils.isTablet(context) ? 0.6 : 0.9)),
           child: Row(
             children: [
               Column(
@@ -92,9 +96,9 @@ class BookInfoWidget extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                  width: PlatformUtils.isDevice(context)
-                      ? (MediaQuery.of(context).size.width * 0.25)
-                      : 20),
+                  width: PlatformUtils.isWebsite(context)
+                      ? 20
+                      : MediaQuery.of(context).size.width * 0.3),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

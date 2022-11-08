@@ -1,16 +1,16 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class PlatformUtils {
-  static bool isDevice(BuildContext context) {
-    return (defaultTargetPlatform == TargetPlatform.iOS ||
-        defaultTargetPlatform == TargetPlatform.android ||
-        MediaQuery.of(context).size.width < 760);
+  static bool isMobile(BuildContext context) {
+    return MediaQuery.of(context).size.width < 800;
   }
 
-  static bool isWebsite() {
-    return (defaultTargetPlatform == TargetPlatform.windows ||
-        defaultTargetPlatform == TargetPlatform.linux ||
-        defaultTargetPlatform == TargetPlatform.macOS);
+  static bool isTablet(BuildContext context) {
+    return (MediaQuery.of(context).size.width > 800 &&
+        MediaQuery.of(context).size.width < 1024);
+  }
+
+  static bool isWebsite(BuildContext context) {
+    return MediaQuery.of(context).size.width > 1024;
   }
 }

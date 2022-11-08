@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.only(top: 80),
           width: double.infinity,
           height: MediaQuery.of(context).size.height +
-              (PlatformUtils.isDevice(context) ? 240 * 7 + 200 : 500),
+              (PlatformUtils.isMobile(context) ? 240 * 7 + 200 : 500),
           child: DefaultTabController(
             length: 7,
             initialIndex: 1,
@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                           options: CarouselOptions(
                             // enlargeCenterPage: false,
                             viewportFraction:
-                                PlatformUtils.isDevice(context) ? 0.9 : 0.4,
+                                PlatformUtils.isMobile(context) ? 0.9 : 0.4,
                             height: 300,
                             enableInfiniteScroll: true,
                             autoPlay: true,
@@ -98,13 +98,17 @@ class _HomePageState extends State<HomePage> {
                         return CarouselSlider(
                           carouselController: _controllerOfCarousel,
                           items: state.books
-                              .map((e) => BookElement(book: e))
+                              .map((e) => BookElement(
+                                    book: e,
+                                    carouselController: _controllerOfCarousel,
+                                  ))
                               .take(10)
                               .toList(),
                           options: CarouselOptions(
                             // enlargeCenterPage: false,
-                            viewportFraction:
-                                PlatformUtils.isDevice(context) ? 0.9 : 0.4,
+                            viewportFraction: PlatformUtils.isMobile(context)
+                                ? 0.9
+                                : (PlatformUtils.isTablet(context) ? 0.6 : 0.4),
                             height: 300,
                             enableInfiniteScroll: true,
                             autoPlay: true,
@@ -148,7 +152,7 @@ class _HomePageState extends State<HomePage> {
                           indicatorSize: TabBarIndicatorSize.label,
                           mouseCursor: MouseCursor.defer,
                           tabs: [
-                            PlatformUtils.isDevice(context)
+                            PlatformUtils.isMobile(context)
                                 ? Tab(
                                     icon: Text(
                                       'Trending',
@@ -255,7 +259,7 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      PlatformUtils.isDevice(context)
+                      PlatformUtils.isMobile(context)
                           ? const SizedBox.shrink()
                           : TrendingElement(),
                       BlocBuilder<BookBloc, BookState>(
@@ -285,7 +289,7 @@ class _HomePageState extends State<HomePage> {
                           return Expanded(
                             child: TabBarView(
                               children: [
-                                PlatformUtils.isDevice(context)
+                                PlatformUtils.isMobile(context)
                                     ? TrendingElement()
                                     : const SizedBox.shrink(),
                                 buildScrollingView(

@@ -10,7 +10,9 @@ class BookRatingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width *
-          (PlatformUtils.isDevice(context) ? 0.9 : 0.3),
+          (PlatformUtils.isWebsite(context)
+              ? 0.3
+              : (PlatformUtils.isTablet(context) ? 0.6 : 0.9)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,9 +57,10 @@ class BookRatingWidget extends StatelessWidget {
               const SizedBox(width: 10),
               Container(
                 height: 25,
-                width: PlatformUtils.isDevice(context)
-                    ? (MediaQuery.of(context).size.width * 0.8)
-                    : 170,
+                width: MediaQuery.of(context).size.width *
+                    (PlatformUtils.isWebsite(context)
+                        ? 0.2
+                        : (PlatformUtils.isTablet(context) ? 0.5 : 0.8)),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: Colors.grey[200],
@@ -78,9 +81,10 @@ class BookRatingWidget extends StatelessWidget {
               const SizedBox(width: 10),
               Container(
                 height: 25,
-                width: PlatformUtils.isDevice(context)
-                    ? (MediaQuery.of(context).size.width * 0.8)
-                    : 170,
+                width: MediaQuery.of(context).size.width *
+                    (PlatformUtils.isWebsite(context)
+                        ? 0.2
+                        : (PlatformUtils.isTablet(context) ? 0.5 : 0.8)),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: Colors.grey[200],
@@ -101,9 +105,10 @@ class BookRatingWidget extends StatelessWidget {
               const SizedBox(width: 10),
               Container(
                 height: 25,
-                width: PlatformUtils.isDevice(context)
-                    ? (MediaQuery.of(context).size.width * 0.8)
-                    : 170,
+                width: MediaQuery.of(context).size.width *
+                    (PlatformUtils.isWebsite(context)
+                        ? 0.2
+                        : (PlatformUtils.isTablet(context) ? 0.5 : 0.8)),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: Colors.grey[200],
@@ -124,9 +129,10 @@ class BookRatingWidget extends StatelessWidget {
               const SizedBox(width: 10),
               Container(
                 height: 25,
-                width: PlatformUtils.isDevice(context)
-                    ? (MediaQuery.of(context).size.width * 0.8)
-                    : 170,
+                width: MediaQuery.of(context).size.width *
+                    (PlatformUtils.isWebsite(context)
+                        ? 0.2
+                        : (PlatformUtils.isTablet(context) ? 0.5 : 0.8)),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: Colors.grey[200],
@@ -147,9 +153,10 @@ class BookRatingWidget extends StatelessWidget {
               const SizedBox(width: 10),
               Container(
                 height: 25,
-                width: PlatformUtils.isDevice(context)
-                    ? (MediaQuery.of(context).size.width * 0.8)
-                    : 170,
+                width: MediaQuery.of(context).size.width *
+                    (PlatformUtils.isWebsite(context)
+                        ? 0.2
+                        : (PlatformUtils.isTablet(context) ? 0.5 : 0.8)),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: Colors.grey[200],

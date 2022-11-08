@@ -74,11 +74,9 @@ class _BaseScreenState extends State<BaseScreen> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Theme.of(context).backgroundColor,
-      body: SafeArea(
-        child: WebPlatform(
-          header: widget.header != null ? widget.header! : Header(),
-          body: widget.body,
-        ),
+      body: WebPlatform(
+        header: widget.header != null ? widget.header! : Header(),
+        body: widget.body,
       ),
     );
   }

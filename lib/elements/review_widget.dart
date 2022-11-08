@@ -20,10 +20,10 @@ class ReviewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width *
-          (PlatformUtils.isDevice(context) ? 0.9 : 0.5),
+          (PlatformUtils.isMobile(context) ? 0.9 : 0.5),
       constraints: BoxConstraints(
         maxWidth: MediaQuery.of(context).size.width *
-            (PlatformUtils.isDevice(context) ? 0.9 : 0.5),
+            (PlatformUtils.isMobile(context) ? 0.9 : 0.5),
         maxHeight: 140,
       ),
       child: Column(
@@ -43,7 +43,7 @@ class ReviewWidget extends StatelessWidget {
               const SizedBox(width: 10),
               Container(
                 width: MediaQuery.of(context).size.width *
-                    (PlatformUtils.isDevice(context) ? 0.8 : 0.4),
+                    (PlatformUtils.isMobile(context) ? 0.8 : 0.4),
                 child: Column(
                   children: [
                     Row(
@@ -99,7 +99,7 @@ class ReviewWidget extends StatelessWidget {
           const SizedBox(height: 10),
           Container(
             width: MediaQuery.of(context).size.width *
-                (PlatformUtils.isDevice(context) ? 0.9 : 0.46),
+                (PlatformUtils.isMobile(context) ? 0.9 : 0.46),
             child: Text(
               review,
               maxLines: 3,

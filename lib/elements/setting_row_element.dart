@@ -58,7 +58,7 @@ class _SettingRowElementState extends State<SettingRowElement> {
                     color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
-                SizedBox(width: PlatformUtils.isDevice(context) ? 0 : 100),
+                SizedBox(width: PlatformUtils.isMobile(context) ? 0 : 100),
                 const Spacer(),
                 widget.setting.type == 0
                     ? Text(widget.setting.value,

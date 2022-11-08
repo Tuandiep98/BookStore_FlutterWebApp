@@ -13,6 +13,7 @@ import '../core/bloc/setting_bloc/setting_bloc.dart';
 import '../core/dto/author/author_dto.dart';
 import 'author_activity_element.dart';
 import 'category_widget.dart';
+import 'custom_button_2.dart';
 import 'custom_button_element.dart';
 
 class BookDetailsDialog extends StatefulWidget {
@@ -49,11 +50,11 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
         child: SingleChildScrollView(
           child: Container(
             height: MediaQuery.of(context).size.height *
-                (PlatformUtils.isDevice(context) ? 2 : 1.5),
+                (PlatformUtils.isMobile(context) ? 2 : 1.5),
             padding: const EdgeInsets.only(top: 20),
             constraints: BoxConstraints(
               minHeight: MediaQuery.of(context).size.height /
-                  (PlatformUtils.isDevice(context) ? 1 : 2),
+                  (PlatformUtils.isMobile(context) ? 1 : 2),
               minWidth: MediaQuery.of(context).size.width,
             ),
             child: Stack(
@@ -61,13 +62,14 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                 Positioned(
                   left: 240,
                   top: 70,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width *
-                            (PlatformUtils.isDevice(context) ? 0.5 : 1),
-                        child: Text(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width *
+                        (PlatformUtils.isMobile(context) ? 0.5 : 1),
+                    height: 370,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
                           widget.book.title,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -80,12 +82,8 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                                 .primaryColor,
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 10),
-                      Container(
-                        width: MediaQuery.of(context).size.width *
-                            (PlatformUtils.isDevice(context) ? 0.5 : 1),
-                        child: Text(
+                        const SizedBox(height: 10),
+                        Text(
                           widget.book.authors.length > 0
                               ? '${widget.book.authors.first.name}'
                               : 'Anonymous',
@@ -100,90 +98,89 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                                 .primaryColor,
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 15),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(Icons.star_rounded,
-                              size: 35, color: Colors.amber),
-                          Icon(Icons.star_rounded,
-                              size: 35, color: Colors.amber),
-                          Icon(Icons.star_rounded,
-                              size: 35, color: Colors.amber),
-                          Icon(Icons.star_rounded,
-                              size: 35, color: Colors.amber),
-                          Icon(Icons.star_rounded,
-                              size: 35, color: Colors.grey),
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Container(
+                        const SizedBox(height: 15),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(Icons.star_rounded,
+                                size: 35, color: Colors.amber),
+                            Icon(Icons.star_rounded,
+                                size: 35, color: Colors.amber),
+                            Icon(Icons.star_rounded,
+                                size: 35, color: Colors.amber),
+                            Icon(Icons.star_rounded,
+                                size: 35, color: Colors.amber),
+                            Icon(Icons.star_rounded,
+                                size: 35, color: Colors.grey),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Container(
                           height: 45,
                           width: MediaQuery.of(context).size.width *
-                              (PlatformUtils.isDevice(context) ? 0.7 : 0.5),
-                          child: Row(
-                            children: widget.book.categories.length > 0
-                                ? widget.book.categories
-                                    .map((e) => CategoryWidget(
-                                          name: e.name,
-                                        ))
-                                    .toList()
-                                : [],
+                              (PlatformUtils.isMobile(context) ? 0.45 : 1),
+                          child: Wrap(
+                            runSpacing: 5,
+                            spacing: 5,
+                            children: [
+                              CustomButton2(
+                                onPressed: () {},
+                                title: 'Hornor',
+                                borderRadius: 20,
+                              ),
+                              CustomButton2(
+                                onPressed: () {},
+                                title: 'Fantasy',
+                                borderRadius: 20,
+                              ),
+                              CustomButton2(
+                                onPressed: () {},
+                                title: 'Intelligant',
+                                borderRadius: 20,
+                              ),
+                            ],
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 20),
-                      PlatformUtils.isDevice(context)
-                          ? Column(
-                              children: [
-                                CustomButton(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.5,
-                                  height: 30,
-                                  iconSize: 25,
-                                  radius: 0,
-                                  color: Colors.grey,
-                                  onPressed: () {
-                                    context.go(context.namedLocation(
-                                        'read-book',
-                                        params: <String, String>{
-                                          'bookId': '${widget.book.id}'
-                                        }));
-                                  },
-                                  tooltips: 'Start read this book',
-                                  title: 'Read online',
-                                  hasShadow: false,
-                                  hasBorder: true,
-                                ),
-                                const SizedBox(height: 10),
-                                CustomButton(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.5,
-                                  height: 30,
-                                  iconSize: 25,
-                                  radius: 0,
-                                  color: Colors.amber,
-                                  onPressed: () {},
-                                  tooltips: 'Listen',
-                                  title: 'Listen',
-                                  hasShadow: false,
-                                  hasBorder: true,
-                                ),
-                              ],
-                            )
-                          : const SizedBox.shrink(),
-                    ],
+                        const Spacer(),
+                        PlatformUtils.isMobile(context)
+                            ? Column(
+                                children: [
+                                  CustomButton2(
+                                    onPressed: () {
+                                      context.go(context.namedLocation(
+                                          'read-book',
+                                          params: <String, String>{
+                                            'bookId': '${widget.book.id}'
+                                          }));
+                                    },
+                                    title: 'Read online',
+                                    symmetricVertical: 20,
+                                    symmetricHorizonal: 0,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.45,
+                                  ),
+                                  const SizedBox(height: 10),
+                                  CustomButton2(
+                                    onPressed: () {},
+                                    title: 'Listen',
+                                    symmetricVertical: 20,
+                                    symmetricHorizonal: 0,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.45,
+                                  ),
+                                ],
+                              )
+                            : const SizedBox.shrink(),
+                      ],
+                    ),
                   ),
                 ),
                 Positioned(
                   left: 0,
-                  top: PlatformUtils.isDevice(context) ? 450 : 300,
+                  top: PlatformUtils.isMobile(context) ? 450 : 300,
                   child: Container(
                     padding: EdgeInsets.only(
-                        left: PlatformUtils.isDevice(context) ? 10 : 240),
+                        left: PlatformUtils.isMobile(context) ? 10 : 240),
                     color: Theme.of(context).primaryColor,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -208,7 +205,7 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                           children: [
                             Container(
                               width: MediaQuery.of(context).size.width *
-                                  (PlatformUtils.isDevice(context) ? 0.9 : 0.5),
+                                  (PlatformUtils.isMobile(context) ? 0.9 : 0.5),
                               child: Text(
                                 'Louisa Clark is no longer hust an ordinary girl living an ordinary life. After the transaformative six months spent.',
                                 maxLines: 4,
@@ -225,13 +222,13 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                               ),
                             ),
                             const SizedBox(width: 50),
-                            PlatformUtils.isDevice(context)
+                            !PlatformUtils.isWebsite(context)
                                 ? const SizedBox()
                                 : const BookInfoWidget(),
                           ],
                         ),
                         const SizedBox(height: 20),
-                        PlatformUtils.isDevice(context)
+                        !PlatformUtils.isWebsite(context)
                             ? const BookInfoWidget()
                             : const SizedBox.shrink(),
                         const SizedBox(height: 20),
@@ -273,10 +270,10 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                           fontSize: 18,
                           size: 50,
                           maxWidth: MediaQuery.of(context).size.width *
-                              (PlatformUtils.isDevice(context) ? 0.9 : 0.5),
+                              (PlatformUtils.isMobile(context) ? 1 : 0.5),
                         ),
                         const SizedBox(height: 20),
-                        PlatformUtils.isDevice(context)
+                        !PlatformUtils.isWebsite(context)
                             ? BookRatingWidget(book: widget.book)
                             : const SizedBox.shrink(),
                         const SizedBox(height: 20),
@@ -318,7 +315,7 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                               ],
                             ),
                             const SizedBox(width: 50),
-                            PlatformUtils.isDevice(context)
+                            !PlatformUtils.isWebsite(context)
                                 ? const SizedBox.shrink()
                                 : BookRatingWidget(book: widget.book),
                           ],
@@ -437,8 +434,8 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                   child: Column(
                     children: [
                       Container(
-                        width: PlatformUtils.isDevice(context) ? 210 : 200,
-                        height: PlatformUtils.isDevice(context) ? 370 : 300,
+                        width: PlatformUtils.isMobile(context) ? 210 : 200,
+                        height: PlatformUtils.isMobile(context) ? 370 : 300,
                         decoration: BoxDecoration(
                           color: Colors.grey,
                           boxShadow: [
@@ -464,16 +461,11 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      PlatformUtils.isDevice(context)
+                      PlatformUtils.isMobile(context)
                           ? const SizedBox.shrink()
                           : Column(
                               children: [
-                                CustomButton(
-                                  width: 205,
-                                  height: 30,
-                                  iconSize: 25,
-                                  radius: 0,
-                                  color: Colors.grey,
+                                CustomButton2(
                                   onPressed: () {
                                     context.go(context.namedLocation(
                                         'read-book',
@@ -481,23 +473,20 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                                           'bookId': '${widget.book.id}'
                                         }));
                                   },
-                                  tooltips: 'Start read this book',
                                   title: 'Read online',
-                                  hasShadow: false,
-                                  hasBorder: true,
+                                  symmetricVertical: 20,
+                                  symmetricHorizonal: 0,
+                                  width: 205,
+                                  forgeDark: true,
                                 ),
                                 const SizedBox(height: 10),
-                                CustomButton(
-                                  width: 205,
-                                  height: 30,
-                                  iconSize: 25,
-                                  radius: 0,
-                                  color: Colors.amber,
+                                CustomButton2(
                                   onPressed: () {},
-                                  tooltips: 'Listen',
                                   title: 'Listen',
-                                  hasShadow: false,
-                                  hasBorder: true,
+                                  symmetricVertical: 20,
+                                  symmetricHorizonal: 0,
+                                  width: 205,
+                                  forgeDark: true,
                                 ),
                               ],
                             ),

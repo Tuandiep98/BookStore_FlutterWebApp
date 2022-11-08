@@ -1,3 +1,4 @@
+import 'package:book_store/elements/custom_button_2.dart';
 import 'package:book_store/elements/shimmers/shimmer_element.dart';
 import 'package:flutter/material.dart';
 
@@ -116,36 +117,18 @@ class _BookShimmerState extends State<BookShimmer> {
                 ),
                 const SizedBox(height: 8),
                 Container(
-                  width: 60,
+                  width: 50,
                   height: 8,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                const SizedBox(height: 30),
-                ShimmerElement(
-                  height: 30,
-                  width: 120,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(24),
-                    color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.grey,
-                        offset: Offset(0, 1), //(x,y)
-                        blurRadius: 2.0,
-                      ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Text(
-                      '',
-                      style: TextStyle(
-                        color: color,
-                      ),
-                    ),
-                  ),
+                const SizedBox(height: 20),
+                CustomButton2(
+                  onPressed: () {},
+                  title: 'See the book',
+                  forgeWhite: true,
                 ),
                 const SizedBox(height: 10),
               ],
