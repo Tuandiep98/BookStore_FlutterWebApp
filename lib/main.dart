@@ -5,6 +5,7 @@ import 'package:book_store/core/bloc/home_page_trending_bloc/home_page_trending_
 import 'package:book_store/core/global/router_config.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'utils/my_custom_scroll_behavior.dart';
 import 'core/bloc/book_bloc/book_bloc.dart';
@@ -71,6 +72,7 @@ class BaseScreen extends StatefulWidget {
 class _BaseScreenState extends State<BaseScreen> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Theme.of(context).backgroundColor,

@@ -12,7 +12,6 @@ import 'package:go_router/go_router.dart';
 import '../core/bloc/setting_bloc/setting_bloc.dart';
 import '../core/dto/author/author_dto.dart';
 import 'author_activity_element.dart';
-import 'category_widget.dart';
 import 'custom_button_2.dart';
 import 'custom_button_element.dart';
 
@@ -50,7 +49,7 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
         child: SingleChildScrollView(
           child: Container(
             height: MediaQuery.of(context).size.height *
-                (PlatformUtils.isMobile(context) ? 2 : 1.5),
+                (PlatformUtils.isMobile(context) ? 5 : 1.5),
             padding: const EdgeInsets.only(top: 20),
             constraints: BoxConstraints(
               minHeight: MediaQuery.of(context).size.height /
