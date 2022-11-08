@@ -122,23 +122,19 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                           child: Wrap(
                             runSpacing: 5,
                             spacing: 5,
-                            children: [
-                              CustomButton2(
-                                onPressed: () {},
-                                title: 'Hornor',
-                                borderRadius: 20,
-                              ),
-                              CustomButton2(
-                                onPressed: () {},
-                                title: 'Fantasy',
-                                borderRadius: 20,
-                              ),
-                              CustomButton2(
-                                onPressed: () {},
-                                title: 'Intelligant',
-                                borderRadius: 20,
-                              ),
-                            ],
+                            children: widget.book.categories.length > 0
+                                ? widget.book.categories
+                                    .map(
+                                      (e) => CustomButton2(
+                                        onPressed: () {},
+                                        title: e.name,
+                                        symmetricVertical: 0,
+                                        symmetricHorizonal: 15,
+                                        borderRadius: 20,
+                                      ),
+                                    )
+                                    .toList()
+                                : [],
                           ),
                         ),
                         const Spacer(),
@@ -157,7 +153,7 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                                     symmetricVertical: 20,
                                     symmetricHorizonal: 0,
                                     width: MediaQuery.of(context).size.width *
-                                        0.45,
+                                        0.35,
                                   ),
                                   const SizedBox(height: 10),
                                   CustomButton2(
@@ -166,7 +162,7 @@ class _BookDetailsDialogState extends State<BookDetailsDialog> {
                                     symmetricVertical: 20,
                                     symmetricHorizonal: 0,
                                     width: MediaQuery.of(context).size.width *
-                                        0.45,
+                                        0.35,
                                   ),
                                 ],
                               )
